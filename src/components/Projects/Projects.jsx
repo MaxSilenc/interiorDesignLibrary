@@ -6,8 +6,8 @@ import NavLinks from './NavLink/NavLink'
 
 const Projects = (props) => {
 
-    let NavLinksItems = props.NavLinksArr.map(el => <NavLinks id={el.id} name={el.name}/>);
-    let ProjectsItem = props.ProjectsArr.map(el => <Project title={el.title} text={el.text}/>);
+    let NavLinksItems = props.state.NavLinksArr.map(el => <NavLinks id={el.id} name={el.name}/>);
+    let ProjectsItem = props.state.ProjectsArr.map(el => <Project title={el.title} text={el.text}/>);
 
     return (
         <div className={Styles.projects}>

@@ -10,8 +10,8 @@ const App = (props) => {
     <BrowserRouter>
         <div>
             <Header />
-            <Route exact path="/" render={() => <SliderSection slideArr = {props.slideArr}/>}/>
-            <Route path="/projects" render={() => <Projects NavLinksArr={props.NavLinksArr} ProjectsArr={props.ProjectsArr}/>}/>
+            <Route exact path="/" render={() => <SliderSection state = {props.state.sliderSectionPage}/>}/>
+            <Route path="/projects" render={() => <Projects state = {props.state.projectsPage}/>}/>
         </div>
     </BrowserRouter>
   );
