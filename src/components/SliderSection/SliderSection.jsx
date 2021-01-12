@@ -2,7 +2,9 @@ import React from 'react';
 import Styles from './sliderSection.module.css'
 import Slide from './Slide/Slide'
 
-const SliderSection = () => {
+const SliderSection = (props) => {
+
+    let slides = props.slideArr.map(el => <Slide modify={el.modify} text_h5={el.text_h5}/>);
     return (
         <div className={Styles.slider}>
             <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
@@ -12,9 +14,7 @@ const SliderSection = () => {
                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                 </ol>
                 <div className="carousel-inner">
-                    <Slide modify=' active' text_h5='first slide'/>
-                    <Slide modify='' text_h5='second slide'/>
-                    <Slide modify='' text_h5='third slide'/>
+                    {slides}
                 </div>
                 <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>

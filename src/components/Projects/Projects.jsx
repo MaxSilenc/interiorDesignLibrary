@@ -4,19 +4,15 @@ import Project from './Project/Project'
 import NavLinks from './NavLink/NavLink'
 
 
-const Projects = () => {
-    let text = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus praesentium quos vero.';
+const Projects = (props) => {
+
+    let NavLinksItems = props.NavLinksArr.map(el => <NavLinks id={el.id} name={el.name}/>);
+    let ProjectsItem = props.ProjectsArr.map(el => <Project title={el.title} text={el.text}/>);
 
     return (
         <div className={Styles.projects}>
-            <NavLinks id='1' name='theme 1'/>
-            <NavLinks id='2' name='theme 2'/>
-            <NavLinks id='3' name='theme 3'/>
-            <NavLinks id='4' name='theme 4'/>
-
-            <Project title='title1' text={text}/>
-            <Project title='title1' text={text}/>
-            <Project title='title1' text={text}/>
+            {NavLinksItems}
+            {ProjectsItem}
         </div>
     )
 }
