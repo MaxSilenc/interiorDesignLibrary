@@ -1,10 +1,13 @@
 import React from 'react';
 import Styles from './projects.module.css'
+import Project from './Project/Project'
 
 const Projects = () => {
     return (
-        <div>
-            Projects
+        <div className={Styles.projects}>
+            <Project/>
+            <Project/>
+            <Project/>
         </div>
     )
 }
