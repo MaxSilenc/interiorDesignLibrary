@@ -9,7 +9,7 @@ const App = () => {
     <BrowserRouter>
         <div>
             <Header />
-            <Route path="/home" component={SliderSection}/>
+            <Route exact path="/" component={SliderSection}/>
             <Route path="/projects" component={Projects}/>
         </div>
     </BrowserRouter>
