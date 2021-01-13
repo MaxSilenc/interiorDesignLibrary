@@ -1,5 +1,7 @@
 import React from 'react';
 import Styles from './adminPanel.module.css'
+import {addProjectActionCreator, updateNewProjectActionCreator} from "../../state/state";
+
 
 const AdminPanel = (props) => {
 
@@ -7,13 +9,13 @@ const AdminPanel = (props) => {
     let newProjectTitle = React.createRef();
 
     let addProject = () => {
-        props.addProject();
+        props.dispatch(addProjectActionCreator());
     };
 
     let onProjectChange = () => {
         let title = newProjectTitle.current.value;
         let text = newProjectText.current.value;
-        props.updateNewProject(title, text);
+        props.dispatch(updateNewProjectActionCreator(text, title));
     };
 
     return (

@@ -29,25 +29,51 @@ let store = {
     renderApp(){
         console.log('changed')
     },
-    addProject(){
-        let newProject = {
-            title: this._state.projectsPage.NewProjectInput.title,
-            text: this._state.projectsPage.NewProjectInput.text
-        };
+    // addProject(){
+    //     let newProject = {
+    //         title: this._state.projectsPage.NewProjectInput.title,
+    //         text: this._state.projectsPage.NewProjectInput.text
+    //     };
+    //
+    //     this._state.projectsPage.ProjectsArr.push(newProject);
+    //     this._state.projectsPage.NewProjectInput.text = '';
+    //     this._state.projectsPage.NewProjectInput.title = '';
+    //     this.renderApp(this._state);
+    // },
+    // updateNewProject(title, text) {
+    //     this._state.projectsPage.NewProjectInput.title = title;
+    //     this._state.projectsPage.NewProjectInput.text = text;
+    //     this.renderApp(this._state);
+    // },
 
-        this._state.projectsPage.ProjectsArr.push(newProject);
-        this.updateNewProject('', '');
-        this.renderApp(this._state);
-    },
-    updateNewProject(title, text) {
-        this._state.projectsPage.NewProjectInput.title = title;
-        this._state.projectsPage.NewProjectInput.text = text;
-        this.renderApp(this._state);
-    },
     subscribe(observer) {
         this.renderApp = observer;
-    }
+    },
+    dispatch(action) {
+        if (action.type === "ADD-PROJECT"){
+            let newProject = {
+                title: this._state.projectsPage.NewProjectInput.title,
+                text: this._state.projectsPage.NewProjectInput.text
+            };
 
+            this._state.projectsPage.ProjectsArr.push(newProject);
+            this._state.projectsPage.NewProjectInput.text = '';
+            this._state.projectsPage.NewProjectInput.title = '';
+            this.renderApp(this._state);
+        }
+        if (action.type === "NEW-PROJECT-INPUT"){
+            this._state.projectsPage.NewProjectInput.title = action.title;
+            this._state.projectsPage.NewProjectInput.text = action.text;
+            this.renderApp(this._state);
+        }
+    }
+};
+
+export const addProjectActionCreator = () => {
+    return {type: "ADD-PROJECT"}
+};
+export const updateNewProjectActionCreator = (text, title) => {
+    return {type: "NEW-PROJECT-INPUT", text: text, title: title}
 };
 
 export default store;
