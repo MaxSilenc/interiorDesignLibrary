@@ -13,10 +13,12 @@ const App = (props) => {
             <Header />
             <Route exact path="/" render={() => <SliderSection state = {props.state.sliderSectionPage}/>}/>
             <Route path="/projects" render={() => <Projects state = {props.state.projectsPage}/>}/>
-            <Route path="/adminPanel" render={() => <AdminPanel addProject={props.addProject}/>}/>
+            <Route path="/adminPanel" render={() => <AdminPanel addProject={props.addProject}
+                                                                updateNewProject={props.updateNewProject}
+                                                                state={props.state.projectsPage.NewProjectInput}/>}/>
         </div>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
