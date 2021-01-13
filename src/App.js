@@ -2,6 +2,7 @@ import './App.css';
 import Header from './components/Header/Header'
 import SliderSection from './components/SliderSection/SliderSection'
 import Projects from './components/Projects/Projects'
+import AdminPanel from './components/AdminPanel/AdminPanel'
 import {BrowserRouter, Route} from "react-router-dom";
 
 
@@ -12,6 +13,7 @@ const App = (props) => {
             <Header />
             <Route exact path="/" render={() => <SliderSection state = {props.state.sliderSectionPage}/>}/>
             <Route path="/projects" render={() => <Projects state = {props.state.projectsPage}/>}/>
+            <Route path="/adminPanel" render={() => <AdminPanel addProject={props.addProject}/>}/>
         </div>
     </BrowserRouter>
   );

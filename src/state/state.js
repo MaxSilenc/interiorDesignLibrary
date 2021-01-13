@@ -1,3 +1,5 @@
+import {renderApp} from "../render";
+
 let state = {
     sliderSectionPage: {
         slideArr: [
@@ -20,6 +22,16 @@ let state = {
         ]
     }
 };
+
+export let addProject = (titel, text) => {
+    let newProject = {
+        title: titel,
+        text: text
+    };
+    state.projectsPage.ProjectsArr.push(newProject);
+    renderApp(state);
+};
+
 
 export default state;
 
