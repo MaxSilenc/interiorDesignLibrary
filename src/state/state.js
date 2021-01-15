@@ -1,3 +1,5 @@
+import {projectsPageReducer} from './projectsPageReducer'
+
 let store = {
     _state: {
         sliderSectionPage: {
@@ -50,22 +52,8 @@ let store = {
         this.renderApp = observer;
     },
     dispatch(action) {
-        if (action.type === "ADD-PROJECT"){
-            let newProject = {
-                title: this._state.projectsPage.NewProjectInput.title,
-                text: this._state.projectsPage.NewProjectInput.text
-            };
-
-            this._state.projectsPage.ProjectsArr.push(newProject);
-            this._state.projectsPage.NewProjectInput.text = '';
-            this._state.projectsPage.NewProjectInput.title = '';
-            this.renderApp(this._state);
-        }
-        if (action.type === "NEW-PROJECT-INPUT"){
-            this._state.projectsPage.NewProjectInput.title = action.title;
-            this._state.projectsPage.NewProjectInput.text = action.text;
-            this.renderApp(this._state);
-        }
+        this._state.projectsPage = projectsPageReducer(this._state.projectsPage, action);
+        this.renderApp(this._state);
     }
 };
 
