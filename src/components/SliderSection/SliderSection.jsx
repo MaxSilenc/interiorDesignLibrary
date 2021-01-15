@@ -27,6 +27,6 @@ const SliderSection = (props) => {
             </div>
         </div>
     )
-}
+};
 
 export default SliderSection;

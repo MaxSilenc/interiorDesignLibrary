@@ -1,9 +1,10 @@
 import reportWebVitals from './reportWebVitals';
-import store from './state/state'
+import store from './state/reduxStore'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
+window.state = store.getState();
 export let renderApp = (state) => {
     ReactDOM.render(
         <React.StrictMode>
@@ -14,7 +15,10 @@ export let renderApp = (state) => {
 };
 
 renderApp(store.getState());
-store.subscribe(renderApp);
+
+store.subscribe(() => {
+    renderApp(store.getState());
+});
 
 
 reportWebVitals();
