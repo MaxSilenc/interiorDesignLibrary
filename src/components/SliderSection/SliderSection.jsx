@@ -4,7 +4,7 @@ import Slide from './Slide/Slide'
 
 const SliderSection = (props) => {
 
-    let slides = props.state.slideArr.map(el => <Slide modify={el.modify} text_h5={el.text_h5}/>);
+    let slides = props.state.map(el => <Slide modify={el.modify} text_h5={el.text_h5}/>);
     return (
         <div className={Styles.slider}>
             <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
