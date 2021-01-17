@@ -20,20 +20,28 @@ let initialState = {
 export const projectsPageReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case ADD_PROJECT:
+        case ADD_PROJECT: {
+            let stateCopy = {...state};
+            stateCopy.ProjectsArr = [...state.ProjectsArr];
+            stateCopy.NewProjectInput = {...state.NewProjectInput};
+
             let newProject = {
                 title: state.NewProjectInput.title,
                 text: state.NewProjectInput.text
             };
-            state.ProjectsArr.push(newProject);
-            state.NewProjectInput.text = '';
-            state.NewProjectInput.title = '';
-            return state;
+            stateCopy.ProjectsArr.push(newProject);
+            stateCopy.NewProjectInput.text = '';
+            stateCopy.NewProjectInput.title = '';
+            return stateCopy;
+        }
+        case NEW_PROJECT_INPUT: {
+            let stateCopy = {...state};
+            stateCopy.NewProjectInput = {...state.NewProjectInput};
 
-        case NEW_PROJECT_INPUT:
-            state.NewProjectInput.title = action.title;
-            state.NewProjectInput.text = action.text;
-            return state;
+            stateCopy.NewProjectInput.title = action.title;
+            stateCopy.NewProjectInput.text = action.text;
+            return stateCopy;
+        }
         default:
             return state;
     }

@@ -7,21 +7,15 @@ import {Provider} from 'react-redux'
 import {BrowserRouter} from "react-router-dom";
 
 
-export let renderApp = () => {
-    ReactDOM.render(
-        <BrowserRouter>
-            <Provider store={store}>
-             <App/>
-            </Provider>
-        </BrowserRouter>, document.getElementById('root')
-    );
-};
 
-renderApp(store.getState());
+ReactDOM.render(
+    <BrowserRouter>
+        <Provider store={store}>
+            <App/>
+        </Provider>
+    </BrowserRouter>, document.getElementById('root')
+);
 
-store.subscribe(() => {
-    renderApp(store.getState());
-});
 
 
 reportWebVitals();
