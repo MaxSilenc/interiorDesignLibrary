@@ -1,6 +1,6 @@
 import React from 'react';
 import Styles from './projects.module.css'
-import Project from './Project/Project'
+import Project from './ProjectElement/Project'
 import NavLinks from './NavLink/NavLink'
 
 
