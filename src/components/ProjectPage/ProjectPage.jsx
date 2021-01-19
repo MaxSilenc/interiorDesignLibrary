@@ -7,7 +7,7 @@ const ProjectPage = (props) => {
     return (
         <div className={Styles.page}>
             <ImgBlock/>
-            <ComentBlock state={props.state}/>
+            <ComentBlock state={props.state} dispatch={props.dispatch}/>
         </div>
     );
 };
