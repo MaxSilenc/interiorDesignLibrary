@@ -1,20 +1,16 @@
 import React from 'react';
 import Styles from './project.module.css'
+import ProjectBlock from './ProjectBlock/ProjectBlock'
+import CommentBlockContainer from './ComentsBlock/CommentBlockContainer'
 
-const Project = (props) => {
-
-    return(
-        <div className={Styles.project}>
-            <div className="card bg-dark text-white">
-                <img className="" src="slide1.jpg" alt="Card image"/>
-                    <div className="card-img-overlay">
-                        <h5 className="card-title">{props.title}</h5>
-                        <p className="card-text">{props.text}</p>
-                        <a href="">start</a>
-                    </div>
-            </div>
+const Project = (props) =>{
+    return (
+        <div>
+            <ProjectBlock title={props.title} text={props.text} directLink={props.directLink}/>
+            <CommentBlockContainer projectId={props.id}/>
         </div>
-    )
-}
+    );
+};
 
 export default Project;
+

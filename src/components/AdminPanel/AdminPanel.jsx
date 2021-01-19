@@ -3,9 +3,9 @@ import Styles from './adminPanel.module.css'
 
 
 const AdminPanel = (props) => {
-
     let newProjectText = React.createRef();
     let newProjectTitle = React.createRef();
+    let newProjectDirectLink = React.createRef();
 
     let addProject = () => {
         props.addProject();
@@ -14,7 +14,9 @@ const AdminPanel = (props) => {
     let onProjectChange = () => {
         let title = newProjectTitle.current.value;
         let text = newProjectText.current.value;
-        props.updateNewProject(text, title);
+        let directLink = newProjectDirectLink.current.value;
+        console.log(text, title, directLink);
+        props.updateNewProject(text, title, directLink);
     };
 
     return (
@@ -29,6 +31,11 @@ const AdminPanel = (props) => {
                     <label htmlFor="exampleInputPassword1">text</label>
                     <input type="text" className="form-control" id="exampleInputPassword1" placeholder="text"
                            ref={newProjectText} onChange={onProjectChange} value={props.state.text}/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="exampleInputEmail12">directLink</label>
+                    <input type="text" className="form-control" id="exampleInputEmail12" aria-describedby="emailHelp"
+                           placeholder="directLink" ref={newProjectDirectLink} onChange={onProjectChange} value={props.state.directLink}/>
                 </div>
                 <button className="btn btn-primary" type="button" onClick={addProject}>Submit</button>
             </form>

@@ -22,6 +22,14 @@ let store = {
                 {title: 'title3', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus praesentium quos vero.'},
             ],
             NewProjectInput: {title: "", text: ""}
+        },
+        commentsBlockPage: {
+            comments: [
+                {author: 'author1', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing'},
+                {author: 'author2', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing'},
+                {author: 'author4', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing'},
+                {author: 'author5', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing'},
+            ]
         }
     },
 

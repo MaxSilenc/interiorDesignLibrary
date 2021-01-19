@@ -1,5 +1,5 @@
 import React from 'react';
-import {addProjectActionCreator, updateNewProjectActionCreator} from "../../state/state";
+import {addProjectActionCreator, updateNewProjectActionCreator} from "../../state/projectsPageReducer";
 import AdminPanel from "./AdminPanel";
 import {connect} from 'react-redux'
 
@@ -12,7 +12,7 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        updateNewProject: (text, title) => {dispatch(updateNewProjectActionCreator(text, title))},
+        updateNewProject: (text, title, directLink) => {dispatch(updateNewProjectActionCreator(text, title, directLink))},
         addProject: () => {dispatch(addProjectActionCreator())}
     }
 };

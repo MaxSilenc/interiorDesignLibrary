@@ -1,0 +1,13 @@
+.project {
+    padding-bottom: 5px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.project img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 0 0;
+}
