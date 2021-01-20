@@ -9,7 +9,7 @@ let initialState = {
         {id:'3', author: 'author3', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing'},
         {id:'4', author: 'author4', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing'},
     ],
-    NewCommentInput: {author:'user', text: ''}
+    NewCommentInput: {text: '', author: 'user'}
 };
 
 export const addCommentActionCreator = () => {
@@ -20,7 +20,7 @@ export const updateNewCommentActionCreator = (text) => {
 };
 
 
-export const commentsBlockReducer = (state = initialState, action) => {
+export const commentsFormReducer = (state = initialState, action) => {
     switch (action.type){
         case ADD_COMMENT: {
             let stateCopy = {...state};
@@ -39,13 +39,11 @@ export const commentsBlockReducer = (state = initialState, action) => {
         case NEW_COMMENT_INPUT: {
             let stateCopy = {...state};
             stateCopy.NewCommentInput = {...state.NewCommentInput};
-            stateCopy.NewCommentInput.author = action.author;
+            stateCopy.NewCommentInput.author = state.NewCommentInput.author;
             stateCopy.NewCommentInput.text = action.text;
             return stateCopy;
         }
         default:
             return state
     }
-
-   return state;
 };

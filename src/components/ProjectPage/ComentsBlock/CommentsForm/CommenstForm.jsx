@@ -17,9 +17,9 @@ const CommentsForm = (props) =>{
     return (
         <div>
             <form action="">
-                <textarea name="" id="" cols="60" rows="5" value={props.state.NewCommentInput.text}
-                          onChange={onProjectChange} ref={newCommentText}/>
-                <button className="btn btn-primary" type="button">Submit</button>
+                <textarea name="" id="" cols="60" rows="5"
+                          onChange={onProjectChange} ref={newCommentText} value={props.state.text}/>
+                <button className="btn btn-primary" type="button" onClick={addComment}>Submit</button>
             </form>
         </div>
     );

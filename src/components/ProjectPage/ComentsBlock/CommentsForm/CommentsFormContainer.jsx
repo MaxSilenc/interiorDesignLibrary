@@ -1,12 +1,12 @@
 import React from 'react';
-import ProjectPage from "./ProjectPage";
+import CommentsForm from "./CommenstForm";
 import {connect} from 'react-redux'
-import {addCommentActionCreator, updateNewCommentActionCreator} from "../../state/commentsBlockReducer";
+import {updateNewCommentActionCreator, addCommentActionCreator} from "../../../../state/commentsFormReducer";
 
 
 let mapStateToProps = (state) => {
     return {
-        state: state.commentsBlockPage
+        state: state.commentsBlockPage.NewCommentInput
     }
 };
 
@@ -18,7 +18,7 @@ let mapDispatchToProps = (dispatch) => {
 };
 
 
-const ProjectsContainer = connect(mapStateToProps, mapDispatchToProps)(ProjectPage);
+const CommentsFormContainer = connect(mapStateToProps, mapDispatchToProps)(CommentsForm);
 
 
-export default ProjectsContainer;
+export default CommentsFormContainer;
