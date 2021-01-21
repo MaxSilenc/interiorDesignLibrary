@@ -1,5 +1,6 @@
 const ADD_PROJECT = 'ADD-PROJECT';
 const NEW_PROJECT_INPUT = "NEW-PROJECT-INPUT";
+const SET_PROJECTS = "SET_PROJECTS";
 
 
 let initialState = {
@@ -10,30 +11,7 @@ let initialState = {
         {id: '4', name: 'theme 4'}
     ],
     ProjectsArr: [
-        {
-            id: 1,
-            title: 'title1',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus praesentium quos vero.',
-            directLink: 'theme1'
-        },
-        {
-            id: 2,
-            title: 'title2',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus praesentium quos vero.',
-            directLink: 'theme2'
-        },
-        {
-            id: 3,
-            title: 'title3',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus praesentium quos vero.',
-            directLink: 'theme3'
-        },
-        {
-            id: 4,
-            title: 'title4',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus praesentium quos vero.',
-            directLink: 'theme4'
-        },
+
     ],
     NewProjectInput: {title: "", text: "", directLink: "",}
 };
@@ -43,6 +21,9 @@ export const addProjectActionCreator = () => {
 };
 export const updateNewProjectActionCreator = (text, title, directLink) => {
     return {type: "NEW-PROJECT-INPUT", text: text, title: title, directLink: directLink}
+};
+export const setProjectsActionCreator = (ProjectsArr) => {
+    return {type: "SET_PROJECTS", ProjectsArr}
 };
 
 export const projectsPageReducer = (state = initialState, action) => {
@@ -73,6 +54,9 @@ export const projectsPageReducer = (state = initialState, action) => {
             stateCopy.NewProjectInput.text = action.text;
             stateCopy.NewProjectInput.directLink = action.directLink;
             return stateCopy;
+        }
+        case SET_PROJECTS: {
+            return {...state, ProjectsArr: [...action.ProjectsArr]}
         }
         default:
             return state;
