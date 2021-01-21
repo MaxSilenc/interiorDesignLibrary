@@ -5,23 +5,31 @@ import NavLinks from './NavLink/NavLink'
 import * as axios from "axios";
 
 
-const Projects = (props) => {
+class Projects extends React.Component{
 
-    axios.get("http://127.0.0.1:8000/reactTest").then(respons =>{
-        debugger;
-        props.setProjects(respons.data.items)
-    });
+    constructor(props) {
+        super(props);
+    }
 
+    componentDidMount() {
+        axios.get("http://127.0.0.1:8000/reactTest").then(respons => {
+            debugger;
+            this.props.setProjects(respons.data.items)
+        });
+    }
 
-    let NavLinksItems = props.state.NavLinksArr.map(el => <NavLinks id={el.id} name={el.name} key={el.id}/>);
-    let ProjectsItem = props.state.ProjectsArr.map(el => <Project title={el.title} text={el.text} directLink={el.directLink} key={el.id} id={el.id}/>);
-
-    return (
-        <div className={Styles.projects}>
-            {NavLinksItems}
-            {ProjectsItem}
-        </div>
-    )
-};
+    render() {
+        let NavLinksItems = this.props.state.NavLinksArr.map(el => <NavLinks id={el.id} name={el.name} key={el.id}/>);
+        let ProjectsItem = this.props.state.ProjectsArr.map(el => <Project title={el.title} text={el.text}
+                                                                      directLink={el.directLink} key={el.id}
+                                                                      id={el.id}/>);
+        return (
+            <div className={Styles.projects}>
+                {NavLinksItems}
+                {ProjectsItem}
+            </div>
+        )
+    }
+}
 
 export default Projects;
