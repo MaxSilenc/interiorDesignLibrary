@@ -12,9 +12,17 @@ class Projects extends React.Component{
     }
 
     componentDidMount() {
-        axios.get("http://127.0.0.1:8000/reactTest").then(respons => {
-            debugger;
-            this.props.setProjects(respons.data.items)
+        axios.get("http://127.0.0.1:8000/reactTest?page=" + this.props.state.nowPage).then(respons => {
+            this.props.setCount(respons.data.count);
+            this.props.setProjects(respons.data.items);
+        });
+    }
+
+    onClickSetPage(el){
+        this.props.setPage(el);
+        axios.get("http://127.0.0.1:8000/reactTest?page=" + el).then(respons => {
+            this.props.setCount(respons.data.count);
+            this.props.setProjects(respons.data.items);
         });
     }
 
@@ -23,10 +31,17 @@ class Projects extends React.Component{
         let ProjectsItem = this.props.state.ProjectsArr.map(el => <Project title={el.title} text={el.text}
                                                                       directLink={el.directLink} key={el.id}
                                                                       id={el.id}/>);
+        let buttons = [];
+        for (let i = 1; i <= Math.ceil(this.props.state.projectsCount / 4); i++){
+            buttons.push(i);
+        }
+        let PageButtons = buttons.map(el => <button key={el} onClick={() => this.onClickSetPage(el) }>{el}</button>);
+
         return (
             <div className={Styles.projects}>
                 {NavLinksItems}
                 {ProjectsItem}
+                {PageButtons}
             </div>
         )
     }

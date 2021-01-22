@@ -1,6 +1,8 @@
 const ADD_PROJECT = 'ADD-PROJECT';
 const NEW_PROJECT_INPUT = "NEW-PROJECT-INPUT";
 const SET_PROJECTS = "SET_PROJECTS";
+const SET_PROJECTS_COUNT = "SET_PROJECTS_COUNT";
+const SET_PAGE_NUMBER = "SET_PAGE_NUMBER";
 
 
 let initialState = {
@@ -10,10 +12,10 @@ let initialState = {
         {id: '3', name: 'theme 3'},
         {id: '4', name: 'theme 4'}
     ],
-    ProjectsArr: [
-
-    ],
-    NewProjectInput: {title: "", text: "", directLink: "",}
+    ProjectsArr: [],
+    NewProjectInput: {title: "", text: "", directLink: "",},
+    nowPage: 1,
+    projectsCount: 0
 };
 
 export const addProjectActionCreator = () => {
@@ -24,6 +26,12 @@ export const updateNewProjectActionCreator = (text, title, directLink) => {
 };
 export const setProjectsActionCreator = (ProjectsArr) => {
     return {type: "SET_PROJECTS", ProjectsArr}
+};
+export const setProjectsCountActionCreator = (count) => {
+    return {type: "SET_PROJECTS_COUNT", count: count}
+};
+export const setPageNumberActionCreator = (page) => {
+    return {type: "SET_PAGE_NUMBER", page: page}
 };
 
 export const projectsPageReducer = (state = initialState, action) => {
@@ -57,6 +65,12 @@ export const projectsPageReducer = (state = initialState, action) => {
         }
         case SET_PROJECTS: {
             return {...state, ProjectsArr: [...action.ProjectsArr]}
+        }
+        case SET_PROJECTS_COUNT: {
+            return {...state, projectsCount: action.count}
+        }
+        case SET_PAGE_NUMBER: {
+            return {...state, nowPage: action.page}
         }
         default:
             return state;
