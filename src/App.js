@@ -15,7 +15,7 @@ const App = (props) => {
             <Route exact path="/" render={() => <MainPage/>}/>
             <Route exact path="/projects" render={() => <ProjectContainer/>}/>
             <Route path="/adminPanel" render={() => <AdminPanelContainer/>}/>
-            <Route path="/projects/1" render={() => <ProjectPage/>}/>
+            {/*<Route path="/projects/1" render={() => <ProjectPage/>}/>*/}
         </div>
     </BrowserRouter>
   );

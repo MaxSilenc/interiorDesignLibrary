@@ -7,12 +7,12 @@ const ProjectBlock = (props) => {
     return(
         <div className={Styles.project}>
             <div className="card bg-dark text-white">
-                <img className="" src="slide1.jpg" alt="Card image"/>
+                <img className="" src={'http://127.0.0.1:8000' + props.img} alt="Card image"/>
                     <div className="card-img-overlay">
                         <h5 className="card-title">{props.title}</h5>
                         <p className="card-text">{props.text}</p>
                         <p className="card-text">{props.directLink}</p>
-                        <NavLink to={"/projects/" + props.id}>start</NavLink>
+                        <a href={"http://127.0.0.1:8000/media/Ue4Project/" + props.name + "/" + props.name + ".html"}>start</a>
                     </div>
             </div>
         </div>

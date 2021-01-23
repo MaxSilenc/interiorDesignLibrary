@@ -9,7 +9,7 @@ const Projects = (props) => {
     let NavLinksItems = props.state.NavLinksArr.map(el => <NavLinks id={el.id} name={el.name} key={el.id}/>);
     let ProjectsItem = props.state.ProjectsArr.map(el => <Project title={el.title} text={el.text}
                                                                        directLink={el.directLink} key={el.id}
-                                                                       id={el.id}/>);
+                                                                       id={el.id} img={el.img} name={el.name}/>);
     let buttons = [];
     for (let i = 1; i <= Math.ceil(props.state.projectsCount / 4); i++){
         buttons.push(i);
