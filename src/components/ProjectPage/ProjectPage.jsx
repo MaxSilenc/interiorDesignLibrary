@@ -6,8 +6,8 @@ import ComentBlock from './ComentsBlock/ComentBlock'
 const ProjectPage = (props) => {
     return (
         <div className={Styles.page}>
-            <ImgBlock/>
-            <ComentBlock/>
+            <ImgBlock state={props.state.thisProject}/>
+            <ComentBlock {...props}/>
         </div>
     );
 };

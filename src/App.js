@@ -3,7 +3,7 @@ import Header from './components/Header/Header'
 import MainPage from './components/MainPage/MainPage'
 import ProjectContainer from './components/Projects/ProjectContainer'
 import AdminPanelContainer from './components/AdminPanel/AdminPanelContainer'
-import ProjectPage from './components/ProjectPage/ProjectPage'
+import ProjectPageContainer from './components/ProjectPage/ProjectPageContainer'
 import {BrowserRouter, Route} from "react-router-dom";
 
 
@@ -15,7 +15,7 @@ const App = (props) => {
             <Route exact path="/" render={() => <MainPage/>}/>
             <Route exact path="/projects" render={() => <ProjectContainer/>}/>
             <Route path="/adminPanel" render={() => <AdminPanelContainer/>}/>
-            {/*<Route path="/projects/1" render={() => <ProjectPage/>}/>*/}
+            <Route path="/projectPage" render={() => <ProjectPageContainer/>}/>
         </div>
     </BrowserRouter>
   );

@@ -16,7 +16,7 @@ class ProjectsComponent extends React.Component{
 
     componentDidMount() {
         this.props.setisFetching(true);
-        axios.get("http://127.0.0.1:8000/reactTest?page=" + this.props.state.nowPage).then(respons => {
+        axios.get("http://127.0.0.1:8000/projects?page=" + this.props.state.nowPage).then(respons => {
             this.props.setisFetching(false);
             this.props.setCount(respons.data.count);
             this.props.setProjects(respons.data.items);
@@ -26,7 +26,7 @@ class ProjectsComponent extends React.Component{
     onClickSetPage(el, props){
         props.setPage(el);
         props.setisFetching(true);
-        axios.get("http://127.0.0.1:8000/reactTest?page=" + el).then(respons => {
+        axios.get("http://127.0.0.1:8000/projects?page=" + el).then(respons => {
             props.setisFetching(false);
             props.setProjects(respons.data.items);
         });
@@ -58,7 +58,12 @@ let mapDispatchToProps = (dispatch) => {
 };
 
 
-const ProjectsContainer = connect(mapStateToProps, mapDispatchToProps)(ProjectsComponent);
+const ProjectsContainer = connect(mapStateToProps,{
+    setProjects: setProjectsActionCreator,
+    setPage: setPageNumberActionCreator,
+    setCount: setProjectsCountActionCreator,
+    setisFetching: setIsFetchingActionCreator
+})(ProjectsComponent);
 
 
 export default ProjectsContainer;

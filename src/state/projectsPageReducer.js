@@ -19,24 +19,13 @@ let initialState = {
     isFetching: false
 };
 
-export const addProjectActionCreator = () => {
-    return {type: "ADD-PROJECT"}
-};
+export const addProjectActionCreator = () => {return {type: "ADD-PROJECT"}};
 export const updateNewProjectActionCreator = (text, title, directLink) => {
-    return {type: "NEW-PROJECT-INPUT", text: text, title: title, directLink: directLink}
-};
-export const setProjectsActionCreator = (ProjectsArr) => {
-    return {type: "SET_PROJECTS", ProjectsArr}
-};
-export const setProjectsCountActionCreator = (count) => {
-    return {type: "SET_PROJECTS_COUNT", count: count}
-};
-export const setPageNumberActionCreator = (page) => {
-    return {type: "SET_PAGE_NUMBER", page: page}
-};
-export const setIsFetchingActionCreator = (bool) => {
-    return {type: "SET_IS_FETCHING", bool: bool}
-};
+    return {type: "NEW-PROJECT-INPUT", text: text, title: title, directLink: directLink}};
+export const setProjectsActionCreator = (ProjectsArr) => {return {type: "SET_PROJECTS", ProjectsArr}};
+export const setProjectsCountActionCreator = (count) => {return {type: "SET_PROJECTS_COUNT", count: count}};
+export const setPageNumberActionCreator = (page) => {return {type: "SET_PAGE_NUMBER", page: page}};
+export const setIsFetchingActionCreator = (bool) => {return {type: "SET_IS_FETCHING", bool: bool}};
 
 
 export const projectsPageReducer = (state = initialState, action) => {

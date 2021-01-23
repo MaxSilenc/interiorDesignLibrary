@@ -1,5 +1,6 @@
 const ADD_COMMENT = 'ADD-COMMENT';
 const NEW_COMMENT_INPUT = "NEW-COMMENT-INPUT";
+const SET_THIS_PROJECT = "SET_THIS_PROJECT";
 
 
 let initialState = {
@@ -9,15 +10,13 @@ let initialState = {
         {id:'3', author: 'author3', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing'},
         {id:'4', author: 'author4', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing'},
     ],
-    NewCommentInput: {text: '', author: 'user'}
+    NewCommentInput: {text: '', author: 'user'},
+    thisProject: {}
 };
 
-export const addCommentActionCreator = () => {
-    return {type: "ADD-COMMENT"}
-};
-export const updateNewCommentActionCreator = (text) => {
-    return {type: "NEW-COMMENT-INPUT", text: text}
-};
+export const addCommentActionCreator = () => {return {type: "ADD-COMMENT"}};
+export const updateNewCommentActionCreator = (text) => {return {type: "NEW-COMMENT-INPUT", text: text}};
+export const setThisProjectCommentActionCreator = (project) => {return {type: "SET_THIS_PROJECT", project: project}};
 
 
 export const commentsFormReducer = (state = initialState, action) => {
@@ -42,6 +41,9 @@ export const commentsFormReducer = (state = initialState, action) => {
             stateCopy.NewCommentInput.author = state.NewCommentInput.author;
             stateCopy.NewCommentInput.text = action.text;
             return stateCopy;
+        }
+        case SET_THIS_PROJECT: {
+            return {...state, thisProject: action.project}
         }
         default:
             return state

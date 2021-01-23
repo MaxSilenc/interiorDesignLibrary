@@ -9,5 +9,7 @@ let redusers = combineReducers({
     commentsBlockPage: commentsFormReducer
 });
 
+
 let store = createStore(redusers);
+
 export default store;
