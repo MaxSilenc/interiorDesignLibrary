@@ -3,7 +3,7 @@ const NEW_PROJECT_INPUT = "NEW-PROJECT-INPUT";
 const SET_PROJECTS = "SET_PROJECTS";
 const SET_PROJECTS_COUNT = "SET_PROJECTS_COUNT";
 const SET_PAGE_NUMBER = "SET_PAGE_NUMBER";
-
+const SET_IS_FETCHING = "SET_IS_FETCHING";
 
 let initialState = {
     NavLinksArr: [
@@ -15,7 +15,8 @@ let initialState = {
     ProjectsArr: [],
     NewProjectInput: {title: "", text: "", directLink: "",},
     nowPage: 1,
-    projectsCount: 0
+    projectsCount: 0,
+    isFetching: false
 };
 
 export const addProjectActionCreator = () => {
@@ -33,6 +34,10 @@ export const setProjectsCountActionCreator = (count) => {
 export const setPageNumberActionCreator = (page) => {
     return {type: "SET_PAGE_NUMBER", page: page}
 };
+export const setIsFetchingActionCreator = (bool) => {
+    return {type: "SET_IS_FETCHING", bool: bool}
+};
+
 
 export const projectsPageReducer = (state = initialState, action) => {
 
@@ -71,6 +76,9 @@ export const projectsPageReducer = (state = initialState, action) => {
         }
         case SET_PAGE_NUMBER: {
             return {...state, nowPage: action.page}
+        }
+        case SET_IS_FETCHING: {
+            return {...state, isFetching: action.bool}
         }
         default:
             return state;
