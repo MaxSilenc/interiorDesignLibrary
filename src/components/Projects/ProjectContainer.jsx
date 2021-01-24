@@ -6,7 +6,6 @@ import {setProjectsActionCreator, setPageNumberActionCreator,
 import * as axios from "axios";
 import Preloader from './../../components/common/Preloader/Preloader'
 
-
 class ProjectsComponent extends React.Component{
 
     constructor(props) {
