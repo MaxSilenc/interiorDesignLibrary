@@ -6,16 +6,18 @@ let initialState = {
     userId: null,
     email: null,
     login: null,
+    isAuth: false
 };
 
-export const serUserActionCreator = (userId, email, login) => {return {type: "SET_USER", data: {userId, email, login}}};
+export const setUserActionCreator = (userId, email, login) => {return {type: "SET_USER", data: {userId, email, login}}};
 
 export const authReducer = (state = initialState, action) => {
     switch (action.type){
         case SET_USER: {
             return {
                 ...state,
-                ...action.data
+                ...action.data,
+                isAuth:true
             }
         }
 

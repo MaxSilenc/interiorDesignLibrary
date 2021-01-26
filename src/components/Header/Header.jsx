@@ -2,7 +2,8 @@ import React from 'react';
 import headerStyles from './header.module.css'
 import {NavLink} from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
+    debugger
     return (
         <header className={headerStyles.header}>
             <nav className="navbar navbar-expand-lg navbar-dark">
@@ -23,9 +24,15 @@ const Header = () => {
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/adminPanel">Admin Panel</NavLink>
                             </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/login">login</NavLink>
-                            </li>
+                            {props.state.isAuth ?
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/login">logout, {props.state.login}</NavLink>
+                                </li>
+                                :
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/login">login</NavLink>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </div>
