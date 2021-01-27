@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 
 
 const Header = (props) => {
+    debugger
     return (
         <header className={headerStyles.header}>
             <nav className="navbar navbar-expand-lg navbar-dark">

@@ -1,15 +1,12 @@
 import React from 'react'
 import Header from  './Header'
 import {connect} from 'react-redux'
-import {setUserActionCreator} from './../../state/authReducer'
-import {currUser} from "../../api/api";
+import {getCurrUserThunk} from './../../state/authReducer'
 
 class HeaderContainer extends React.Component{
 
     componentDidMount() {
-        currUser().then(data => {
-            this.props.setUser(data.id, data.email, data.login)
-        });
+        this.props.getCurrUser();
     }
     render() {
         return <Header {...this.props}/>
@@ -23,5 +20,5 @@ let mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-    setUser: setUserActionCreator,
+    getCurrUser: getCurrUserThunk
 })(HeaderContainer);

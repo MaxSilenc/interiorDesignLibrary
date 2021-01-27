@@ -1,3 +1,5 @@
+import {currUser} from "../api/api";
+
 const SET_USER = 'SET_USER';
 
 
@@ -23,5 +25,13 @@ export const authReducer = (state = initialState, action) => {
 
         default:
             return state
+    }
+};
+
+export const getCurrUserThunk = () =>{
+    return (dispatch) =>{
+        currUser().then(data => {
+            dispatch(setUserActionCreator(data.id, data.email, data.login))
+        });
     }
 };

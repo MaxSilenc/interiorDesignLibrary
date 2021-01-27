@@ -1,3 +1,5 @@
+import {getProjects} from "../api/api";
+
 const ADD_PROJECT = 'ADD-PROJECT';
 const NEW_PROJECT_INPUT = "NEW-PROJECT-INPUT";
 const SET_PROJECTS = "SET_PROJECTS";
@@ -71,5 +73,17 @@ export const projectsPageReducer = (state = initialState, action) => {
         }
         default:
             return state;
+    }
+};
+
+
+export const getProjectsThunk = (nowPage) => {
+    return (dispatch) => {
+        dispatch(setIsFetchingActionCreator(true));
+        getProjects(nowPage).then(data => {
+            dispatch(setIsFetchingActionCreator(false));
+            dispatch(setProjectsCountActionCreator(data.count));
+            dispatch(setProjectsActionCreator(data.items));
+        });
     }
 };
