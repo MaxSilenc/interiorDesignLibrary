@@ -3,8 +3,9 @@ import Projects from "./Projects";
 import {connect} from 'react-redux'
 import {setProjectsActionCreator, setPageNumberActionCreator,
     setProjectsCountActionCreator, setIsFetchingActionCreator} from "../../state/projectsPageReducer";
-import * as axios from "axios";
 import Preloader from './../../components/common/Preloader/Preloader'
+import {getProjects} from './../../api/api'
+
 
 class ProjectsComponent extends React.Component{
 
@@ -15,19 +16,19 @@ class ProjectsComponent extends React.Component{
 
     componentDidMount() {
         this.props.setisFetching(true);
-        axios.get("http://127.0.0.1:8000/projects?page=" + this.props.state.nowPage).then(respons => {
+        getProjects(this.props.state.nowPage).then(data => {
             this.props.setisFetching(false);
-            this.props.setCount(respons.data.count);
-            this.props.setProjects(respons.data.items);
+            this.props.setCount(data.count);
+            this.props.setProjects(data.items);
         });
     }
 
     onClickSetPage(el, props){
         props.setPage(el);
         props.setisFetching(true);
-        axios.get("http://127.0.0.1:8000/projects?page=" + el).then(respons => {
+        getProjects(el).then(data => {
             props.setisFetching(false);
-            props.setProjects(respons.data.items);
+            props.setProjects(data.items);
         });
     }
 
