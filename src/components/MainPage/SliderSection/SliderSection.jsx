@@ -3,8 +3,6 @@ import Styles from './sliderSection.module.css'
 import Slide from './Slide/Slide'
 
 const SliderSection = (props) => {
-
-    let slides = props.state.map(el => <Slide modify={el.modify} text_h5={el.text_h5}/>);
     return (
         <div className={Styles.slider}>
             <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
@@ -14,7 +12,9 @@ const SliderSection = (props) => {
                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                 </ol>
                 <div className="carousel-inner">
-                    {slides}
+                    <Slide {...props.state[0]} modify=' active'/>
+                    <Slide {...props.state[1]} modify=''/>
+                    <Slide {...props.state[2]} modify=''/>
                 </div>
                 <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>

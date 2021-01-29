@@ -1,15 +1,17 @@
 import React from 'react';
 import Styles from './slide.module.css'
+import {NavLink} from "react-router-dom";
 
 const Slide = (props) => {
+    debugger
     return (
         <div className={'carousel-item' + props.modify + ' ' + Styles.slide}>
-            <img className={'d-block w-100' + Styles.slideImg} src="slide1.jpg" alt="First slide"/>
+            <img className={'d-block w-100' + Styles.slideImg} src={'http://127.0.0.1:8000' + props.img} alt="First slide"/>
             <div className={"carousel-caption d-md-block" + Styles.caption}>
                 <div className={Styles.caption}>
-                    <h5>{props.text_h5}</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, nam?</p>
-                    <a href="#" className={Styles.caption__link}>more</a>
+                    <h5>{props.title}</h5>
+                    <p>{props.text}</p>
+                    <NavLink to={"projectPage/" + props.id}>start</NavLink>
                 </div>
             </div>
         </div>

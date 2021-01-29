@@ -1,12 +1,32 @@
+import {getProjects} from "../api/api";
+
+const SET_PROJECTS = "SET_PROJECTS";
+
 
 let initialState = {
     slideArr: [
-        {modify: ' active', text_h5: 'first slide'},
-        {modify: '', text_h5: 'second slide'},
-        {modify: '', text_h5: 'third slide'},
+        {},
+        {},
+        {},
     ]
 };
 
+export const setProjectsActionCreator = (ProjectsArr) => {return {type: "SET_PROJECTS", ProjectsArr}};
+
 export const sliderSectionPageReducer = (state = initialState, action) => {
-    return state;
+    switch (action.type) {
+        case SET_PROJECTS:{
+            return {...state, slideArr: [...action.ProjectsArr]}
+        }
+        default:
+            return state
+    }
+};
+
+export const getProjectsThunk = () => {
+    return (dispatch) => {
+        getProjects(1).then(data => {
+            dispatch(setProjectsActionCreator(data.items));
+        });
+    }
 };

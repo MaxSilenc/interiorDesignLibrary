@@ -1,5 +1,5 @@
 import './App.css';
-import MainPage from './components/MainPage/MainPage'
+import MainPageContainer from './components/MainPage/MainPageContainer'
 import ProjectContainer from './components/Projects/ProjectContainer'
 import AdminPanelContainer from './components/AdminPanel/AdminPanelContainer'
 import ProjectPageContainer from './components/ProjectPage/ProjectPageContainer'
@@ -12,7 +12,7 @@ const App = (props) => {
     <BrowserRouter>
         <div>
             <HeaderContainer/>
-            <Route exact path="/" render={() => <MainPage/>}/>
+            <Route exact path="/" render={() => <MainPageContainer/>}/>
             <Route exact path="/projects" render={() => <ProjectContainer/>}/>
             <Route path="/adminPanel" render={() => <AdminPanelContainer/>}/>
             <Route path="/projectPage/:projectId?" render={() => <ProjectPageContainer/>}/>

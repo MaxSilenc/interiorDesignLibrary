@@ -3,7 +3,6 @@ import Projects from "./Projects";
 import {connect} from 'react-redux'
 import {getProjectsThunk} from "../../state/projectsPageReducer";
 import Preloader from './../../components/common/Preloader/Preloader'
-// import {getProjects} from './../../api/api'
 
 
 class ProjectsComponent extends React.Component{

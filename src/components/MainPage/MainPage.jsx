@@ -1,9 +1,9 @@
 import React from 'react';
-import SliderSectionContainer from './SliderSection/SliderSectionContainer'
+import SliderSection from './SliderSection/SliderSection'
 
-const MainPage = () => {
+const MainPage = (props) => {
     return (
-        <SliderSectionContainer/>
+        <SliderSection {...props}/>
     );
 };
 
