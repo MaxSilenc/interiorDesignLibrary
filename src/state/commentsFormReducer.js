@@ -1,15 +1,13 @@
+import {getCurrProject, getCurrProjectComment} from "../api/api";
+
 const ADD_COMMENT = 'ADD-COMMENT';
 const NEW_COMMENT_INPUT = "NEW-COMMENT-INPUT";
 const SET_THIS_PROJECT = "SET_THIS_PROJECT";
+const SET_THIS_COMMENTS = "SET_THIS_COMMENTS";
 
 
 let initialState = {
-    comments: [
-        {id:'1', author: 'author1', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing'},
-        {id:'2', author: 'author2', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing'},
-        {id:'3', author: 'author3', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing'},
-        {id:'4', author: 'author4', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing'},
-    ],
+    comments: [],
     NewCommentInput: {text: '', author: 'user'},
     thisProject: {}
 };
@@ -17,7 +15,7 @@ let initialState = {
 export const addCommentActionCreator = () => {return {type: "ADD-COMMENT"}};
 export const updateNewCommentActionCreator = (text) => {return {type: "NEW-COMMENT-INPUT", text: text}};
 export const setThisProjectCommentActionCreator = (project) => {return {type: "SET_THIS_PROJECT", project: project}};
-
+export const setThisCommentsAC = (comments) => {return {type: "SET_THIS_COMMENTS", comments: comments}};
 
 export const commentsFormReducer = (state = initialState, action) => {
     switch (action.type){
@@ -45,7 +43,22 @@ export const commentsFormReducer = (state = initialState, action) => {
         case SET_THIS_PROJECT: {
             return {...state, thisProject: action.project}
         }
+        case SET_THIS_COMMENTS: {
+            return {...state, comments: [...action.comments.items]}
+        }
         default:
             return state
+    }
+};
+
+
+export const getCurrProjectThunk = (projectId) => {
+    return (dispatch) => {
+        getCurrProject(projectId).then(data => {
+            dispatch(setThisProjectCommentActionCreator(data));
+        });
+        getCurrProjectComment(projectId).then(data => {
+            dispatch(setThisCommentsAC(data));
+        });
     }
 };

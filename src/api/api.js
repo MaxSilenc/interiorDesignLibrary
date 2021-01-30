@@ -17,3 +17,15 @@ export const currUser = () => {
         return respons.data
     });
 };
+
+export const getCurrProject = (projectId) =>{
+    return instanc.get("http://127.0.0.1:8000/projectPage/" + projectId).then(respons => {
+        return respons.data
+    });
+};
+
+export const getCurrProjectComment = (projectId) =>{
+    return instanc.get("http://127.0.0.1:8000/comments/" + projectId).then(respons => {
+        return respons.data
+    });
+};
