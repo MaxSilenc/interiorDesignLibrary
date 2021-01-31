@@ -31,7 +31,7 @@ export const authReducer = (state = initialState, action) => {
 export const getCurrUserThunk = () =>{
     return (dispatch) =>{
         currUser().then(data => {
-            dispatch(setUserActionCreator(data.id, data.email, data.login))
+            if (data.errorKey != 0) dispatch(setUserActionCreator(data.id, data.email, data.login))
         });
     }
 };

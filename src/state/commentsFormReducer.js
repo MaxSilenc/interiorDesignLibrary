@@ -8,12 +8,12 @@ const SET_THIS_COMMENTS = "SET_THIS_COMMENTS";
 
 let initialState = {
     comments: [],
-    NewCommentInput: {text: '', author: 'user'},
+    NewCommentInput: {text: '', author: ''},
     thisProject: {}
 };
 
 export const addCommentActionCreator = () => {return {type: "ADD-COMMENT"}};
-export const updateNewCommentActionCreator = (text) => {return {type: "NEW-COMMENT-INPUT", text: text}};
+export const updateNewCommentActionCreator = (text, user) => {return {type: "NEW-COMMENT-INPUT", text: text, author: user}};
 export const setThisProjectCommentActionCreator = (project) => {return {type: "SET_THIS_PROJECT", project: project}};
 export const setThisCommentsAC = (comments) => {return {type: "SET_THIS_COMMENTS", comments: comments}};
 
@@ -30,13 +30,13 @@ export const commentsFormReducer = (state = initialState, action) => {
             };
             stateCopy.comments.push(newComment);
             stateCopy.NewCommentInput.text = '';
-            stateCopy.NewCommentInput.author = 'user';
+            stateCopy.NewCommentInput.author = '';
             return stateCopy;
         }
         case NEW_COMMENT_INPUT: {
             let stateCopy = {...state};
             stateCopy.NewCommentInput = {...state.NewCommentInput};
-            stateCopy.NewCommentInput.author = state.NewCommentInput.author;
+            stateCopy.NewCommentInput.author = action.author;
             stateCopy.NewCommentInput.text = action.text;
             return stateCopy;
         }

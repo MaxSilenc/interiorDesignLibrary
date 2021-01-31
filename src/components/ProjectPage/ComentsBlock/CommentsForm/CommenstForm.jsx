@@ -10,7 +10,7 @@ const CommentsForm = (props) =>{
 
     let onProjectChange = () => {
         let text = newCommentText.current.value;
-        props.updateNewComment(text);
+        props.updateNewComment(text, props.user.login);
     };
 
 

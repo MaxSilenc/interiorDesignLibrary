@@ -2,7 +2,6 @@ import React from 'react';
 import Styles from './comment.module.css'
 
 const Comment = (props) =>{
-    debugger
     return (
         <div>
             {(props.user === props.author)?

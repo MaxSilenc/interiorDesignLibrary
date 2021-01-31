@@ -3,6 +3,7 @@ import ProjectPage from './ProjectPage'
 import {addCommentActionCreator, updateNewCommentActionCreator,
     getCurrProjectThunk} from "../../state/commentsFormReducer";
 import {connect} from "react-redux";
+import {compose} from "redux";
 import {withRouter} from 'react-router-dom'
 
 
@@ -28,12 +29,12 @@ let mapStateToProps = (state) => {
     }
 };
 
-let withRoutPC = withRouter(ProjectPageComponent);
 
-const ProjectPageContainer = connect(mapStateToProps, {
-    updateNewComment: updateNewCommentActionCreator,
-    addComment: addCommentActionCreator,
-    getCurrProject: getCurrProjectThunk
-})(withRoutPC);
-
-export default ProjectPageContainer;
+export default compose(
+    connect(mapStateToProps, {
+        updateNewComment: updateNewCommentActionCreator,
+        addComment: addCommentActionCreator,
+        getCurrProject: getCurrProjectThunk
+    }),
+    withRouter
+)(ProjectPageComponent);

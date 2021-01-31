@@ -1,7 +1,7 @@
 import React from 'react';
 import Styles from './comentBlock.module.css'
-import CommentsForm from './CommentsForm/CommenstForm'
 import CommentsList from './CommentsList/CommentsList'
+import CommentsFormContainer from './CommentsForm/CommentsFormContainer'
 
 
 const CommentsBlock = (props) => {
@@ -19,7 +19,7 @@ const CommentsBlock = (props) => {
                 <div id='1' className="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                     <div className="card-body">
                         <CommentsList state={props.state.comments} user={props.user}/>
-                        <CommentsForm state={props.state.NewCommentInput}
+                        <CommentsFormContainer state={props.state.NewCommentInput}
                                       addComment={props.addComment} updateNewComment={props.updateNewComment}/>
                     </div>
                 </div>
