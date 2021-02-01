@@ -29,3 +29,9 @@ export const getCurrProjectComment = (projectId) =>{
         return respons.data
     });
 };
+
+export const updateComment = (id, text) =>{
+    return instanc.get("http://127.0.0.1:8000/updateComment/", {id: id, text: text}).then(respons => {
+        return respons.data
+    });
+};
