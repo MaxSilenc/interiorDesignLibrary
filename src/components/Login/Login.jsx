@@ -9,8 +9,8 @@ class Login extends React.Component{
     };
 
     login = event =>{
-
-        fetch('http://127.0.0.1:8000/auth', {
+        alert(this.state.credential.username + this.state.credential.password);
+        fetch('http://127.0.0.1:8000/auth/', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'

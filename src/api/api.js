@@ -3,7 +3,7 @@ import * as axios from "axios";
 
 const instance = axios.create({
     withCredentials: true,
-    baseURL: 'http://127.0.0.1:8000/'
+    baseURL: 'http://127.0.0.1:8000/',
 });
 
 
@@ -32,7 +32,7 @@ export const getCurrProjectComment = (projectId) =>{
 };
 
 export const updateComment = (id, text) =>{
-    return instance.post("http://127.0.0.1:8000/updateComment/", {id: id, text: text}).then(respons => {
+    return instance.post("http://127.0.0.1:8000/updateComment/", "id="+id+'&text='+text).then(respons => {
         return respons.data
     });
 };
