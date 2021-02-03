@@ -1,48 +1,42 @@
 import React from 'react';
+import {Field, reduxForm} from "redux-form";
 
-
-
-class Login extends React.Component{
-
-    state = {
-        credential: {username: '', password: ''}
-    };
-
-    login = event =>{
-        alert(this.state.credential.username + this.state.credential.password);
-        fetch('http://127.0.0.1:8000/auth/', {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(this.state.credential)
-        }).then(data => {
-            console.log(data)
-        }).catch(error => console.error(error))
-    };
-
-    inputChange = event => {
-        const cred = this.state.credential;
-        cred[event.target.name] = event.target.value;
-        this.setState({credential: cred})
-    };
-
-    render (){
-        return (
+const LoginForm = (props) =>{
+    return (
+        <form onSubmit={props.handleSubmit}>
             <div>
-                <h1>Login</h1>
-                <label>
-                    Username
-                    <input type="text" name='username' value={this.state.credential.username} onChange={this.inputChange}/>
-                </label>
-                <label>
-                    Password
-                    <input type="password" name='password' value={this.state.credential.password} onChange={this.inputChange}/>
-                </label>
-                <button onClick={this.login}>login</button>
+                <Field type="text" placeholder={'login'} component={'input'} name={'login'}/>
             </div>
-        )
-    }
+            <div>
+                <Field type="password" placeholder={'password'} component={'input'} name={'password'}/>
+            </div>
+            <div>
+                <Field type="checkbox" component={'input'} name={'rememberMe'}/> remember me
+            </div>
+            <div>
+                <button>login</button>
+            </div>
+        </form>
+    )
 };
+
+const LoginReduxForm = reduxForm({
+    form: 'login'
+})(LoginForm);
+
+const Login = (props) =>{
+    const onSubmit = (data) =>{
+        console.log(data)
+    };
+
+    return (
+        <div>
+            <h1>login</h1>
+            <h1>padding</h1>
+            <LoginReduxForm onSubmit={onSubmit}/>
+        </div>
+    )
+};
+
 
 export default Login;
