@@ -31,8 +31,8 @@ export const getCurrProjectComment = (projectId) =>{
     });
 };
 
-export const updateComment = (id, text) =>{
-    return instance.post("http://127.0.0.1:8000/updateComment/", "id="+id+'&text='+text).then(respons => {
+export const updateComment = (id, text, projectId) =>{
+    return instance.put("http://127.0.0.1:8000/comments/" + projectId + "/", "id="+id+'&text='+text).then(respons => {
         return respons.data
     });
 };

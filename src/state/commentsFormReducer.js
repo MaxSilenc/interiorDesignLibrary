@@ -76,9 +76,9 @@ export const getCurrProjectThunk = (projectId) => {
     }
 };
 
-export const updateCommentThunk = (id, text) => {
+export const updateCommentThunk = (id, text, projectId) => {
     return (dispatch) => {
-        updateComment(id, text).then(data => {
+        updateComment(id, text, projectId).then(data => {
             dispatch(updateCommentAC(id, text));
         });
     }

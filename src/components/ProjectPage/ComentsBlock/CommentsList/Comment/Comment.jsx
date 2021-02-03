@@ -13,6 +13,19 @@ class Comment extends React.Component{
         }
     };
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.text !== this.props.text){
+            this.setState({
+                comments: {
+                    id: this.props.id,
+                    project_id: this.props.project_id,
+                    author: this.props.author,
+                    text: this.props.text
+                }
+            })
+        }
+    }
+
     activateEditMode = () => {
         this.setState({
             editMode: true
@@ -22,7 +35,7 @@ class Comment extends React.Component{
         this.setState({
             editMode: false
         });
-        this.props.updateComment(this.state.comment.id, this.state.comment.text)
+        this.props.updateComment(this.state.comment.id, this.state.comment.text, this.state.comment.project_id)
     };
 
     setCommentInLS = (e) => {
