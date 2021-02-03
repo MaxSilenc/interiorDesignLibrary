@@ -9,12 +9,10 @@ const UPDATE_COMMENTS = "UPDATE_COMMENTS";
 
 let initialState = {
     comments: [],
-    NewCommentInput: {text: '', author: ''},
     thisProject: {}
 };
 
-export const addCommentActionCreator = () => {return {type: "ADD-COMMENT"}};
-export const updateNewCommentActionCreator = (text, user) => {return {type: "NEW-COMMENT-INPUT", text: text, author: user}};
+export const addCommentActionCreator = (comment) => {return {type: "ADD-COMMENT", comment: comment}};
 export const setThisProjectCommentActionCreator = (project) => {return {type: "SET_THIS_PROJECT", project: project}};
 export const setThisCommentsAC = (comments) => {return {type: "SET_THIS_COMMENTS", comments: comments}};
 export const updateCommentAC = (id, text) => {return {type: "UPDATE_COMMENTS", id: id, text: text}};
@@ -24,22 +22,9 @@ export const commentsFormReducer = (state = initialState, action) => {
         case ADD_COMMENT: {
             let stateCopy = {...state};
             stateCopy.comments = [...state.comments];
-            stateCopy.NewCommentInput = {...state.NewCommentInput};
 
-            let newComment = {
-                text: state.NewCommentInput.text,
-                author: state.NewCommentInput.author,
-            };
+            let newComment = {...action.comment};
             stateCopy.comments.push(newComment);
-            stateCopy.NewCommentInput.text = '';
-            stateCopy.NewCommentInput.author = '';
-            return stateCopy;
-        }
-        case NEW_COMMENT_INPUT: {
-            let stateCopy = {...state};
-            stateCopy.NewCommentInput = {...state.NewCommentInput};
-            stateCopy.NewCommentInput.author = action.author;
-            stateCopy.NewCommentInput.text = action.text;
             return stateCopy;
         }
         case SET_THIS_PROJECT: {

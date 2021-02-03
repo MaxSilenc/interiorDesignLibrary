@@ -1,27 +1,41 @@
 import React from 'react';
 import Styles from './commentsForm.module'
+import {Field, reduxForm} from "redux-form";
 
-const CommentsForm = (props) =>{
-    let newCommentText = React.createRef();
-
-    let addComment = () => {
-        props.addComment();
-    };
-
-    let onProjectChange = () => {
-        let text = newCommentText.current.value;
-        props.updateNewComment(text, props.user.login);
-    };
-
-
+const ProjectPageForm = (props) =>{
     return (
         <div>
-            <form action="">
-                <textarea name="" id="" cols="60" rows="5"
-                          onChange={onProjectChange} ref={newCommentText} value={props.state.text}/>
-                <button className="btn btn-primary" type="button" onClick={addComment}>Submit</button>
+            <form onSubmit={props.handleSubmit}>
+                <div>
+                    <Field component={'textarea'} name={'comment'}/>
+                </div>
+                <button className="btn btn-primary">Submit</button>
             </form>
         </div>
+    )
+};
+
+const CommentsFormForm = reduxForm({
+    form: 'ProjectPageForm'
+})(ProjectPageForm);
+
+const CommentsForm = (props) =>{
+
+    let onSubmit = (data) => {
+        props.addComment({
+            projectId: props.projectId.id,
+            author: props.user.login,
+            text: data.comment
+        });
+        // console.log({
+        //     projectId: props.projectId.id,
+        //     author: props.user.login,
+        //     text: data.comment
+        // })
+    };
+
+    return (
+        <CommentsFormForm onSubmit={onSubmit}/>
     );
 };
 
