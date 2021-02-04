@@ -5,7 +5,7 @@ import AdminPanelContainer from './components/AdminPanel/AdminPanelContainer'
 import ProjectPageContainer from './components/ProjectPage/ProjectPageContainer'
 import {BrowserRouter, Route} from "react-router-dom";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import Login from './components/Login/Login'
+import LoginContainer from './components/Login/LoginContainer'
 
 const App = (props) => {
   return (
@@ -16,7 +16,7 @@ const App = (props) => {
             <Route exact path="/projects" render={() => <ProjectContainer/>}/>
             <Route path="/adminPanel" render={() => <AdminPanelContainer/>}/>
             <Route path="/projectPage/:projectId?" render={() => <ProjectPageContainer/>}/>
-            <Route path="/login" render={() => <Login/>}/>
+            <Route path="/login" render={() => <LoginContainer/>}/>
         </div>
     </BrowserRouter>
   );

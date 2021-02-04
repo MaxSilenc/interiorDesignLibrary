@@ -13,9 +13,6 @@ const LoginForm = (props) =>{
                 <Field type="password" placeholder={'password'} component={Input} name={'password'} validate={[Required]}/>
             </div>
             <div>
-                <Field type="checkbox" component={'input'} name={'rememberMe'}/> remember me
-            </div>
-            <div>
                 <button>login</button>
             </div>
         </form>
@@ -27,15 +24,11 @@ const LoginReduxForm = reduxForm({
 })(LoginForm);
 
 const Login = (props) =>{
-    const onSubmit = (data) =>{
-        console.log(data)
-    };
-
     return (
         <div>
             <h1>login</h1>
             <h1>padding</h1>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <LoginReduxForm onSubmit={props.onSubmit}/>
         </div>
     )
 };

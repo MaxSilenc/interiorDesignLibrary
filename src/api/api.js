@@ -14,7 +14,13 @@ export const getProjects = (nowPage) =>{
 };
 
 export const currUser = () => {
-    return instance.get("http://127.0.0.1:8000/curr").then(respons => {
+    return instance.post("http://127.0.0.1:8000/curr/", 'key=' + localStorage.token).then(respons => {
+        return respons.data
+    });
+};
+
+export const login = (data) => {
+    return instance.post("http://127.0.0.1:8000/auth", {username: data.login, password: data.password}).then(respons => {
         return respons.data
     });
 };

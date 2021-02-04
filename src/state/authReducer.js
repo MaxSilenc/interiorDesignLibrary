@@ -1,4 +1,4 @@
-import {currUser} from "../api/api";
+import {currUser, login} from "../api/api";
 
 const SET_USER = 'SET_USER';
 
@@ -32,6 +32,15 @@ export const getCurrUserThunk = () =>{
     return (dispatch) =>{
         currUser().then(data => {
             if (data.errorKey != 0) dispatch(setUserActionCreator(data.id, data.email, data.login))
+        });
+    }
+};
+
+export const loginThunk = (data) =>{
+    return (dispatch) =>{
+        login(data).then(data => {
+            localStorage.setItem("token", data.token);
+            dispatch(getCurrUserThunk())
         });
     }
 };
