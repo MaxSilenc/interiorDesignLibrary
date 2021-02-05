@@ -3,7 +3,6 @@ import Styles from './slide.module.css'
 import {NavLink} from "react-router-dom";
 
 const Slide = (props) => {
-    debugger
     return (
         <div className={'carousel-item' + props.modify + ' ' + Styles.slide}>
             <img className={'d-block w-100' + Styles.slideImg} src={'http://127.0.0.1:8000' + props.img} alt="First slide"/>

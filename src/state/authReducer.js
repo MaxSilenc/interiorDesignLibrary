@@ -1,4 +1,5 @@
 import {currUser, login} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const SET_USER = 'SET_USER';
 const LOGOUT = 'LOGOUT';
@@ -25,7 +26,7 @@ export const authReducer = (state = initialState, action) => {
             }
         }
         case LOGOUT: {
-            localStorage.setItem("token", "");
+            localStorage.removeItem("token");
             return {
                 ...state,
                 userId: null,
@@ -51,8 +52,14 @@ export const getCurrUserThunk = () =>{
 export const loginThunk = (data) =>{
     return (dispatch) =>{
         login(data).then(data => {
-            localStorage.setItem("token", data.token);
-            dispatch(getCurrUserThunk())
+            if (data.keyError === 0){
+                localStorage.setItem("token", data.token);
+                dispatch(getCurrUserThunk())
+            }
+            else {
+                let action = stopSubmit('login', {login: ' ', password: data.message});
+                dispatch(action)
+            }
         });
     }
 };

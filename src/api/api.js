@@ -20,7 +20,8 @@ export const currUser = () => {
 };
 
 export const login = (data) => {
-    return instance.post("http://127.0.0.1:8000/auth", {username: data.login, password: data.password}).then(respons => {
+    return instance.post("http://127.0.0.1:8000/loginReact/", "username=" + data.login + "&password=" + data.password).then(respons => {
+        console.log(respons)
         return respons.data
     });
 };

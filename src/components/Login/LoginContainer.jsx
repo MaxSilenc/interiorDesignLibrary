@@ -2,7 +2,7 @@ import React from 'react';
 import Login from "./Login";
 import {connect} from 'react-redux'
 import {loginThunk} from "../../state/authReducer";
-import Redirect from 'react-router-dom/es/Redirect'
+import { Redirect } from "react-router-dom"
 
 class LoginComponent extends React.Component{
     onSubmit = (data) =>{
