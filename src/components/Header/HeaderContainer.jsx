@@ -1,9 +1,12 @@
 import React from 'react'
 import Header from  './Header'
 import {connect} from 'react-redux'
-import {getCurrUserThunk} from './../../state/authReducer'
+import {getCurrUserThunk, logoutAC} from './../../state/authReducer'
 
 class HeaderContainer extends React.Component{
+    logout = () =>{
+        this.props.logout();
+    };
 
     componentDidMount() {
         this.props.getCurrUser();
@@ -20,5 +23,6 @@ let mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-    getCurrUser: getCurrUserThunk
+    getCurrUser: getCurrUserThunk,
+    logout: logoutAC
 })(HeaderContainer);
