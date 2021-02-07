@@ -1,7 +1,7 @@
 import React from 'react';
 import Styles from './comment.module.css'
 
-class Comment extends React.Component{
+class CommentContainer extends React.Component{
 
     state = {
         editMode: false,
@@ -78,4 +78,4 @@ class Comment extends React.Component{
     }
 };
 
-export default Comment
+export default CommentContainer
