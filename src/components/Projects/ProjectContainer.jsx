@@ -3,6 +3,7 @@ import Projects from "./Projects";
 import {connect} from 'react-redux'
 import {getProjectsThunk} from "../../state/projectsPageReducer";
 import Preloader from './../../components/common/Preloader/Preloader'
+import {getProjectPage} from "../../selectors/selectors";
 
 
 class ProjectsComponent extends React.Component{
@@ -33,7 +34,7 @@ class ProjectsComponent extends React.Component{
 
 let mapStateToProps = (state) => {
     return {
-        state: state.projectsPage
+        state: getProjectPage(state)
     }
 };
 

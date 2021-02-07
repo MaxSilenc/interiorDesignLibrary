@@ -3,6 +3,7 @@ import Login from "./Login";
 import {connect} from 'react-redux'
 import {loginThunk} from "../../state/authReducer";
 import { Redirect } from "react-router-dom"
+import {getAuthDude} from "../../selectors/selectors";
 
 class LoginComponent extends React.Component{
     onSubmit = (data) =>{
@@ -24,7 +25,7 @@ class LoginComponent extends React.Component{
 
 let mapStateToProps = (state) => {
     return {
-        state: state.auth
+        state: getAuthDude(state)
     }
 };
 

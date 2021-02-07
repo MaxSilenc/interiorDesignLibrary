@@ -2,6 +2,7 @@ import React from 'react'
 import Header from  './Header'
 import {connect} from 'react-redux'
 import {getCurrUserThunk, logoutAC} from './../../state/authReducer'
+import {getAuthDude} from "../../selectors/selectors";
 
 class HeaderContainer extends React.Component{
     logout = () =>{
@@ -18,7 +19,7 @@ class HeaderContainer extends React.Component{
 
 let mapStateToProps = (state) => {
     return {
-        state: state.auth
+        state: getAuthDude(state)
     }
 };
 

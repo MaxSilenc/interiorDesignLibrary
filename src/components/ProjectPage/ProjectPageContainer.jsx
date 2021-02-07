@@ -5,6 +5,7 @@ import {addCommentActionCreator,
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {withRouter} from 'react-router-dom'
+import {getAuthDude, getCommentsBlockPage} from "../../selectors/selectors";
 
 
 class ProjectPageComponent extends React.Component {
@@ -24,8 +25,8 @@ class ProjectPageComponent extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        state: state.commentsBlockPage,
-        user: state.auth
+        state: getCommentsBlockPage(state),
+        user: getAuthDude(state)
     }
 };
 

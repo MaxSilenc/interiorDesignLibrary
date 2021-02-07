@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux'
 import MainPage from './MainPage'
 import {getProjectsThunk} from "../../state/sliderSectionPageReducer";
+import {getSlides} from "../../selectors/selectors";
 
 class MainPageContainer extends React.Component {
 
@@ -18,7 +19,7 @@ class MainPageContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        state: state.sliderSectionPage.slideArr
+        state: getSlides(state)
     }
 };
 
