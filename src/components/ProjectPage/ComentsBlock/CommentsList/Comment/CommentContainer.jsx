@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Styles from './comment.module.css'
 
-const CommentContainer = (props) =>{
-
+const CommentContainer = (props =>{
     let [editMode, setEditMode] = useState(false);
     let [comment, setComment] = useState({
         id: props.id,
@@ -63,6 +62,6 @@ const CommentContainer = (props) =>{
         </div>
     );
 
-};
+});
 
 export default CommentContainer

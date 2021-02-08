@@ -42,24 +42,22 @@ export const authReducer = (state = initialState, action) => {
 };
 
 export const getCurrUserThunk = () =>{
-    return (dispatch) =>{
-        currUser().then(data => {
-            if (data.errorKey != 0) dispatch(setUserActionCreator(data.id, data.email, data.login))
-        });
+    return async (dispatch) =>{
+        let data = await currUser();
+        if (data.errorKey !== 0) dispatch(setUserActionCreator(data.id, data.email, data.login))
     }
 };
 
 export const loginThunk = (data) =>{
-    return (dispatch) =>{
-        login(data).then(data => {
-            if (data.keyError === 0){
-                localStorage.setItem("token", data.token);
-                dispatch(getCurrUserThunk())
-            }
-            else {
-                let action = stopSubmit('login', {login: ' ', password: data.message});
-                dispatch(action)
-            }
-        });
+    return async (dispatch) =>{
+        let loginData = await login(data);
+        if (loginData.keyError === 0){
+            localStorage.setItem("token", loginData.token);
+            dispatch(getCurrUserThunk())
+        }
+        else {
+            let action = stopSubmit('login', {login: ' ', password: loginData.message});
+            dispatch(action)
+        }
     }
 };

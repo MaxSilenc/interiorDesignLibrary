@@ -51,20 +51,17 @@ export const commentsFormReducer = (state = initialState, action) => {
 
 
 export const getCurrProjectThunk = (projectId) => {
-    return (dispatch) => {
-        getCurrProject(projectId).then(data => {
+    return async (dispatch) => {
+        let data = await getCurrProject(projectId);
             dispatch(setThisProjectCommentActionCreator(data));
-        });
-        getCurrProjectComment(projectId).then(data => {
-            dispatch(setThisCommentsAC(data));
-        });
+        let commetnData = await getCurrProjectComment(projectId);
+            dispatch(setThisCommentsAC(commetnData));
     }
 };
 
 export const updateCommentThunk = (id, text, projectId) => {
-    return (dispatch) => {
-        updateComment(id, text, projectId).then(data => {
+    return async (dispatch) => {
+        let data = await updateComment(id, text, projectId);
             dispatch(updateCommentAC(id, text));
-        });
     }
 };

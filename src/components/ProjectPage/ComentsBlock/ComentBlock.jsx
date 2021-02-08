@@ -4,7 +4,7 @@ import CommentsList from './CommentsList/CommentsList'
 import CommentsFormContainer from './CommentsForm/CommentsFormContainer'
 
 
-const CommentsBlock = (props) => {
+const CommentsBlock = ({state, user, updateComment, addComment}) => {
     return (
         <div className="card">
             <div className="card">
@@ -18,8 +18,8 @@ const CommentsBlock = (props) => {
                 </div>
                 <div id='1' className="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                     <div className="card-body">
-                        <CommentsList state={props.state.comments} user={props.user} updateComment={props.updateComment}/>
-                        <CommentsFormContainer addComment={props.addComment} projectId={props.state.thisProject} user={props.user}/>
+                        <CommentsList state={state.comments} user={user} updateComment={updateComment}/>
+                        <CommentsFormContainer addComment={addComment} projectId={state.thisProject} user={user}/>
                     </div>
                 </div>
             </div>

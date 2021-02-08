@@ -78,12 +78,11 @@ export const projectsPageReducer = (state = initialState, action) => {
 
 
 export const getProjectsThunk = (nowPage) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setIsFetchingActionCreator(true));
-        getProjects(nowPage).then(data => {
-            dispatch(setIsFetchingActionCreator(false));
-            dispatch(setProjectsCountActionCreator(data.count));
-            dispatch(setProjectsActionCreator(data.items));
-        });
+        let data = await getProjects(nowPage);
+        dispatch(setIsFetchingActionCreator(false));
+        dispatch(setProjectsCountActionCreator(data.count));
+        dispatch(setProjectsActionCreator(data.items));
     }
 };

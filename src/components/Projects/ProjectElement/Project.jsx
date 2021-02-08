@@ -2,10 +2,10 @@ import React from 'react';
 import Styles from './project.module.css'
 import ProjectBlock from './ProjectBlock/ProjectBlock'
 
-const Project = (props) =>{
+const Project = ({title, text, directLink, id, img, name}) =>{
     return (
         <div>
-            <ProjectBlock title={props.title} text={props.text} directLink={props.directLink} id={props.id} img={props.img} name={props.name}/>
+            <ProjectBlock title={title} text={text} directLink={directLink} id={id} img={img} name={name}/>
         </div>
     );
 };
