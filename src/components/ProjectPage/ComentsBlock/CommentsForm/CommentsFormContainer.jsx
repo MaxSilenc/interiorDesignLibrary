@@ -8,6 +8,7 @@ import {AuthCheck} from "./../../../../hoc/AuthCheck"
 class CommenstFormComponent extends React.Component {
 
     render(){
+        console.log('ho')
         return (
             <CommenstForm {...this.props}/>
         );

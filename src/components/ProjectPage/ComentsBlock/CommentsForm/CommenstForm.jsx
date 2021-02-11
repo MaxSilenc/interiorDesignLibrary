@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Styles from './commentsForm.module.css'
 import {Field, reduxForm} from "redux-form";
 import {Required, MaxLengthCreator} from "../../../../forms/validation";
@@ -26,11 +26,7 @@ const CommentsFormForm = reduxForm({
 const CommentsForm = (props) =>{
 
     let onSubmit = (data) => {
-        props.addComment({
-            projectId: props.projectId.id,
-            author: props.user.login,
-            text: data.comment
-        });
+        props.addComment(data.comment, props.projectId.id, props.user.login);
     };
 
     return (

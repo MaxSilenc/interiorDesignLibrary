@@ -42,3 +42,9 @@ export const updateComment = (id, text, projectId) =>{
         return respons.data
     });
 };
+
+export const addComment = (text, projectId, author) =>{
+    return instance.post("http://127.0.0.1:8000/comments/" + projectId + "/", 'text='+text+ '&author='+author).then(respons => {
+        return respons.data
+    });
+};

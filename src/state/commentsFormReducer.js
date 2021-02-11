@@ -1,4 +1,4 @@
-import {getCurrProject, getCurrProjectComment, updateComment} from "../api/api";
+import {getCurrProject, getCurrProjectComment, updateComment, addComment} from "../api/api";
 
 const ADD_COMMENT = 'ADD-COMMENT';
 const NEW_COMMENT_INPUT = "NEW-COMMENT-INPUT";
@@ -62,6 +62,17 @@ export const getCurrProjectThunk = (projectId) => {
 export const updateCommentThunk = (id, text, projectId) => {
     return async (dispatch) => {
         let data = await updateComment(id, text, projectId);
-            dispatch(updateCommentAC(id, text));
+        dispatch(updateCommentAC(id, text));
+    }
+};
+
+export const addCommentThunk = (text, projectId, author) => {
+    return async (dispatch) => {
+        let data = await addComment(text, projectId, author);
+        dispatch(addCommentActionCreator({
+            projectId: projectId,
+            author: author,
+            text: text
+        }));
     }
 };
