@@ -48,3 +48,9 @@ export const addComment = (text, projectId, author) =>{
         return respons.data
     });
 };
+
+export const like = (projectId, author) => {
+  return instance.get('http://127.0.0.1:8000/like/' + projectId + '/' + author + '/').then(respons => {
+      return respons.data
+  })
+};

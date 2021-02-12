@@ -1,21 +1,22 @@
-import {getCurrProject, getCurrProjectComment, updateComment, addComment} from "../api/api";
+import {getCurrProject, getCurrProjectComment, updateComment, addComment, like} from "../api/api";
 
 const ADD_COMMENT = 'ADD-COMMENT';
-const NEW_COMMENT_INPUT = "NEW-COMMENT-INPUT";
 const SET_THIS_PROJECT = "SET_THIS_PROJECT";
 const SET_THIS_COMMENTS = "SET_THIS_COMMENTS";
 const UPDATE_COMMENTS = "UPDATE_COMMENTS";
-
+const LIKE_THIS = 'LIKE_THIS';
 
 let initialState = {
     comments: [],
-    thisProject: {}
+    thisProject: {},
+    like: {}
 };
 
 export const addCommentActionCreator = (comment) => {return {type: "ADD-COMMENT", comment: comment}};
 export const setThisProjectCommentActionCreator = (project) => {return {type: "SET_THIS_PROJECT", project: project}};
 export const setThisCommentsAC = (comments) => {return {type: "SET_THIS_COMMENTS", comments: comments}};
 export const updateCommentAC = (id, text) => {return {type: "UPDATE_COMMENTS", id: id, text: text}};
+export const likeAC = (like, likeCount) => {return {type: "LIKE_THIS", like: like, likeCount: likeCount}};
 
 export const commentsFormReducer = (state = initialState, action) => {
     switch (action.type){
@@ -44,6 +45,13 @@ export const commentsFormReducer = (state = initialState, action) => {
                 }
             }
             return state
+        }
+        case LIKE_THIS:{
+            let like = {
+                like: action.like,
+                likeCount: action.likeCount
+            };
+            return {...state, like: like}
         }
         default:
             return state
@@ -78,4 +86,11 @@ export const addCommentThunk = (text, projectId, author) => {
         let commetnData = await getCurrProjectComment(projectId);
         dispatch(setThisCommentsAC(commetnData));
     }
+};
+
+export const likeThunk = (project_id, author) => {
+    return async (dispatch) => {
+        let data = await like(project_id, author);
+        dispatch(likeAC(data.like, data.likesCount))
+    };
 };
