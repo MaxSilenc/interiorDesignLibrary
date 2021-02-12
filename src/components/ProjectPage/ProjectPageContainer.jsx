@@ -1,7 +1,6 @@
 import React from 'react';
 import ProjectPage from './ProjectPage'
-import {addCommentThunk,
-    getCurrProjectThunk, updateCommentThunk} from "../../state/commentsFormReducer";
+import {getCurrProjectThunk, updateCommentThunk} from "../../state/commentsFormReducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {withRouter} from 'react-router-dom'
@@ -33,7 +32,6 @@ let mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps, {
-        addComment: addCommentThunk,
         getCurrProject: getCurrProjectThunk,
         updateComment: updateCommentThunk,
     }),

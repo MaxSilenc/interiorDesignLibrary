@@ -35,7 +35,6 @@ const CommentContainer = (props =>{
             text: e.currentTarget.value
         })
     };
-
     return (
         <div>
             {(props.user === comment.author) ?

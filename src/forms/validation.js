@@ -1,7 +1,12 @@
 import React from 'react';
 
 export const Required = value =>{
-    if (value) return undefined;
+    if (value === undefined) return "Field is required!";
+    for (let i = 0; i < value.length; i++){
+        if (value[i] !== '\n'){
+            return undefined;
+        }
+    };
     return "Field is required!";
 };
 

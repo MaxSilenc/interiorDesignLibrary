@@ -7,7 +7,7 @@ const ProjectPage = (props) => {
     return (
         <div className={Styles.page}>
             <ImgBlock state={props.state.thisProject}/>
-            <ComentBlock {...props}/>
+            <ComentBlock comments={props.state.comments} updateComment={props.updateComment} user={props.user}/>
         </div>
     );
 };

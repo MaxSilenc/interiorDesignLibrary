@@ -1,10 +1,10 @@
 import React from 'react';
 import Styles from './comentBlock.module.css'
 import CommentsList from './CommentsList/CommentsList'
-import CommentsFormContainer from './CommentsForm/CommentsFormContainer'
+import CommenstForm from  './CommentsForm/CommenstForm'
 
 
-const CommentsBlock = ({state, user, updateComment, addComment}) => {
+const CommentsBlock = (props) => {
     return (
         <div className="card">
             <div className="card">
@@ -18,8 +18,8 @@ const CommentsBlock = ({state, user, updateComment, addComment}) => {
                 </div>
                 <div id='1' className="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                     <div className="card-body">
-                        <CommentsList state={state.comments} user={user} updateComment={updateComment}/>
-                        <CommentsFormContainer addComment={addComment} projectId={state.thisProject} user={user}/>
+                        <CommentsList comments={props.comments} updateComment={props.updateComment} user={props.user}/>
+                        <CommenstForm/>
                     </div>
                 </div>
             </div>

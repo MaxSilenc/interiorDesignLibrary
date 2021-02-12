@@ -35,10 +35,11 @@ export const commentsFormReducer = (state = initialState, action) => {
         }
         case UPDATE_COMMENTS: {
             let newState = {...state};
-            let comments = {...state.comments};
+            let comments = [...state.comments];
             for (let i = 0; i < comments.length; i++){
                 if (comments[i].id === action.id){
-                    comments[i].text = action.text;
+                    if (action.text === '') newState.comments.splice(i, 1);
+                    else comments[i].text = action.text;
                     return newState
                 }
             }
@@ -70,9 +71,11 @@ export const addCommentThunk = (text, projectId, author) => {
     return async (dispatch) => {
         let data = await addComment(text, projectId, author);
         dispatch(addCommentActionCreator({
-            projectId: projectId,
+            project_id: projectId,
             author: author,
             text: text
         }));
+        let commetnData = await getCurrProjectComment(projectId);
+        dispatch(setThisCommentsAC(commetnData));
     }
 };
