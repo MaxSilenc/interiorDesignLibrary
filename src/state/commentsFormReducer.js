@@ -1,10 +1,12 @@
-import {getCurrProject, getCurrProjectComment, updateComment, addComment, like} from "../api/api";
+import {getCurrProject, getCurrProjectComment, updateComment, addComment, like, setLike, delLike} from "../api/api";
 
 const ADD_COMMENT = 'ADD-COMMENT';
 const SET_THIS_PROJECT = "SET_THIS_PROJECT";
 const SET_THIS_COMMENTS = "SET_THIS_COMMENTS";
 const UPDATE_COMMENTS = "UPDATE_COMMENTS";
-const LIKE_THIS = 'LIKE_THIS';
+const GET_LIKE = 'GET_LIKE';
+const LIKE = 'LIKE';
+
 
 let initialState = {
     comments: [],
@@ -16,7 +18,8 @@ export const addCommentActionCreator = (comment) => {return {type: "ADD-COMMENT"
 export const setThisProjectCommentActionCreator = (project) => {return {type: "SET_THIS_PROJECT", project: project}};
 export const setThisCommentsAC = (comments) => {return {type: "SET_THIS_COMMENTS", comments: comments}};
 export const updateCommentAC = (id, text) => {return {type: "UPDATE_COMMENTS", id: id, text: text}};
-export const likeAC = (like, likeCount) => {return {type: "LIKE_THIS", like: like, likeCount: likeCount}};
+export const getLikeAC = (like, likeCount) => {return {type: "GET_LIKE", like: like, likeCount: likeCount}};
+export const likeAC = (key) => {return {type: "LIKE", key: key}};
 
 export const commentsFormReducer = (state = initialState, action) => {
     switch (action.type){
@@ -46,12 +49,20 @@ export const commentsFormReducer = (state = initialState, action) => {
             }
             return state
         }
-        case LIKE_THIS:{
+        case GET_LIKE:{
             let like = {
                 like: action.like,
                 likeCount: action.likeCount
             };
             return {...state, like: like}
+        }
+        case LIKE: {
+            if (action.key === 'add'){
+                return {...state, like: {like: 1, likeCount: state.like.likeCount + 1}}
+            }
+            else{
+                return {...state, like: {like: 0, likeCount: state.like.likeCount - 1}}
+            }
         }
         default:
             return state
@@ -91,6 +102,13 @@ export const addCommentThunk = (text, projectId, author) => {
 export const likeThunk = (project_id, author) => {
     return async (dispatch) => {
         let data = await like(project_id, author);
-        dispatch(likeAC(data.like, data.likesCount))
+        dispatch(getLikeAC(data.like, data.likesCount))
     };
+};
+
+export const setLikeThunk = (project_id, author, key) => {
+    return async (dispatch) => {
+        let data = await setLike(project_id, author, key);
+        dispatch(likeAC(key))
+    }
 };

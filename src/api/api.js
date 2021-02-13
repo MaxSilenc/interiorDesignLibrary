@@ -54,3 +54,9 @@ export const like = (projectId, author) => {
       return respons.data
   })
 };
+
+export const setLike = (projectId, author, key) => {
+    return instance.post('http://127.0.0.1:8000/like/', "project_id=" + projectId + "&author=" + author + "&key=" + key).then(respons => {
+        return respons.data;
+    })
+};
