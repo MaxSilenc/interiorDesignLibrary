@@ -10,7 +10,6 @@ import {getAuthDude, getCommentsBlockPage} from "../../selectors/selectors";
 class ProjectPageComponent extends React.Component {
 
     componentDidMount() {
-        debugger
         let projectId = this.props.match.params.projectId;
         if (!projectId) projectId = 4;
         this.props.getCurrProject(projectId).then(()=>{

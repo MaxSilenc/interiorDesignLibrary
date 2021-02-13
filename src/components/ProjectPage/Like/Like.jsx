@@ -5,7 +5,14 @@ const Like = (props) =>{
         <div>
             <div>
                 <div>likes: {props.likes.likeCount}</div>
-                <button>like</button>
+                {props.user.isAuth ?
+                    props.likes.like === 0 ?
+                            <button>like</button>
+                            :
+                            <button>unlike</button>
+                    :
+                    <></>
+                }
             </div>
         </div>
     )
