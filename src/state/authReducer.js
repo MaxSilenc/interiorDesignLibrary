@@ -1,5 +1,6 @@
-import {currUser, login} from "../api/api";
+import {currUser, login, registrationApi} from "../api/api";
 import {stopSubmit} from "redux-form";
+import React from "react";
 
 const SET_USER = 'SET_USER';
 const LOGOUT = 'LOGOUT';
@@ -61,3 +62,14 @@ export const loginThunk = (data) =>{
         }
     }
 };
+
+
+export const registrationThunk = (data) =>{
+    return async (dispatch) => {
+        let regData = await registrationApi(data);
+        if (regData.keyError === 0){
+            dispatch(loginThunk({login: data.login, password: data.password}));
+        }
+    }
+};
+

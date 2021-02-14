@@ -60,3 +60,8 @@ export const setLike = (projectId, author, key) => {
         return respons.data;
     })
 };
+export const registrationApi = (data) =>{
+    return instance.post('http://127.0.0.1:8000/reg/', "login=" + data.login + "&password=" + data.password + "&passwordRep=" + data.passwordRep + "&email=" + data.email).then(respons => {
+        return respons.data;
+    })
+};

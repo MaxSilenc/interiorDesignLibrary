@@ -5,6 +5,7 @@ import ProjectPageContainer from './components/ProjectPage/ProjectPageContainer'
 import {BrowserRouter, Route} from "react-router-dom";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginContainer from './components/Login/LoginContainer'
+import RegistrationContainer from './components/Registration/RegistrationContainer'
 
 const App = (props) => {
   return (
@@ -15,6 +16,7 @@ const App = (props) => {
             <Route exact path="/projects" render={() => <ProjectContainer/>}/>
             <Route path="/projectPage/:projectId?" render={() => <ProjectPageContainer/>}/>
             <Route path="/login" render={() => <LoginContainer/>}/>
+            <Route path="/registration" render={() => <RegistrationContainer/>}/>
         </div>
     </BrowserRouter>
   );
