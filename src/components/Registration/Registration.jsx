@@ -27,7 +27,7 @@ const RegistrationForm = (props) =>{
     )
 };
 
-const LoginReduxForm = reduxForm({
+const RegistrationReduxForm = reduxForm({
     form: 'registrationForm'
 })(RegistrationForm);
 
@@ -36,7 +36,7 @@ const Registration = (props) =>{
         <div>
             <h1>padding</h1>
             <h1>padding</h1>
-            <LoginReduxForm {...props} onSubmit={props.onSubmit}/>
+            <RegistrationReduxForm onSubmit={props.onSubmit}/>
         </div>
     )
 };

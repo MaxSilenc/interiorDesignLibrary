@@ -21,9 +21,6 @@ const Header = ({state, logout}) => {
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/projects">Projects</NavLink>
                             </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/registration">Registration</NavLink>
-                            </li>
                             {state.isAuth ?
                                 <li className="nav-item" onClick={logout}>
                                     <NavLink className="nav-link" to="/">logout, {state.login}</NavLink>

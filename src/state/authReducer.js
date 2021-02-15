@@ -69,6 +69,19 @@ export const registrationThunk = (data) =>{
         let regData = await registrationApi(data);
         if (regData.keyError === 0){
             dispatch(loginThunk({login: data.login, password: data.password}));
+            return {error: regData.keyError};
+        }
+        else if (regData.keyError === 1){
+            let action = stopSubmit('registrationForm', {login: regData.messages});
+            dispatch(action)
+        }
+        else if (regData.keyError === 2){
+            let action = stopSubmit('registrationForm', {password: " " , passwordRep: regData.messages});
+            dispatch(action)
+        }
+        else if (regData.keyError === 3){
+            let action = stopSubmit('registrationForm', {email: regData.messages});
+            dispatch(action)
         }
     }
 };

@@ -2,6 +2,8 @@ import React from 'react';
 import Registration from "./Registration";
 import {connect} from 'react-redux'
 import {registrationThunk} from "../../state/authReducer";
+import { Redirect } from "react-router-dom"
+import {getAuthDude} from "../../selectors/selectors";
 
 class RegComponent extends React.Component{
     onSubmit = (data) =>{
@@ -10,6 +12,8 @@ class RegComponent extends React.Component{
 
 
     render() {
+        if (this.props.state.isAuth) return <Redirect to={'/'}/>;
+
         return (
             <>
                 <Registration {...this.props} onSubmit={this.onSubmit}/>
@@ -20,7 +24,9 @@ class RegComponent extends React.Component{
 
 
 let mapStateToProps = (state) => {
-    return state
+    return {
+        state: getAuthDude(state)
+    }
 };
 
 

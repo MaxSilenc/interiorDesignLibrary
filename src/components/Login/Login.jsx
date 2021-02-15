@@ -2,6 +2,7 @@ import React from 'react';
 import {Field, reduxForm} from "redux-form";
 import {Required} from "../../forms/validation";
 import {Input} from './LoginForms'
+import {NavLink} from "react-router-dom";
 
 const LoginForm = (props) =>{
     return (
@@ -28,6 +29,7 @@ const Login = (props) =>{
         <div>
             <h1>login</h1>
             <h1>padding</h1>
+            <NavLink to="/registration">go registration</NavLink>
             <LoginReduxForm onSubmit={props.onSubmit}/>
         </div>
     )
