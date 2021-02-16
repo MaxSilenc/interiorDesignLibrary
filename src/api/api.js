@@ -7,8 +7,8 @@ const instance = axios.create({
 });
 
 
-export const getProjects = (nowPage) =>{
-    return instance.get("http://127.0.0.1:8000/projects?page=" + nowPage).then(respons => {
+export const getProjects = (nowPage, themeId) =>{
+    return instance.get("http://127.0.0.1:8000/projects/" + nowPage + '/' + themeId).then(respons => {
         return respons.data
     });
 };
@@ -62,6 +62,12 @@ export const setLike = (projectId, author, key) => {
 };
 export const registrationApi = (data) =>{
     return instance.post('http://127.0.0.1:8000/reg/', "login=" + data.login + "&password=" + data.password + "&passwordRep=" + data.passwordRep + "&email=" + data.email).then(respons => {
+        return respons.data;
+    })
+};
+
+export const getThemes = () => {
+    return instance.get('http://127.0.0.1:8000/themes/').then(respons => {
         return respons.data;
     })
 };

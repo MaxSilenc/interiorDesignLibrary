@@ -2,11 +2,12 @@ import React from 'react';
 import Styles from './projects.module.css'
 import Project from './ProjectElement/Project'
 import NavLinks from './NavLink/NavLink'
-
+import {NavLink} from "react-router-dom";
 
 const Projects = (props) => {
 
-    let NavLinksItems = props.state.NavLinksArr.map(el => <NavLinks id={el.id} name={el.name} key={el.id}/>);
+    let NavLinksItems = props.state.NavLinksArr.map(el => <NavLinks id={el.id} name={el.name} key={el.id}
+                                                                    onClickSetTheme={props.onClickSetTheme}/>);
     let ProjectsItem = props.state.ProjectsArr.map(el => <Project title={el.title} text={el.text}
                                                                        directLink={el.directLink} key={el.id}
                                                                        id={el.id} img={el.img} name={el.name}/>);
@@ -18,12 +19,13 @@ const Projects = (props) => {
     return (
 
         <div className={Styles.projects}>
+            <NavLinks id={'all'} name={'all'} key={'all'} onClickSetTheme={props.onClickSetTheme}/>
             {NavLinksItems}
             {ProjectsItem}
             {buttons.map(el => {
-                return <button key={el} onClick={(e) => {
+                return <NavLink key={el} to={"/projects/" + props.state.nowTheme + "/" + el} onClick={(e) => {
                     props.onClickSetPage(el, props);
-                } }>{el}</button>
+                } }>{el}</NavLink>
             })}
         </div>
     )

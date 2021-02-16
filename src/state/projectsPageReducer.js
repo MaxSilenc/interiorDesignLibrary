@@ -1,4 +1,4 @@
-import {getProjects} from "../api/api";
+import {getProjects, getThemes} from "../api/api";
 
 const ADD_PROJECT = 'ADD-PROJECT';
 const NEW_PROJECT_INPUT = "NEW-PROJECT-INPUT";
@@ -6,28 +6,23 @@ const SET_PROJECTS = "SET_PROJECTS";
 const SET_PROJECTS_COUNT = "SET_PROJECTS_COUNT";
 const SET_PAGE_NUMBER = "SET_PAGE_NUMBER";
 const SET_IS_FETCHING = "SET_IS_FETCHING";
+const SET_THEMES = "SET_THEMES";
+
 
 let initialState = {
-    NavLinksArr: [
-        {id: '1', name: 'theme 1'},
-        {id: '2', name: 'theme 2'},
-        {id: '3', name: 'theme 3'},
-        {id: '4', name: 'theme 4'}
-    ],
+    NavLinksArr: [],
     ProjectsArr: [],
     NewProjectInput: {title: "", text: "", directLink: "",},
     nowPage: 1,
     projectsCount: 0,
+    nowTheme: 'all',
     isFetching: false
 };
 
-export const addProjectActionCreator = () => {return {type: "ADD-PROJECT"}};
-export const updateNewProjectActionCreator = (text, title, directLink) => {
-    return {type: "NEW-PROJECT-INPUT", text: text, title: title, directLink: directLink}};
 export const setProjectsActionCreator = (ProjectsArr) => {return {type: "SET_PROJECTS", ProjectsArr}};
 export const setProjectsCountActionCreator = (count) => {return {type: "SET_PROJECTS_COUNT", count: count}};
-export const setPageNumberActionCreator = (page) => {return {type: "SET_PAGE_NUMBER", page: page}};
 export const setIsFetchingActionCreator = (bool) => {return {type: "SET_IS_FETCHING", bool: bool}};
+export const setThemesAC = (themes, nowTheme) => {return {type: "SET_THEMES", themes: themes, nowTheme: nowTheme}};
 
 
 export const projectsPageReducer = (state = initialState, action) => {
@@ -71,18 +66,23 @@ export const projectsPageReducer = (state = initialState, action) => {
         case SET_IS_FETCHING: {
             return {...state, isFetching: action.bool}
         }
+        case SET_THEMES: {
+            return {...state, NavLinksArr: action.themes, nowTheme: action.nowTheme}
+        }
         default:
             return state;
     }
 };
 
 
-export const getProjectsThunk = (nowPage) => {
+export const getProjectsThunk = (nowPage, themeId) => {
     return async (dispatch) => {
         dispatch(setIsFetchingActionCreator(true));
-        let data = await getProjects(nowPage);
+        let data = await getProjects(nowPage, themeId);
         dispatch(setIsFetchingActionCreator(false));
         dispatch(setProjectsCountActionCreator(data.count));
         dispatch(setProjectsActionCreator(data.items));
+        let themesData = await getThemes();
+        dispatch(setThemesAC(themesData.themes, themeId))
     }
 };

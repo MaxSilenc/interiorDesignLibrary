@@ -7,7 +7,7 @@ import {getSlides} from "../../selectors/selectors";
 class MainPageContainer extends React.Component {
 
     componentDidMount() {
-        this.props.getProjects(1)
+        this.props.getProjects(1, "all")
     }
 
     render(){
