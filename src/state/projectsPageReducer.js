@@ -22,6 +22,7 @@ let initialState = {
 };
 
 export const setProjectsActionCreator = (ProjectsArr) => {return {type: "SET_PROJECTS", ProjectsArr}};
+export const setPage = (page) => {return {type: "SET_PAGE_NUMBER", page: page}};
 export const setProjectsCountActionCreator = (count) => {return {type: "SET_PROJECTS_COUNT", count: count}};
 export const setIsFetchingActionCreator = (bool) => {return {type: "SET_IS_FETCHING", bool: bool}};
 export const setThemesAC = (themes, nowTheme, types, nowType) => {return {type: "SET_THEMES",
@@ -86,6 +87,7 @@ export const getProjectsThunk = (nowPage, theme, type) => {
         dispatch(setIsFetchingActionCreator(false));
         dispatch(setProjectsCountActionCreator(data.count));
         dispatch(setProjectsActionCreator(data.items));
+        dispatch(setPage(nowPage));
         let themesData = await getThemes();
         dispatch(setThemesAC(themesData.themes, theme, themesData.types, type))
     }

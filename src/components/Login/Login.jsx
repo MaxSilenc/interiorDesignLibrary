@@ -8,7 +8,7 @@ const LoginForm = (props) =>{
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field type="text" placeholder={'login'} component={Input} name={'login'} validate={[Required]}/>
+                <Field type="text" placeholder={'login or email'} component={Input} name={'login'} validate={[Required]}/>
             </div>
             <div>
                 <Field type="password" placeholder={'password'} component={Input} name={'password'} validate={[Required]}/>

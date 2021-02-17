@@ -5,13 +5,13 @@ import {NavLink} from "react-router-dom";
 const NavLinks = (props) => {
     let path = "/projects/all/all";
     if (props.whatChange === 'type'){
-        path = "/projects/" + props.nowTheme + "/" + props.name;
+        path = "/projects/" + props.nowTheme + "/" + props.name + "/" + props.nowPage;
         return (
             <NavLink to={path} onClick={() => {props.onClickSetTheme(props.nowTheme, props.name)}}>{props.name}</NavLink>
         )
     }
     else{
-        path = "/projects/" + props.name + "/" + props.nowType;
+        path = "/projects/" + props.name + "/" + props.nowType + "/" + props.nowPage;
         return (
             <NavLink to={path} onClick={() => {props.onClickSetTheme(props.name, props.nowType)}}>{props.name}</NavLink>
         )
