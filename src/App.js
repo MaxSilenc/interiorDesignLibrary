@@ -13,7 +13,7 @@ const App = (props) => {
         <div>
             <HeaderContainer/>
             <Route exact path="/" render={() => <MainPageContainer/>}/>
-            <Route exact path="/projects/:themeId?/:page?" render={() => <ProjectContainer/>}/>
+            <Route exact path="/projects/:theme?/:type?/:page?" render={() => <ProjectContainer/>}/>
             <Route path="/projectPage/:projectId?" render={() => <ProjectPageContainer/>}/>
             <Route path="/login" render={() => <LoginContainer/>}/>
             <Route path="/registration" render={() => <RegistrationContainer/>}/>

@@ -7,8 +7,8 @@ const instance = axios.create({
 });
 
 
-export const getProjects = (nowPage, themeId) =>{
-    return instance.get("http://127.0.0.1:8000/projects/" + nowPage + '/' + themeId).then(respons => {
+export const getProjects = (nowPage, themeId, type) =>{
+    return instance.get("http://127.0.0.1:8000/projects/" + nowPage + '/' + themeId + '/' + type).then(respons => {
         return respons.data
     });
 };

@@ -11,18 +11,22 @@ const SET_THEMES = "SET_THEMES";
 
 let initialState = {
     NavLinksArr: [],
+    NavLinksArrTypes: [],
     ProjectsArr: [],
     NewProjectInput: {title: "", text: "", directLink: "",},
     nowPage: 1,
     projectsCount: 0,
     nowTheme: 'all',
+    nowType: 'all',
     isFetching: false
 };
 
 export const setProjectsActionCreator = (ProjectsArr) => {return {type: "SET_PROJECTS", ProjectsArr}};
 export const setProjectsCountActionCreator = (count) => {return {type: "SET_PROJECTS_COUNT", count: count}};
 export const setIsFetchingActionCreator = (bool) => {return {type: "SET_IS_FETCHING", bool: bool}};
-export const setThemesAC = (themes, nowTheme) => {return {type: "SET_THEMES", themes: themes, nowTheme: nowTheme}};
+export const setThemesAC = (themes, nowTheme, types, nowType) => {return {type: "SET_THEMES",
+    themes: themes, nowTheme: nowTheme,
+    types: types, nowType: nowType}};
 
 
 export const projectsPageReducer = (state = initialState, action) => {
@@ -67,7 +71,7 @@ export const projectsPageReducer = (state = initialState, action) => {
             return {...state, isFetching: action.bool}
         }
         case SET_THEMES: {
-            return {...state, NavLinksArr: action.themes, nowTheme: action.nowTheme}
+            return {...state, NavLinksArr: action.themes, nowTheme: action.nowTheme, NavLinksArrTypes: action.types, nowType: action.nowType}
         }
         default:
             return state;
@@ -75,14 +79,14 @@ export const projectsPageReducer = (state = initialState, action) => {
 };
 
 
-export const getProjectsThunk = (nowPage, themeId) => {
+export const getProjectsThunk = (nowPage, theme, type) => {
     return async (dispatch) => {
         dispatch(setIsFetchingActionCreator(true));
-        let data = await getProjects(nowPage, themeId);
+        let data = await getProjects(nowPage, theme, type);
         dispatch(setIsFetchingActionCreator(false));
         dispatch(setProjectsCountActionCreator(data.count));
         dispatch(setProjectsActionCreator(data.items));
         let themesData = await getThemes();
-        dispatch(setThemesAC(themesData.themes, themeId))
+        dispatch(setThemesAC(themesData.themes, theme, themesData.types, type))
     }
 };

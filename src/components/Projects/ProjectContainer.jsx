@@ -13,18 +13,29 @@ class ProjectsComponent extends React.Component{
         super(props);
     }
 
+    undefinedCheck = (theme, type) =>{
+        if (theme === undefined) theme = 'all';
+        if (type === undefined) type = 'all';
+        return {theme: theme, type: type}
+    };
 
     componentDidMount() {
-        let themeId = this.props.match.params.themeId;
-        this.props.getProjects(this.props.state.nowPage, themeId)
+        let theme = this.props.match.params.theme;
+        let type = this.props.match.params.type;
+        let urlChecked = this.undefinedCheck(theme, type);
+        this.props.getProjects(this.props.state.nowPage, urlChecked.theme, urlChecked.type)
     }
 
-    onClickSetPage(el, props){
-        props.getProjects(el, props.state.nowTheme)
-    }
+    onClickSetPage = (el) => {
+        let nowTheme = this.props.state.nowTheme;
+        let nowType = this.props.state.nowType;
+        let urlChecked = this.undefinedCheck(nowTheme, nowType);
+        this.props.getProjects(el, urlChecked.theme, urlChecked.type)
+    };
 
-    onClickSetTheme = (nowTheme) =>{
-        this.props.getProjects(1, nowTheme)
+    onClickSetTheme = (nowTheme, nowType) =>{
+        let urlChecked = this.undefinedCheck(nowTheme, nowType);
+        this.props.getProjects(1, urlChecked.theme, urlChecked.type)
     };
 
     render() {
