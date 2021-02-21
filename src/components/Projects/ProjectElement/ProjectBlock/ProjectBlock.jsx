@@ -11,7 +11,7 @@ const ProjectBlock = ({img, title, text, id}) => {
                     <div className="card-img-overlay">
                         <h5 className="card-title">{title}</h5>
                         <p className="card-text">{text}</p>
-                        <NavLink to={"projectPage/" + id}>start</NavLink>
+                        <NavLink to={"/projectPage/" + id}>start</NavLink>
                     </div>
             </div>
         </div>

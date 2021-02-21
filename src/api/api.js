@@ -19,6 +19,7 @@ export const currUser = () => {
     });
 };
 
+
 export const login = (data) => {
     return instance.post("http://127.0.0.1:8000/loginReact/", "username=" + data.login + "&password=" + data.password).then(respons => {
         return respons.data
@@ -62,6 +63,12 @@ export const setLike = (projectId, author, key) => {
 };
 export const registrationApi = (data) =>{
     return instance.post('http://127.0.0.1:8000/reg/', "login=" + data.login + "&password=" + data.password + "&passwordRep=" + data.passwordRep + "&email=" + data.email).then(respons => {
+        return respons.data;
+    })
+};
+
+export const socialRegApi = (email) =>{
+    return instance.post('http://127.0.0.1:8000/social_reg/',"email=" + email).then(respons => {
         return respons.data;
     })
 };

@@ -1,4 +1,4 @@
-import {currUser, login, registrationApi} from "../api/api";
+import {currUser, login, registrationApi, socialRegApi} from "../api/api";
 import {stopSubmit} from "redux-form";
 import React from "react";
 
@@ -82,6 +82,16 @@ export const registrationThunk = (data) =>{
         else if (regData.keyError === 3){
             let action = stopSubmit('registrationForm', {email: regData.messages});
             dispatch(action)
+        }
+    }
+};
+
+export const socialRegThunk = (email) =>{
+    return async (dispatch) => {
+        let data = await socialRegApi(email);
+        if (data.keyError === 0){
+            localStorage.setItem("token", data.token);
+            dispatch(getCurrUserThunk())
         }
     }
 };

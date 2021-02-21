@@ -1,7 +1,7 @@
 import React from 'react';
 import Registration from "./Registration";
 import {connect} from 'react-redux'
-import {registrationThunk} from "../../state/authReducer";
+import {registrationThunk, socialRegThunk} from "../../state/authReducer";
 import { Redirect } from "react-router-dom"
 import {getAuthDude} from "../../selectors/selectors";
 
@@ -10,13 +10,16 @@ class RegComponent extends React.Component{
         this.props.registrationPLS(data);
     };
 
+    socialRegSubmit = (email) =>{
+        this.props.socialReg(email)
+    };
 
     render() {
         if (this.props.state.isAuth) return <Redirect to={'/'}/>;
 
         return (
             <>
-                <Registration {...this.props} onSubmit={this.onSubmit}/>
+                <Registration {...this.props} onSubmit={this.onSubmit} onSocialRegSubmit={this.socialRegSubmit}/>
             </>
         )
     }
@@ -32,5 +35,6 @@ let mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps,{
-    registrationPLS: registrationThunk
+    registrationPLS: registrationThunk,
+    socialReg: socialRegThunk
 })(RegComponent);
