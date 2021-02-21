@@ -7,6 +7,7 @@ const SET_PROJECTS_COUNT = "SET_PROJECTS_COUNT";
 const SET_PAGE_NUMBER = "SET_PAGE_NUMBER";
 const SET_IS_FETCHING = "SET_IS_FETCHING";
 const SET_THEMES = "SET_THEMES";
+const SET_SEARCH_QUERY = "SET_SEARCH_QUERY";
 
 
 let initialState = {
@@ -18,6 +19,7 @@ let initialState = {
     projectsCount: 0,
     nowTheme: 'all',
     nowType: 'all',
+    search: '',
     isFetching: false
 };
 
@@ -28,6 +30,7 @@ export const setIsFetchingActionCreator = (bool) => {return {type: "SET_IS_FETCH
 export const setThemesAC = (themes, nowTheme, types, nowType) => {return {type: "SET_THEMES",
     themes: themes, nowTheme: nowTheme,
     types: types, nowType: nowType}};
+export const searchAC = (query) => {return {type: "SET_SEARCH_QUERY", query}};
 
 
 export const projectsPageReducer = (state = initialState, action) => {
@@ -74,20 +77,24 @@ export const projectsPageReducer = (state = initialState, action) => {
         case SET_THEMES: {
             return {...state, NavLinksArr: action.themes, nowTheme: action.nowTheme, NavLinksArrTypes: action.types, nowType: action.nowType}
         }
+        case SET_SEARCH_QUERY: {
+            return {...state, search: action.query}
+        }
         default:
             return state;
     }
 };
 
 
-export const getProjectsThunk = (nowPage, theme, type) => {
+export const getProjectsThunk = (nowPage, theme, type, search='') => {
     return async (dispatch) => {
         dispatch(setIsFetchingActionCreator(true));
-        let data = await getProjects(nowPage, theme, type);
+        let data = await getProjects(nowPage, theme, type, search);
         dispatch(setIsFetchingActionCreator(false));
         dispatch(setProjectsCountActionCreator(data.count));
         dispatch(setProjectsActionCreator(data.items));
         dispatch(setPage(nowPage));
+        dispatch(searchAC(search));
         let themesData = await getThemes();
         dispatch(setThemesAC(themesData.themes, theme, themesData.types, type))
     }

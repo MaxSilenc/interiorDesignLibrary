@@ -5,15 +5,26 @@ import {NavLink} from "react-router-dom";
 const NavLinks = (props) => {
     let path = "/projects/all/all";
     if (props.whatChange === 'type'){
-        path = "/projects/" + props.nowTheme + "/" + props.name + "/" + props.nowPage;
+        if (props.search ===  '') {
+            path = "/projects/" + props.nowTheme + "/" + props.name + "/" + props.nowPage;
+        }
+        else {
+            path = "/projects/" + props.nowTheme + "/" + props.name + "/" + props.nowPage + '?search=' + props.search;
+        }
+
         return (
-            <NavLink to={path} onClick={() => {props.onClickSetTheme(props.nowTheme, props.name)}}>{props.name}</NavLink>
+            <NavLink to={path} onClick={() => {props.onClickSetTheme(props.nowTheme, props.name, props.search)}}>{props.name}</NavLink>
         )
     }
     else{
-        path = "/projects/" + props.name + "/" + props.nowType + "/" + props.nowPage;
+        if (props.search ===  '') {
+            path = "/projects/" + props.name + "/" + props.nowType + "/" + props.nowPage;
+        }
+        else {
+            path = "/projects/" + props.name + "/" + props.nowType + "/" + props.nowPage + '?search=' + props.search;
+        }
         return (
-            <NavLink to={path} onClick={() => {props.onClickSetTheme(props.name, props.nowType)}}>{props.name}</NavLink>
+            <NavLink to={path} onClick={() => {props.onClickSetTheme(props.name, props.nowType, props.search)}}>{props.name}</NavLink>
         )
     }
 };

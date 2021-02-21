@@ -25,7 +25,7 @@ export const sliderSectionPageReducer = (state = initialState, action) => {
 
 export const getProjectsThunk = () => {
     return async (dispatch) => {
-        let data = await getProjects(1, 'all', 'all');
+        let data = await getProjects(1, 'all', 'all', '');
         dispatch(setProjectsActionCreator(data.items));
     }
 };
