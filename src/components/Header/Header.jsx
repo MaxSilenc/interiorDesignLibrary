@@ -30,6 +30,13 @@ const Header = ({state, logout, getProjectsOnClick}) => {
                                     <NavLink className="nav-link" to="/login">login</NavLink>
                                 </li>
                             }
+                            {state.isAuth ?
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/personalArea">Personal area</NavLink>
+                                </li>
+                                :
+                                true
+                            }
                         </ul>
                     </div>
                 </div>

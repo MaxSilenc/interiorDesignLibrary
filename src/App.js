@@ -6,6 +6,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginContainer from './components/Login/LoginContainer'
 import RegistrationContainer from './components/Registration/RegistrationContainer'
+import PersonalAreaContainer from  './components/PersonalArea/PersonalAreaContainer'
 
 const App = (props) => {
   return (
@@ -17,6 +18,7 @@ const App = (props) => {
             <Route path="/projectPage/:projectId?" render={() => <ProjectPageContainer/>}/>
             <Route path="/login" render={() => <LoginContainer/>}/>
             <Route path="/registration" render={() => <RegistrationContainer/>}/>
+            <Route path="/personalArea" render={() => <PersonalAreaContainer/>}/>
         </div>
     </BrowserRouter>
   );

@@ -11,10 +11,12 @@ let initialState = {
     userId: null,
     email: null,
     login: null,
+    name: null,
+    lastName: null,
     isAuth: false
 };
 
-export const setUserActionCreator = (userId, email, login) => {return {type: "SET_USER", data: {userId, email, login}}};
+export const setUserActionCreator = (userId, email, login, name, lastName) => {return {type: "SET_USER", data: {userId, email, login, name, lastName}}};
 export const logoutAC = () => {return {type: "LOGOUT"}};
 
 export const authReducer = (state = initialState, action) => {
@@ -45,7 +47,7 @@ export const authReducer = (state = initialState, action) => {
 export const getCurrUserThunk = () =>{
     return async (dispatch) =>{
         let data = await currUser();
-        if (data.errorKey !== 0) dispatch(setUserActionCreator(data.id, data.email, data.login))
+        if (data.errorKey !== 0) dispatch(setUserActionCreator(data.userId, data.email, data.login, data.name, data.lastName))
     }
 };
 
