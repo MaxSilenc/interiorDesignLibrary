@@ -1,22 +1,21 @@
 import React from 'react';
 import {Field, reduxForm} from "redux-form";
 import {Input} from './../../Login/LoginForms'
-import {Required} from "../../../forms/validation";
 
 const changeCredForm = (props) =>{
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field type="text" placeholder={'login'} component={Input} name={'login'} validate={[Required]}/>
+                {props.user.login}<Field type="text" placeholder={'New login'} component={Input} name={'login'}/>
             </div>
             <div>
-                <Field type="email" placeholder={'email'} component={Input} name={'email'} validate={[Required]}/>
+                {props.user.email}<Field type="email" placeholder={'New email'} component={Input} name={'email'}/>
             </div>
             <div>
-                <Field type="text" placeholder={'name'} component={Input} name={'name'} validate={[Required]}/>
+                {props.user.name}<Field type="text" placeholder={'New name'} component={Input} name={'name'}/>
             </div>
             <div>
-                <Field type="text" placeholder={'last name'} component={Input} name={'lastName'} validate={[Required]}/>
+                {props.user.lastName}<Field type="text" placeholder={'New last name'} component={Input} name={'lastName'}/>
             </div>
             <div>
                 <button>save</button>
@@ -33,7 +32,7 @@ const UserCredentialsForm = (props) =>{
     return (
         <div>
             <h1>UserCredentialsForm</h1>
-            <ChangeCredReduxForm/>
+            <ChangeCredReduxForm onSubmit={props.onSubmit} {...props}/>
         </div>
     )
 };

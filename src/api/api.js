@@ -78,3 +78,10 @@ export const getThemes = () => {
         return respons.data;
     })
 };
+
+export const changeCred = (data, id) =>{
+    return instance.put('http://127.0.0.1:8000/reg/', "id=" + id + "&login=" + data.login + "&email=" + data.email
+    + '&name=' + data.name + "&lastName=" + data.lastName).then(respons => {
+        return respons.data;
+    })
+};

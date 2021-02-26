@@ -8,7 +8,7 @@ const PersonalArea = (props) =>{
         <div>
             <h1>PersonalArea</h1>
             <h1>padding</h1>
-            <UserCredentialsForm user={props.user}/>
+            <UserCredentialsForm user={props.user} onSubmit={props.onSubmit}/>
             <Chat/>
             <ProjectsInWork/>
         </div>
