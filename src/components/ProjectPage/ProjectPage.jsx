@@ -9,7 +9,7 @@ const ProjectPage = (props) => {
         <div className={Styles.page}>
             <ImgBlock state={props.state.thisProject}/>
             <Like likes={props.state.like} user={props.user} setLike={props.setLike} project_id={props.state.thisProject.id}/>
-            <ComentBlock comments={props.state.comments} updateComment={props.updateComment} user={props.user}/>
+            <ComentBlock comments={props.state.comments} updateComment={props.updateComment} user={props.user} addComment={props.addComment} thisProject={props.state.thisProject.id}/>
         </div>
     );
 };

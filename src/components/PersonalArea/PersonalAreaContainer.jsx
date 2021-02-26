@@ -3,10 +3,15 @@ import PersonalArea from "./PersonalArea";
 import {connect} from 'react-redux'
 import {compose} from "redux";
 import { Redirect } from "react-router-dom"
-import {getAuthDude} from "../../selectors/selectors";
+import {getAuthDude, getPersonalAreaData} from "../../selectors/selectors";
 import {changeCredThunk} from "../../state/authReducer";
+import {getChatThunk, updateMessageThunk, addMessageThunk} from '../../state/PersonalAreaReducer'
 
 class PersonalAreaContainer extends React.Component{
+
+    componentDidMount() {
+        this.props.getChat(this.props.user.login)
+    }
 
     checkChangeData = (data) =>{
         if (data.login === undefined) data.login = '';
@@ -33,7 +38,8 @@ class PersonalAreaContainer extends React.Component{
 
 let mapStateToProps = (state) => {
     return {
-        user: getAuthDude(state)
+        user: getAuthDude(state),
+        state: getPersonalAreaData(state),
     }
 };
 
@@ -41,5 +47,8 @@ let mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps,{
         changeCred: changeCredThunk,
+        getChat: getChatThunk,
+        updateMessage: updateMessageThunk,
+        addMessage: addMessageThunk
     }),
 )(PersonalAreaContainer);

@@ -44,13 +44,11 @@ const CommentsForm = (props) =>{
 let mapStateToProps = (state) => {
     return {
         user: getAuthDude(state),
-        thisProject: getCommentsBlockPage(state).thisProject.id,
     }
 };
 
 export default compose(
     connect(mapStateToProps, {
-        addComment: addCommentThunk,
     }),
     AuthCheck,
     withRouter

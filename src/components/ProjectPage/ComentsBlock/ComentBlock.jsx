@@ -19,7 +19,7 @@ const CommentsBlock = (props) => {
                 <div id='1' className="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                     <div className="card-body">
                         <CommentsList comments={props.comments} updateComment={props.updateComment} user={props.user}/>
-                        <CommenstForm/>
+                        <CommenstForm addComment={props.addComment} thisProject={props.thisProject}/>
                     </div>
                 </div>
             </div>

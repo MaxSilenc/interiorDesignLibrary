@@ -14,3 +14,7 @@ export const getProjectPage = (state) =>{
 export const getSlides = (state) =>{
     return state.sliderSectionPage.slideArr;
 };
+
+export const getPersonalAreaData = (state) =>{
+    return state.personalArea;
+};

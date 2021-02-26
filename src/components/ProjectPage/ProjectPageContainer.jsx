@@ -1,6 +1,6 @@
 import React from 'react';
 import ProjectPage from './ProjectPage'
-import {getCurrProjectThunk, updateCommentThunk, likeThunk, setLikeThunk} from "../../state/commentsFormReducer";
+import {getCurrProjectThunk, updateCommentThunk, likeThunk, setLikeThunk, addCommentThunk} from "../../state/commentsFormReducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {withRouter} from 'react-router-dom'
@@ -27,7 +27,7 @@ class ProjectPageComponent extends React.Component {
 let mapStateToProps = (state) => {
     return {
         state: getCommentsBlockPage(state),
-        user: getAuthDude(state)
+        user: getAuthDude(state),
     }
 };
 
@@ -37,7 +37,8 @@ export default compose(
         getCurrProject: getCurrProjectThunk,
         updateComment: updateCommentThunk,
         getLikes: likeThunk,
-        setLike: setLikeThunk
+        setLike: setLikeThunk,
+        addComment: addCommentThunk
     }),
     withRouter
 )(ProjectPageComponent);

@@ -85,3 +85,21 @@ export const changeCred = (data, id) =>{
         return respons.data;
     })
 };
+
+export const getChat = (username) =>{
+    return instance.get('http://127.0.0.1:8000/chat?username=' + username).then(respons => {
+        return respons.data
+    })
+};
+
+export const updateMessage = (id, text, chatId) =>{
+    return instance.put("http://127.0.0.1:8000/chat/", "id="+id+'&text='+text+'&chatId='+chatId).then(respons => {
+        return respons.data
+    });
+};
+
+export const addMessage = (text, projectId, author) =>{
+    return instance.post("http://127.0.0.1:8000/chat/", 'text='+text+ '&username='+author+'&chatId='+projectId).then(respons => {
+        return respons.data
+    });
+};

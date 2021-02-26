@@ -3,6 +3,7 @@ import {projectsPageReducer} from './projectsPageReducer'
 import {sliderSectionPageReducer} from './sliderSectionPageReducer'
 import {commentsFormReducer} from "./commentsFormReducer";
 import {authReducer} from "./authReducer";
+import {PersonalAreaReducer} from  './PersonalAreaReducer'
 import thunkMiddleware from 'redux-thunk'
 import {reducer as formReducer} from "redux-form"
 
@@ -11,7 +12,8 @@ let redusers = combineReducers({
     sliderSectionPage: sliderSectionPageReducer,
     commentsBlockPage: commentsFormReducer,
     auth: authReducer,
-    form: formReducer
+    form: formReducer,
+    personalArea: PersonalAreaReducer,
 });
 
 

@@ -9,7 +9,8 @@ const PersonalArea = (props) =>{
             <h1>PersonalArea</h1>
             <h1>padding</h1>
             <UserCredentialsForm user={props.user} onSubmit={props.onSubmit}/>
-            <Chat/>
+            <Chat chat={props.state.chat} messages={props.state.messages}
+                  user={props.user} updateMessage={props.updateMessage} addMessage={props.addMessage}/>
             <ProjectsInWork/>
         </div>
     )
