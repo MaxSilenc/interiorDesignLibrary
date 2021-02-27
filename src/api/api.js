@@ -103,3 +103,9 @@ export const addMessage = (text, projectId, author) =>{
         return respons.data
     });
 };
+
+export const getProjectsInWork = (user_id) =>{
+    return instance.get('http://127.0.0.1:8000/projectInWork?user_id='+user_id).then(respons=>{
+        return respons.data
+    });
+};

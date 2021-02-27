@@ -5,12 +5,13 @@ import {compose} from "redux";
 import { Redirect } from "react-router-dom"
 import {getAuthDude, getPersonalAreaData} from "../../selectors/selectors";
 import {changeCredThunk} from "../../state/authReducer";
-import {getChatThunk, updateMessageThunk, addMessageThunk} from '../../state/PersonalAreaReducer'
+import {getChatThunk, updateMessageThunk, addMessageThunk, getProjectsInWorkThunk} from '../../state/PersonalAreaReducer'
 
 class PersonalAreaContainer extends React.Component{
 
     componentDidMount() {
-        this.props.getChat(this.props.user.login)
+        this.props.getChat(this.props.user.login);
+        this.props.getProjects(this.props.user.userId)
     }
 
     checkChangeData = (data) =>{
@@ -49,6 +50,7 @@ export default compose(
         changeCred: changeCredThunk,
         getChat: getChatThunk,
         updateMessage: updateMessageThunk,
-        addMessage: addMessageThunk
+        addMessage: addMessageThunk,
+        getProjects: getProjectsInWorkThunk
     }),
 )(PersonalAreaContainer);

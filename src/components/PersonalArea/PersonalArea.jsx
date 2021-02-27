@@ -11,7 +11,7 @@ const PersonalArea = (props) =>{
             <UserCredentialsForm user={props.user} onSubmit={props.onSubmit}/>
             <Chat chat={props.state.chat} messages={props.state.messages}
                   user={props.user} updateMessage={props.updateMessage} addMessage={props.addMessage}/>
-            <ProjectsInWork/>
+            <ProjectsInWork state={props.state.projects}/>
         </div>
     )
 };

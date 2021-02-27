@@ -1,17 +1,20 @@
-import {getChat, updateMessage, addMessage} from "../api/api";
+import {getChat, updateMessage, addMessage, getProjectsInWork} from "../api/api";
 
 const SET_CHAT = 'SET_CHAT';
 const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
 const ADD_MESSAGE = 'ADD_MESSAGE';
+const SET_PROJECTS_IN_WORK = 'SET_PROJECTS_IN_WORK';
 
 let initialState = {
     messages: [],
-    chat: {}
+    chat: {},
+    projects: []
 };
 
 export const setChat = (data) => {return {type: "SET_CHAT", data: data}};
 export const updateMessageAC = (id, text) => {return {type: "UPDATE_MESSAGE", id: id, text: text}};
 export const addMessageAC = (data) => {return {type: "ADD_MESSAGE", data: data}};
+export const setProjectsAC = (data) => {return {type: "SET_PROJECTS_IN_WORK", data: data}};
 
 export const PersonalAreaReducer = (state = initialState, action) => {
     switch (action.type){
@@ -37,6 +40,9 @@ export const PersonalAreaReducer = (state = initialState, action) => {
             let newComment = {...action.data};
             stateCopy.messages.push(newComment);
             return stateCopy;
+        }
+        case SET_PROJECTS_IN_WORK: {
+            return {...state, projects: [...action.data]}
         }
         default:
             return state
@@ -68,5 +74,14 @@ export const addMessageThunk = (text, projectId, author) => {
             author: author,
             text: text
         }));
+    }
+};
+
+export const getProjectsInWorkThunk = (user_id) =>{
+    return async (dispatch) =>{
+        let data = await getProjectsInWork(user_id);
+        if (data.keyError === 0){
+            dispatch(setProjectsAC(data.projects))
+        }
     }
 };
