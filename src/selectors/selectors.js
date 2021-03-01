@@ -18,3 +18,7 @@ export const getSlides = (state) =>{
 export const getPersonalAreaData = (state) =>{
     return state.personalArea;
 };
+
+export const getEmptyChats = state =>{
+    return state.adminPage.emptyChats
+};

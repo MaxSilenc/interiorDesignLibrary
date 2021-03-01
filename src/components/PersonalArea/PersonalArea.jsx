@@ -2,6 +2,7 @@ import React from 'react';
 import UserCredentialsForm from './UserCredentialsForm/UserCredentialsForm'
 import Chat from './Chat/Chat'
 import ProjectsInWork from  './ProjectInWork/ProjectsInWork'
+import Styles from './PersonalArea.module.css'
 
 const PersonalArea = (props) =>{
     return (

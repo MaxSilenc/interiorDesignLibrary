@@ -14,10 +14,12 @@ let initialState = {
     login: null,
     name: null,
     lastName: null,
+    status: null,
     isAuth: false
 };
 
-export const setUserActionCreator = (userId, email, login, name, lastName) => {return {type: "SET_USER", data: {userId, email, login, name, lastName}}};
+export const setUserActionCreator = (userId, email, login, name, lastName, status) =>
+{return {type: "SET_USER", data: {userId, email, login, name, lastName, status}}};
 export const logoutAC = () => {return {type: "LOGOUT"}};
 export const setUserCred = (data) => {return {type: "SET_USER_CRED", data: data}};
 
@@ -37,6 +39,9 @@ export const authReducer = (state = initialState, action) => {
                 userId: null,
                 email: null,
                 login: null,
+                name: null,
+                lastName: null,
+                status: null,
                 isAuth: false
             }
         }
@@ -56,7 +61,8 @@ export const authReducer = (state = initialState, action) => {
 export const getCurrUserThunk = () =>{
     return async (dispatch) =>{
         let data = await currUser();
-        if (data.errorKey !== 0) dispatch(setUserActionCreator(data.userId, data.email, data.login, data.name, data.lastName))
+        if (data.errorKey !== 0) dispatch(setUserActionCreator(data.userId, data.email, data.login,
+            data.name, data.lastName, data.status))
     }
 };
 

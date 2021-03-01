@@ -5,7 +5,6 @@ class GoogleLoginComponent extends React.Component {
 
     responsGoogle = respons =>{
         this.props.onSocialRegSubmit(respons.profileObj.email);
-        console.log(respons.profileObj.email)
     };
 
     responsGoogleError = () =>{
