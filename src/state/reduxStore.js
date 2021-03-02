@@ -5,6 +5,7 @@ import {commentsFormReducer} from "./commentsFormReducer";
 import {authReducer} from "./authReducer";
 import {PersonalAreaReducer} from  './PersonalAreaReducer'
 import {adminReducer} from "./adminPanelReducer";
+import {projectsManagerReducer} from "./projectsManagerReducer";
 import thunkMiddleware from 'redux-thunk'
 import {reducer as formReducer} from "redux-form"
 
@@ -15,7 +16,8 @@ let redusers = combineReducers({
     auth: authReducer,
     form: formReducer,
     personalArea: PersonalAreaReducer,
-    adminPage: adminReducer
+    adminPage: adminReducer,
+    projectsManager: projectsManagerReducer,
 });
 
 

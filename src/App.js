@@ -8,6 +8,7 @@ import LoginContainer from './components/Login/LoginContainer'
 import RegistrationContainer from './components/Registration/RegistrationContainer'
 import PersonalAreaContainer from  './components/PersonalArea/PersonalAreaContainer'
 import AdminMainContainer from './components/AdminPanel/AdminMain/AdminMainContainer'
+import AdminProjectsContainer from './components/AdminPanel/AdminProjects/AdminProjectsContainer'
 
 const App = (props) => {
   return (
@@ -21,6 +22,7 @@ const App = (props) => {
             <Route path="/registration" render={() => <RegistrationContainer/>}/>
             <Route path="/personalArea" render={() => <PersonalAreaContainer/>}/>
             <Route path="/admin/:username?/:id?" render={() => <AdminMainContainer/>}/>
+            <Route path="/projectsManager" render={() => <AdminProjectsContainer/>}/>
         </div>
     </BrowserRouter>
   );

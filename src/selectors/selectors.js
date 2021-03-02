@@ -30,3 +30,14 @@ export const getMyChats = state =>{
 export const getMessages = state =>{
     return state.adminPage.messages
 };
+
+export const getProjects = state =>{
+    return state.projectsManager.ProjectsArr
+};
+
+export const getTypes = state =>{
+    return state.projectsManager.types
+};
+export const getThemes = state =>{
+    return state.projectsManager.themes
+};
