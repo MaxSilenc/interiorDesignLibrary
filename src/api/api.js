@@ -110,8 +110,8 @@ export const getProjectsInWork = (user_id) =>{
     });
 };
 
-export const getEmptyChats = () =>{
-    return instance.get("http://127.0.0.1:8000/emptyChats/").then(respons =>{
+export const getEmptyChats = (adminname) =>{
+    return instance.get("http://127.0.0.1:8000/emptyChats/?adminname=" + adminname).then(respons =>{
         return respons.data;
     })
 };

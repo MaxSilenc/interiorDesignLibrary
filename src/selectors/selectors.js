@@ -22,3 +22,11 @@ export const getPersonalAreaData = (state) =>{
 export const getEmptyChats = state =>{
     return state.adminPage.emptyChats
 };
+
+export const getMyChats = state =>{
+    return state.adminPage.myChats
+};
+
+export const getMessages = state =>{
+    return state.adminPage.messages
+};

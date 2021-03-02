@@ -4,9 +4,11 @@ import {NavLink} from "react-router-dom";
 const Links = props =>{
     return (
         <div>
-            <NavLink to={'/chats'}>my chats</NavLink>
+            <NavLink to={'/userList'}>users</NavLink>
             <br/>
             <NavLink to={'/projectsManager'}>projects manager</NavLink>
+            <br/>
+            <NavLink to={'/statistics'}>statistics</NavLink>
         </div>
     )
 };

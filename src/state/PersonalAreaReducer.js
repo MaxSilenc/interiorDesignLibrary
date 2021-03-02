@@ -1,4 +1,6 @@
 import {getChat, updateMessage, addMessage, getProjectsInWork} from "../api/api";
+import {updateCommentFun, addMessageFun} from './common'
+
 
 const SET_CHAT = 'SET_CHAT';
 const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
@@ -22,24 +24,10 @@ export const PersonalAreaReducer = (state = initialState, action) => {
             return {...state, messages: [...action.data.messages], chat: {...action.data.chat}}
         }
         case UPDATE_MESSAGE: {
-            let newState = {...state};
-            let messages = [...state.messages];
-            for (let i = 0; i < messages.length; i++){
-                if (messages[i].id === action.id){
-                    if (action.text === '') newState.messages.splice(i, 1);
-                    else messages[i].text = action.text;
-                    return newState
-                }
-            }
-            return state
+            return updateCommentFun(state, action)
         }
         case ADD_MESSAGE: {
-            let stateCopy = {...state};
-            stateCopy.messages = [...state.messages];
-
-            let newComment = {...action.data};
-            stateCopy.messages.push(newComment);
-            return stateCopy;
+            return addMessageFun(state, action)
         }
         case SET_PROJECTS_IN_WORK: {
             return {...state, projects: [...action.data]}

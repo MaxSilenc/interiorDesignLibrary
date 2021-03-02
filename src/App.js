@@ -20,7 +20,7 @@ const App = (props) => {
             <Route path="/login" render={() => <LoginContainer/>}/>
             <Route path="/registration" render={() => <RegistrationContainer/>}/>
             <Route path="/personalArea" render={() => <PersonalAreaContainer/>}/>
-            <Route path="/admin" render={() => <AdminMainContainer/>}/>
+            <Route path="/admin/:username?/:id?" render={() => <AdminMainContainer/>}/>
         </div>
     </BrowserRouter>
   );

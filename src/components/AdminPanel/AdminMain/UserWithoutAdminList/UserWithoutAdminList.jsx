@@ -7,6 +7,7 @@ const UserWithoutAdminList = props =>{
 
     return (
         <div>
+            <h1>Users without admin</h1>
             {chats}
         </div>
     )

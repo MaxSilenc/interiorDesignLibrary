@@ -55,7 +55,7 @@ const CommentContainer = (props =>{
                 :
                 <div>
                     <div>{comment.author}:</div>
-                    <div>{comment.text}:</div>
+                    <div>{comment.text}</div>
                 </div>
             }
         </div>

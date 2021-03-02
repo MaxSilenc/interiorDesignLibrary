@@ -3,7 +3,7 @@ import headerStyles from './header.module.css'
 import {NavLink} from "react-router-dom";
 
 
-const Header = ({state, logout, getProjectsOnClick}) => {
+const Header = ({state, logout, getProjectsOnClick, myChat}) => {
     return (
         <header className={headerStyles.header}>
             <nav className="navbar navbar-expand-lg navbar-dark">
@@ -32,7 +32,7 @@ const Header = ({state, logout, getProjectsOnClick}) => {
                             }
                             {state.status ?
                                 <li className="nav-item">
-                                    <NavLink className="nav-link" to="/admin">admin</NavLink>
+                                    <NavLink className="nav-link" to={"/admin"}>admin</NavLink>
                                 </li>
                                 :
                                 state.isAuth ?
