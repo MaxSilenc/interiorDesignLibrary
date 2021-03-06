@@ -5,7 +5,7 @@ import {compose} from "redux";
 import { Redirect } from "react-router-dom"
 import AdminProjects from './AdminProjects'
 import {withRouter} from 'react-router-dom'
-import {getProjectsThunk} from  './../../../state/projectsManagerReducer'
+import {getProjectsThunk, addProjectThunk} from  './../../../state/projectsManagerReducer'
 
 class AdminPojectsComponent extends React.Component{
 
@@ -37,6 +37,7 @@ let mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps,{
         getProjects: getProjectsThunk,
+        addProject: addProjectThunk,
     }),
     withRouter
 )(AdminPojectsComponent);

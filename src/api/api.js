@@ -121,3 +121,16 @@ export const setAdminToChat = (id, adminname) =>{
         return respons.data;
     })
 };
+
+export const addProject = (data) =>{
+    return instance.post("http://127.0.0.1:8000/projects/1/all/all/",
+        data,
+        {
+            headers: {
+                'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+            }
+        }
+    ).then(respons =>{
+        return respons.data;
+    })
+};

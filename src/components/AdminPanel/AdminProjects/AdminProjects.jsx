@@ -8,7 +8,7 @@ const AdminProjects = props =>{
             <h1>AdminProjects</h1>
             <h1>padding</h1>
             <ProjectsList projects={props.projects}/>
-            <ProjectsFrom themes={props.themes} types={props.types}/>
+            <ProjectsFrom themes={props.themes} types={props.types} addProject={props.addProject}/>
         </div>
     )
 };

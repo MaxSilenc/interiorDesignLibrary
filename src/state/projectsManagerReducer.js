@@ -1,4 +1,5 @@
-import {getProjects, getThemes} from "../api/api";
+import {getProjects, getThemes, addProject} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 
 const SET_PROJECTS = "SET_PROJECTS";
@@ -37,5 +38,26 @@ export const getProjectsThunk = (nowPage, theme, type, search='') => {
         dispatch(setProjectsActionCreator(data.items));
         let themesData = await getThemes();
         dispatch(setThemesAC(themesData.themes, themesData.types))
+    }
+};
+
+export const addProjectThunk = (data) => {
+    return async (dispatch) => {
+        let themesData = await addProject(data);
+        if (themesData.keyError === 0){
+            dispatch(getProjectsThunk())
+        }
+        if (themesData.keyError === 1){
+            let action = stopSubmit('addProjectForm', {headline_name: themesData.message});
+            dispatch(action)
+        }
+        if (themesData.keyError === 2){
+            let action = stopSubmit('addProjectForm', {theme: themesData.message});
+            dispatch(action)
+        }
+        if (themesData.keyError === 3){
+            let action = stopSubmit('addProjectForm', {type: themesData.message});
+            dispatch(action)
+        }
     }
 };
