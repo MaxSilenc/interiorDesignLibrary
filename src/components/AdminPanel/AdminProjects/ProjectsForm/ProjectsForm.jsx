@@ -65,11 +65,12 @@ const ProjectsForm = (props) =>{
         }
         form_data.append('theme_id', data.theme);
         form_data.append('type', data.type);
-        if (data.inWorl === undefined)
-            form_data.append('in_work', 0);
+        if (data.inWork === undefined)
+            form_data.append('in_work', '0');
         else if (data.inWork === false){
-            form_data.append('in_work', 0);
-        } else form_data.append('in_work', 1);
+            form_data.append('in_work', '0');
+        } else form_data.append('in_work', '1');
+
         props.addProject(form_data);
     };
 
