@@ -10,14 +10,24 @@ import {getProjectsThunk, addProjectThunk, setThemesOrType, upadteThemesOrTypeTh
 class AdminPojectsComponent extends React.Component{
 
     componentDidMount() {
-        this.props.getProjects(0, 'all', 'all')
+        let page = this.props.match.params.page;
+        if (page === undefined) page = 1;
+        let search = this.props.location.search.slice(8);
+        this.props.getProjects(page, 'all', 'all', search)
     }
 
+    onClickSetPage = (el) =>{
+        this.props.getProjects(el, 'all', 'all')
+    };
+
+    onClickSetSearch = (searchQ) =>{
+        this.props.getProjects(1, 'all', 'all', searchQ)
+    };
 
     render() {
         if (!this.props.user.isAuth) return <Redirect to={'/'}/>;
         return (
-            <AdminProjects {...this.props}/>
+            <AdminProjects {...this.props} onClickSetPage={this.onClickSetPage} onClickSetSearch={this.onClickSetSearch}/>
         )
     }
 }
@@ -28,7 +38,10 @@ let mapStateToProps = (state) => {
         user: getAuthDude(state),
         projects: getProjects(state),
         themes: getThemes(state),
-        types: getTypes(state)
+        types: getTypes(state),
+        count: state.projectsManager.count,
+        search: state.projectsManager.search,
+        page: state.projectsManager.nowPage
     }
 };
 

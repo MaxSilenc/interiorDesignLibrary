@@ -22,7 +22,7 @@ const App = (props) => {
             <Route path="/registration" render={() => <RegistrationContainer/>}/>
             <Route path="/personalArea" render={() => <PersonalAreaContainer/>}/>
             <Route path="/admin/:username?/:id?" render={() => <AdminMainContainer/>}/>
-            <Route path="/projectsManager" render={() => <AdminProjectsContainer/>}/>
+            <Route path="/projectsManager/:page?" render={() => <AdminProjectsContainer/>}/>
         </div>
     </BrowserRouter>
   );

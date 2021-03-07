@@ -1,8 +1,14 @@
 import React from 'react'
 import SingleProject from './SingleProject/SingleProjects'
+import {NavLink} from "react-router-dom";
+import SearchAdmin from './../SearchAdmin/SearchAdmin'
 
 const ProjectsList = props =>{
 
+    let buttons = [];
+    for (let i = 1; i <= Math.ceil(props.count / 4); i++){
+        buttons.push(i);
+    }
     let projects = props.projects.map(el => <SingleProject key={el.id} state={el}/>);
 
     return (
@@ -21,6 +27,9 @@ const ProjectsList = props =>{
                 <div id='Projects' className="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                     <div className="card-body">
                         <div>
+                            <div>
+                                <SearchAdmin search={props.search} nowPage={props.page} onClickSetSearch={props.onClickSetSearch}/>
+                            </div>
                             <table className="table">
                                 <thead>
                                 <tr>
@@ -39,6 +48,16 @@ const ProjectsList = props =>{
                                 {projects}
                                 </tbody>
                             </table>
+                        </div>
+                        <div>
+                            {buttons.map(el => {
+                                return <NavLink to={'/projectsManager/' + el} key={el}>
+                                    <button
+                                            onClick={() => {
+                                                props.onClickSetPage(el);
+                                            } }>{el}</button>
+                                </NavLink>
+                            })}
                         </div>
                     </div>
                 </div>

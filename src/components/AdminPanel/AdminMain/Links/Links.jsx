@@ -6,7 +6,7 @@ const Links = props =>{
         <div>
             <NavLink to={'/userList'}>users</NavLink>
             <br/>
-            <NavLink to={'/projectsManager'}>projects manager</NavLink>
+            <NavLink to={'/projectsManager/1'}>projects manager</NavLink>
             <br/>
             <NavLink to={'/statistics'}>statistics</NavLink>
         </div>

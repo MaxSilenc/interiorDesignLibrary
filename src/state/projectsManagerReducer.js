@@ -13,11 +13,14 @@ const DELETE_THEME_OR_TYPE = "DELETE_THEME_OR_TYPE";
 
 let initialState = {
     ProjectsArr: [],
+    count: null,
     themes: [],
+    nowPage: 1,
+    search: '',
     types: []
 };
 
-export const setProjectsActionCreator = (ProjectsArr) => {return {type: "SET_PROJECTS", ProjectsArr}};
+export const setProjectsActionCreator = (ProjectsArr, count, page, search) => {return {type: "SET_PROJECTS", ProjectsArr, count, page, search}};
 export const addProjectActionCreator = (project) => {return {type: "ADD_PROJECT", project}};
 export const themeOrTypeAC = (whatIsThat, item) => {return {type: "SET_THEME_OR_TYPE", whatIsThat: whatIsThat, item: item}};
 export const DeleteThemeOrTypeAC = (whatIsThat, id) => {return {type: "DELETE_THEME_OR_TYPE", whatIsThat: whatIsThat, id: id}};
@@ -30,7 +33,7 @@ export const projectsManagerReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case SET_PROJECTS: {
-            return {...state, ProjectsArr: [...action.ProjectsArr]}
+            return {...state, ProjectsArr: [...action.ProjectsArr], count: action.count, nowPage: action.page, search: action.search}
         }
         case SET_THEMES: {
             return {...state, themes: action.themes, types: action.types}
@@ -103,7 +106,7 @@ export const projectsManagerReducer = (state = initialState, action) => {
 export const getProjectsThunk = (nowPage, theme, type, search='') => {
     return async (dispatch) => {
         let data = await getProjects(nowPage, theme, type, search);
-        dispatch(setProjectsActionCreator(data.items));
+        dispatch(setProjectsActionCreator(data.items, data.count, nowPage, search));
         let themesData = await getThemes();
         dispatch(setThemesAC(themesData.themes, themesData.types))
     }
