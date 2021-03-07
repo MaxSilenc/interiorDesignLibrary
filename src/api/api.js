@@ -134,3 +134,15 @@ export const addProject = (data) =>{
         return respons.data;
     })
 };
+
+export const addThemeOrType = (themeOrType, name) =>{
+    return instance.post('http://127.0.0.1:8000/themes/', 'typesOrThemes='+themeOrType+'&name='+name).then(respons =>{
+        return respons.data;
+    })
+};
+
+export const updateThemeOrType = (themeOrType, id, newName) =>{
+    return instance.put('http://127.0.0.1:8000/themes/', 'typesOrThemes='+themeOrType+'&id='+id+'&newName='+newName).then(respons =>{
+        return respons.data;
+    })
+};
