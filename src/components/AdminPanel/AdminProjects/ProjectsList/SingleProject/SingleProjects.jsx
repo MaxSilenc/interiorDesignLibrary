@@ -1,4 +1,5 @@
 import React from 'react'
+import {NavLink} from "react-router-dom";
 
 const SingleProject = props =>{
 
@@ -17,7 +18,7 @@ const SingleProject = props =>{
             <td>{props.state.text}</td>
             <td>{props.state.work.toString()}</td>
             <td><button onClick={onClickDelete}>delete</button></td>
-            <td><button>more</button></td>
+            <td><NavLink to={'/singleProjectPage/' + props.state.id}><button>more</button></NavLink></td>
         </tr>
     )
 };

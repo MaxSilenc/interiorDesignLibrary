@@ -10,34 +10,34 @@ const addProjectsForm = (props) =>{
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field type="text" placeholder={'title'} component={Input} name={'headline_name'} validate={[Required]}/>
+                title:<Field type="text" placeholder={'title'} component={Input} name={'headline_name'} validate={[Required]}/>
             </div>
             <div>
-                <Field type="text" placeholder={'name'} component={Input} name={'name'} validate={[Required]}/>
+                name:<Field type="text" placeholder={'name'} component={Input} name={'name'} validate={[Required]}/>
             </div>
             <div>
-                <Field type="text" placeholder={'text'} component={Textarea} name={'text'} validate={[Required]}/>
+                text:<Field type="text" placeholder={'text'} component={Textarea} name={'text'} validate={[Required]}/>
             </div>
             <div>
-                <Field type="text" placeholder={'theme'} component={Input} name={'theme'} validate={[Required]}/>
+                theme:<Field type="text" placeholder={'theme'} component={Input} name={'theme'} validate={[Required]}/>
             </div>
             <div>
-                <Field type="text" placeholder={'type'} component={Input} name={'type'} validate={[Required]}/>
+                type:<Field type="text" placeholder={'type'} component={Input} name={'type'} validate={[Required]}/>
             </div>
             <div>
-                <Field component={FieldFileInput} name={'img'} required accept='.jpg, .png, .jpeg'/>
+                preview:<Field component={FieldFileInput} name={'img'} required accept='.jpg, .png, .jpeg'/>
             </div>
             <div>
-                <Field component={FieldFileInput} name={'img2'} required accept='.jpg, .png, .jpeg'/>
+                preview:<Field component={FieldFileInput} name={'img2'} required accept='.jpg, .png, .jpeg'/>
             </div>
             <div>
-                <Field component={FieldFileInput} name={'img3'} required accept='.jpg, .png, .jpeg'/>
+                preview:<Field component={FieldFileInput} name={'img3'} required accept='.jpg, .png, .jpeg'/>
             </div>
             <div>
-                <Field component={FieldFileInput} name={'project'} multiple/>
+                project file<Field component={FieldFileInput} name={'project'} multiple/>
             </div>
             <div>
-                <Field name="inWork" id="inWork" component={Input} type="checkbox"/>
+                in work: <Field name="inWork" id="inWork" component={Input} type="checkbox"/> username: <Field type="text" placeholder={'username'} component={Input} name={'username'}/>
             </div>
             <div>
                 <button>add</button>
@@ -60,6 +60,7 @@ const ProjectsForm = (props) =>{
         form_data.append('img2', data.img2[0], data.img2[0].name);
         form_data.append('img3', data.img3[0], data.img3[0].name);
         form_data.append('text', data.text);
+        form_data.append('username', data.username);
         for (let file of data.project){
             form_data.append('project', file);
         }

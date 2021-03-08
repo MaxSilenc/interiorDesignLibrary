@@ -115,9 +115,9 @@ export const projectsManagerReducer = (state = initialState, action) => {
 };
 
 
-export const getProjectsThunk = (nowPage, theme, type, search='') => {
+export const getProjectsThunk = (nowPage, theme, type, search='', inWork='1') => {
     return async (dispatch) => {
-        let data = await getProjects(nowPage, theme, type, search);
+        let data = await getProjects(nowPage, theme, type, search, inWork='1');
         dispatch(setProjectsActionCreator(data.items, data.count, nowPage, search));
         let themesData = await getThemes();
         dispatch(setThemesAC(themesData.themes, themesData.types))

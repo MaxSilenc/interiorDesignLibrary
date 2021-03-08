@@ -7,8 +7,8 @@ const instance = axios.create({
 });
 
 
-export const getProjects = (nowPage, themeId, type, search) =>{
-    return instance.get("http://127.0.0.1:8000/projects/" + nowPage + '/' + themeId + '/' + type + '?search=' + search).then(respons => {
+export const getProjects = (nowPage, themeId, type, search, inWork) =>{
+    return instance.get("http://127.0.0.1:8000/projects/" + nowPage + '/' + themeId + '/' + type + '?search=' + search + '&inWork=' + inWork).then(respons => {
         return respons.data
     });
 };
@@ -149,6 +149,19 @@ export const updateThemeOrType = (themeOrType, id, newName) =>{
 
 export const deleteProject = (id, whatToDo) =>{
     return instance.put("http://127.0.0.1:8000/projects/1/all/all/", 'id=' + id + '&whatToDo=' + whatToDo).then(respons =>{
+        return respons.data;
+    })
+};
+
+export const updateProject = (data) =>{
+    return instance.put("http://127.0.0.1:8000/projects/1/all/all/",
+        data,
+        {
+            headers: {
+                'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+            }
+        }
+    ).then(respons =>{
         return respons.data;
     })
 };

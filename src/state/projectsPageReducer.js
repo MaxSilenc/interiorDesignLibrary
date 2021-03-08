@@ -86,10 +86,10 @@ export const projectsPageReducer = (state = initialState, action) => {
 };
 
 
-export const getProjectsThunk = (nowPage, theme, type, search='') => {
+export const getProjectsThunk = (nowPage, theme, type, search='', inWork='0') => {
     return async (dispatch) => {
         dispatch(setIsFetchingActionCreator(true));
-        let data = await getProjects(nowPage, theme, type, search);
+        let data = await getProjects(nowPage, theme, type, search, inWork);
         dispatch(setIsFetchingActionCreator(false));
         dispatch(setProjectsCountActionCreator(data.count));
         dispatch(setProjectsActionCreator(data.items));
