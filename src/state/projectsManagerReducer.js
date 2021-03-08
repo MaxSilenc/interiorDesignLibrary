@@ -1,4 +1,4 @@
-import {getProjects, getThemes, addProject, addThemeOrType, updateThemeOrType} from "../api/api";
+import {getProjects, getThemes, addProject, addThemeOrType, updateThemeOrType, deleteProject} from "../api/api";
 import {stopSubmit} from "redux-form";
 
 
@@ -8,6 +8,7 @@ const ADD_PROJECT = "ADD_PROJECT";
 const SET_THEME_OR_TYPE = "SET_THEME_OR_TYPE";
 const UPDATE_THEME_OR_TYPE = "UPDATE_THEME_OR_TYPE";
 const DELETE_THEME_OR_TYPE = "DELETE_THEME_OR_TYPE";
+const DELETE_PROJECT = "DELETE_PROJECT";
 
 
 
@@ -22,6 +23,7 @@ let initialState = {
 
 export const setProjectsActionCreator = (ProjectsArr, count, page, search) => {return {type: "SET_PROJECTS", ProjectsArr, count, page, search}};
 export const addProjectActionCreator = (project) => {return {type: "ADD_PROJECT", project}};
+export const deleteProjectActionCreator = (id) => {return {type: "DELETE_PROJECT", id}};
 export const themeOrTypeAC = (whatIsThat, item) => {return {type: "SET_THEME_OR_TYPE", whatIsThat: whatIsThat, item: item}};
 export const DeleteThemeOrTypeAC = (whatIsThat, id) => {return {type: "DELETE_THEME_OR_TYPE", whatIsThat: whatIsThat, id: id}};
 export const updateThemeOrTypeAC = (whatIsThat, item, id) => {return {type: "UPDATE_THEME_OR_TYPE", whatIsThat: whatIsThat,
@@ -97,6 +99,16 @@ export const projectsManagerReducer = (state = initialState, action) => {
                 return state
             }
         }
+        case DELETE_PROJECT: {
+            let ProjectsArr = [...state.ProjectsArr];
+            for (let i = 0; i < ProjectsArr.length; i++){
+                if (ProjectsArr[i].id === action.id){
+                    ProjectsArr.splice(i, 1);
+                    return {...state, ProjectsArr: ProjectsArr}
+                }
+            }
+            return state
+        }
         default:
             return state;
     }
@@ -163,5 +175,12 @@ export const upadteThemesOrTypeThunk = (themeOrType, id, newName) =>{
         if (data.keyError === 1){
             dispatch(DeleteThemeOrTypeAC(data.message, id))
         }
+    }
+};
+
+export const deleteProjectThunk = (id, whatToDo) =>{
+    return async (dispatch) =>{
+        let data = await deleteProject(id, whatToDo);
+        dispatch(deleteProjectActionCreator(id))
     }
 };

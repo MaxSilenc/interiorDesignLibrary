@@ -1,6 +1,11 @@
 import React from 'react'
 
 const SingleProject = props =>{
+
+    const onClickDelete = () =>{
+        props.deleteProject(props.state.id, 'delete')
+    };
+
     return (
         <tr>
             <th scope="row">{props.state.id}</th>
@@ -11,7 +16,7 @@ const SingleProject = props =>{
             <td>{props.state.title}</td>
             <td>{props.state.text}</td>
             <td>{props.state.work.toString()}</td>
-            <td><button>delete</button></td>
+            <td><button onClick={onClickDelete}>delete</button></td>
             <td><button>more</button></td>
         </tr>
     )

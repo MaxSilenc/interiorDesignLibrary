@@ -9,7 +9,7 @@ const ProjectsList = props =>{
     for (let i = 1; i <= Math.ceil(props.count / 4); i++){
         buttons.push(i);
     }
-    let projects = props.projects.map(el => <SingleProject key={el.id} state={el}/>);
+    let projects = props.projects.map(el => <SingleProject key={el.id} state={el} deleteProject={props.deleteProject}/>);
 
     return (
         <div className="card">

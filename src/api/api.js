@@ -146,3 +146,9 @@ export const updateThemeOrType = (themeOrType, id, newName) =>{
         return respons.data;
     })
 };
+
+export const deleteProject = (id, whatToDo) =>{
+    return instance.put("http://127.0.0.1:8000/projects/1/all/all/", 'id=' + id + '&whatToDo=' + whatToDo).then(respons =>{
+        return respons.data;
+    })
+};
