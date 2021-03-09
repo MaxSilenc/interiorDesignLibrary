@@ -5,7 +5,7 @@ import {compose} from "redux";
 import { Redirect } from "react-router-dom"
 import SingleProjectManager from './SingleProjectManager'
 import {withRouter} from 'react-router-dom'
-import {getCurrProjectThunk, updateProjectThunk} from './../../../../state/singleProjectManageReducer'
+import {getCurrProjectThunk, updateProjectThunk, updateCommentThunk} from './../../../../state/singleProjectManageReducer'
 
 class SingleProjectManagerComponent extends React.Component{
 
@@ -36,7 +36,8 @@ let mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps,{
         getProjects: getCurrProjectThunk,
-        updateProject: updateProjectThunk
+        updateProject: updateProjectThunk,
+        updateComment: updateCommentThunk
     }),
     withRouter
 )(SingleProjectManagerComponent);

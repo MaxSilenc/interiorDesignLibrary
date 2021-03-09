@@ -24,13 +24,12 @@ export const singleProjectManagerReducer = (state = initialState, action) => {
             return {...state, comments: [...action.comments.items]}
         }
         case UPDATE_COMMENTS: {
-            let newState = {...state};
             let comments = [...state.comments];
             for (let i = 0; i < comments.length; i++){
                 if (comments[i].id === action.id){
-                    if (action.text === '') newState.comments.splice(i, 1);
+                    if (action.text === '') comments.splice(i, 1);
                     else comments[i].text = action.text;
-                    return newState
+                    return {...state, comments: comments}
                 }
             }
             return state
