@@ -61,8 +61,10 @@ export const setLike = (projectId, author, key) => {
         return respons.data;
     })
 };
-export const registrationApi = (data) =>{
-    return instance.post('http://127.0.0.1:8000/reg/', "login=" + data.login + "&password=" + data.password + "&passwordRep=" + data.passwordRep + "&email=" + data.email).then(respons => {
+export const registrationApi = (data, status='0') =>{
+    return instance.post('http://127.0.0.1:8000/reg/', "login=" + data.login + "&password=" + data.password +
+        "&passwordRep=" + data.passwordRep + "&email=" + data.email + '&status=' + status
+        + '&name=' + data.name + "&lastName=" + data.lastName).then(respons => {
         return respons.data;
     })
 };
@@ -79,9 +81,15 @@ export const getThemes = () => {
     })
 };
 
-export const changeCred = (data, id) =>{
+export const getUsers = () =>{
+    return instance.post("http://127.0.0.1:8000/reg/", 'key=' + localStorage.token).then(respons => {
+        return respons.data
+    });
+};
+
+export const changeCred = (data, id, status='0', whatToDo='update') =>{
     return instance.put('http://127.0.0.1:8000/reg/', "id=" + id + "&login=" + data.login + "&email=" + data.email
-    + '&name=' + data.name + "&lastName=" + data.lastName).then(respons => {
+    + '&name=' + data.name + "&lastName=" + data.lastName + '&status=' + status + '&whatToDo=' + whatToDo).then(respons => {
         return respons.data;
     })
 };

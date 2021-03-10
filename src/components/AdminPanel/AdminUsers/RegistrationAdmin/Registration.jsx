@@ -1,8 +1,7 @@
 import React from 'react';
 import {Field, reduxForm} from "redux-form";
-import {MaxLengthCreator, Required, ValidPass} from "../../forms/validation";
-import {Input} from "../Login/LoginForms";
-import GoogleLoginComponent from './../Login/GoogleLogin/GoogleLogin'
+import {MaxLengthCreator, Required, ValidPass} from "../../../../forms/validation";
+import {Input} from "../../../Login/LoginForms";
 
 let MaxLength = MaxLengthCreator(20);
 const RegistrationForm = (props) =>{
@@ -34,15 +33,13 @@ const RegistrationForm = (props) =>{
 };
 
 const RegistrationReduxForm = reduxForm({
-    form: 'registrationForm'
+    form: 'registrationFormAdmin'
 })(RegistrationForm);
 
 const Registration = (props) =>{
     return (
         <div>
-            <h1>padding</h1>
-            <h1>padding</h1>
-            <GoogleLoginComponent onSocialRegSubmit={props.onSocialRegSubmit}/>
+            <h1>admin reg</h1>
             <RegistrationReduxForm onSubmit={props.onSubmit}/>
         </div>
     )

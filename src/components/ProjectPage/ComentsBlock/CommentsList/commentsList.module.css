@@ -1,3 +1,11 @@
 .list {
     border: 1px solid black;
 }
+
+.list__scroll {
+    overflow: scroll;
+    width: 700px;
+    height: 350px;
+    padding: 5px;
+    border: solid 1px black;
+}
