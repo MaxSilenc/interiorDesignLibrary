@@ -28,8 +28,10 @@ const Projects = (props) => {
     }
 
     return (
-
         <div className={Styles.main}>
+            <div>
+                test
+            </div>
             <div className={Styles.projects}>
                 <div>
                     <Search search={props.state.search} onClickSetSearch={props.onClickSetSearch}
