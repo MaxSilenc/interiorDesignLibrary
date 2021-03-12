@@ -32,8 +32,8 @@ export const getCurrProject = (projectId) =>{
     });
 };
 
-export const getCurrProjectComment = (projectId) =>{
-    return instance.get("http://127.0.0.1:8000/comments/" + projectId).then(respons => {
+export const getCurrProjectComment = (projectId, page) =>{
+    return instance.get("http://127.0.0.1:8000/comments/" + projectId + '?page=' + page).then(respons => {
         return respons.data
     });
 };

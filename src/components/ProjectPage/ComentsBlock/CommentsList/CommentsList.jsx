@@ -1,10 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Styles from './commentsList.module.css'
 import CommentContainer from './Comment/CommentContainer'
 
 const CommentsList = (props) =>{
-
-
     if (props.comments.length !== 0)
         return (
             <div className={Styles.list__scroll}>

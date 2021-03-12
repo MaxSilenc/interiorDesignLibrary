@@ -29,32 +29,34 @@ const Projects = (props) => {
 
     return (
 
-        <div className={Styles.projects}>
-            <div>
-                <Search search={props.state.search} onClickSetSearch={props.onClickSetSearch}
-                        nowType={props.state.nowType}
-                        nowPage={props.state.nowPage}
-                        nowTheme={props.state.nowTheme}/>
+        <div className={Styles.main}>
+            <div className={Styles.projects}>
+                <div>
+                    <Search search={props.state.search} onClickSetSearch={props.onClickSetSearch}
+                            nowType={props.state.nowType}
+                            nowPage={props.state.nowPage}
+                            nowTheme={props.state.nowTheme}/>
+                </div>
+                <div>
+                    <NavLinks id={'all'} name={'all'} key={'all'} onClickSetTheme={props.onClickSetTheme}
+                              nowType={props.state.nowType}
+                              whatChange={'theme'} nowPage={props.state.nowPage} search={props.state.search}/>
+                    {NavLinksItemsThemes}
+                </div>
+                <div>
+                    <NavLinks id={'all'} name={'all'} key={'all'} onClickSetTheme={props.onClickSetTheme}
+                              nowTheme={props.state.nowTheme}
+                              whatChange={'type'} nowPage={props.state.nowPage} search={props.state.search}/>
+                    {NavLinksItemsTypes}
+                </div>
+                {ProjectsItem}
+                {buttons.map(el => {
+                    return <NavLink key={el} to={"/projects/" + props.state.nowTheme + "/" + props.state.nowType + "/" + el}
+                                    onClick={() => {
+                                        props.onClickSetPage(el);
+                                    } }><button type="button" className="btn btn-outline-dark">{el}</button></NavLink>
+                })}
             </div>
-            <div>
-                <NavLinks id={'all'} name={'all'} key={'all'} onClickSetTheme={props.onClickSetTheme}
-                          nowType={props.state.nowType}
-                          whatChange={'theme'} nowPage={props.state.nowPage} search={props.state.search}/>
-                {NavLinksItemsThemes}
-            </div>
-            <div>
-                <NavLinks id={'all'} name={'all'} key={'all'} onClickSetTheme={props.onClickSetTheme}
-                          nowTheme={props.state.nowTheme}
-                          whatChange={'type'} nowPage={props.state.nowPage} search={props.state.search}/>
-                {NavLinksItemsTypes}
-            </div>
-            {ProjectsItem}
-            {buttons.map(el => {
-                return <NavLink key={el} to={"/projects/" + props.state.nowTheme + "/" + props.state.nowType + "/" + el}
-                                onClick={() => {
-                    props.onClickSetPage(el);
-                } }>{el}</NavLink>
-            })}
         </div>
     )
 };

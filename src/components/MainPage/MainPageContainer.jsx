@@ -19,7 +19,8 @@ class MainPageContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        state: getSlides(state)
+        state: getSlides(state),
+        themes: state.sliderSectionPage.direction,
     }
 };
 

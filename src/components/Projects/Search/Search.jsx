@@ -21,11 +21,20 @@ const Search = props => {
         path = "/projects/" + props.nowTheme + "/" + props.nowType + "/" + props.nowPage;
     }
     return (
-        <div>
-            <input type="text" placeholder={'Search'} value={searchField} onChange={setSearchOnChange}/>
-            <NavLink to={path}>
-                <button onClick={onClickSearch}>submit</button>
-            </NavLink>
+        <div style={{paddingBottom: '5px', paddingTop: '5px'}}>
+            <div className="input-group mb-3">
+                <input type="text" className="form-control" placeholder="Search"
+                       aria-label="Recipient's username" aria-describedby="basic-addon2" value={searchField} onChange={setSearchOnChange}/>
+                <div className="input-group-append">
+                    <NavLink to={path}>
+                        <button type="button" className="btn btn-success" onClick={onClickSearch}>Success</button>
+                    </NavLink>
+                </div>
+            </div>
+            {/*<input type="text" placeholder={'Search'} value={searchField} onChange={setSearchOnChange}/>*/}
+            {/*<NavLink to={path}>*/}
+            {/*    <button onClick={onClickSearch}>submit</button>*/}
+            {/*</NavLink>*/}
         </div>
     )
 };

@@ -1,0 +1,40 @@
+.main {
+    width: 100%;
+}
+
+
+.block {
+    width: 100%;
+}
+
+.block__inner {
+    width: 100%;
+    padding-top: 100%;
+    background-color: black;
+    position: relative;
+}
+
+.image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+    grid-column-gap: 10px;
+    grid-row-gap: 1em;
+}
+
+.title {
+    display: block;
+    width: 300px;
+    padding: 10px;
+    margin: 0 auto;
+    color: black;
+}

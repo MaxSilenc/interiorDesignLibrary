@@ -13,7 +13,9 @@ const NavLinks = (props) => {
         }
 
         return (
-            <NavLink to={path} onClick={() => {props.onClickSetTheme(props.nowTheme, props.name, props.search)}}>{props.name}</NavLink>
+            <NavLink to={path} className={Styles.link} onClick={() => {props.onClickSetTheme(props.nowTheme, props.name, props.search)}}>
+                <button type="button" className="btn btn-outline-dark">{props.name}</button>
+            </NavLink>
         )
     }
     else{
@@ -24,7 +26,9 @@ const NavLinks = (props) => {
             path = "/projects/" + props.name + "/" + props.nowType + "/" + props.nowPage + '?search=' + props.search;
         }
         return (
-            <NavLink to={path} onClick={() => {props.onClickSetTheme(props.name, props.nowType, props.search)}}>{props.name}</NavLink>
+            <NavLink to={path} className={Styles.link} onClick={() => {props.onClickSetTheme(props.name, props.nowType, props.search)}}>
+                <button type="button" className="btn btn-outline-dark">{props.name}</button>
+            </NavLink>
         )
     }
 };

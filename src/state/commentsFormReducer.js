@@ -10,6 +10,7 @@ const LIKE = 'LIKE';
 
 let initialState = {
     comments: [],
+    count: null,
     thisProject: {},
     like: {}
 };
@@ -35,7 +36,7 @@ export const commentsFormReducer = (state = initialState, action) => {
             return {...state, thisProject: action.project}
         }
         case SET_THIS_COMMENTS: {
-            return {...state, comments: [...action.comments.items]}
+            return {...state, comments: [...action.comments.items], count: action.comments.count}
         }
         case UPDATE_COMMENTS: {
             let newState = {...state};
@@ -69,13 +70,19 @@ export const commentsFormReducer = (state = initialState, action) => {
     }
 };
 
+export const getCommentsThunk = (projectId, page=1) =>{
+    return async (dispatch) =>{
+        let commetnData = await getCurrProjectComment(projectId, page);
+        dispatch(setThisCommentsAC(commetnData));
+    }
+};
+
 
 export const getCurrProjectThunk = (projectId) => {
     return async (dispatch) => {
         let data = await getCurrProject(projectId);
-            dispatch(setThisProjectCommentActionCreator(data));
-        let commetnData = await getCurrProjectComment(projectId);
-            dispatch(setThisCommentsAC(commetnData));
+        dispatch(setThisProjectCommentActionCreator(data));
+        dispatch(getCommentsThunk(projectId))
     }
 };
 

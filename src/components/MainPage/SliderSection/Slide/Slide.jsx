@@ -10,7 +10,9 @@ const Slide = (props) => {
                 <div className={Styles.caption}>
                     <h5>{props.title}</h5>
                     <p>{props.text}</p>
-                    <NavLink to={"projectPage/" + props.id}>start</NavLink>
+                    <NavLink to={"projectPage/" + props.id}>
+                        <button type="button" className="btn btn-info">more</button>
+                    </NavLink>
                 </div>
             </div>
         </div>
