@@ -9,7 +9,7 @@ export class FieldFileInput extends React.Component{
 
     onChange(e) {
         const { input: { onChange } } = this.props;
-        onChange(e.target.files)
+        onChange(e.target.files);
     }
 
     render(){

@@ -10,8 +10,11 @@ const Comment = props =>{
         <tr>
             <th scope="row">{props.comment.id}</th>
             <td>{props.comment.author}</td>
-            <td>{props.comment.text}</td>
-            <td><button onClick={deleteOnClick}>delete</button></td>
+            <td>
+                <textarea name="" id="" cols="40" rows="1" readOnly
+                          value={props.comment.text} className="form-control"/>
+            </td>
+            <td><button onClick={deleteOnClick} className="btn btn-danger">delete</button></td>
         </tr>
     )
 };

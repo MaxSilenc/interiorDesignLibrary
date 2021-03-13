@@ -8,6 +8,8 @@ const UPDATE_COMMENTS = "UPDATE_COMMENTS";
 let initialState = {
     comments: [],
     thisProject: {},
+    count: null,
+    page: 1
 };
 
 export const setThisProjectCommentActionCreator = (project) => {return {type: "SET_THIS_PROJECT", project: project}};
@@ -21,7 +23,7 @@ export const singleProjectManagerReducer = (state = initialState, action) => {
             return {...state, thisProject: action.project}
         }
         case SET_THIS_COMMENTS: {
-            return {...state, comments: [...action.comments.items]}
+            return {...state, comments: [...action.comments.items], count: action.comments.count}
         }
         case UPDATE_COMMENTS: {
             let comments = [...state.comments];
@@ -39,13 +41,19 @@ export const singleProjectManagerReducer = (state = initialState, action) => {
     }
 };
 
+export const getCommentsThunk = (projectId, page) => {
+    return async (dispatch) =>{
+        let data = await getCurrProjectComment(projectId, page);
+        dispatch(setThisCommentsAC(data));
+    }
+};
+
 
 export const getCurrProjectThunk = (projectId) => {
     return async (dispatch) => {
         let data = await getCurrProject(projectId);
         dispatch(setThisProjectCommentActionCreator(data));
-        let commetnData = await getCurrProjectComment(projectId);
-        dispatch(setThisCommentsAC(commetnData));
+        dispatch(getCommentsThunk(projectId));
     }
 };
 
