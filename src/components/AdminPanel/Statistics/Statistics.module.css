@@ -1,0 +1,15 @@
+.main {
+    width: 100%;
+    padding-top: 100px;
+}
+
+.h2{
+    width: 128px;
+    margin: 0 auto;
+}
+
+.h2__line{
+    width: 80%;
+    margin: 0 auto;
+    border-bottom: 1px solid black;
+}

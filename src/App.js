@@ -11,6 +11,7 @@ import AdminMainContainer from './components/AdminPanel/AdminMain/AdminMainConta
 import AdminProjectsContainer from './components/AdminPanel/AdminProjects/AdminProjectsContainer'
 import SingleProjectManagerComponent from './components/AdminPanel/AdminProjects/SingleProjectManager/SingleProjectManagerContainer'
 import AdminUsersComponent from './components/AdminPanel/AdminUsers/AdminUsersContainer'
+import StatisticsContainer from './components/AdminPanel/Statistics/StatisticsContainer'
 
 const App = (props) => {
   return (
@@ -27,6 +28,7 @@ const App = (props) => {
             <Route path="/projectsManager/:page?" render={() => <AdminProjectsContainer/>}/>
             <Route path="/singleProjectPage/:id?" render={() => <SingleProjectManagerComponent/>}/>
             <Route path="/adminUsersPage" render={() => <AdminUsersComponent/>}/>
+            <Route path="/statisticsAdmin" render={() => <StatisticsContainer/>}/>
 
         </div>
     </BrowserRouter>

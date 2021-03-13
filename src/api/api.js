@@ -173,3 +173,9 @@ export const updateProject = (data) =>{
         return respons.data;
     })
 };
+
+export const getStat = () =>{
+    return instance.get("http://127.0.0.1:8000/statistics/").then(respons =>{
+        return respons.data;
+    })
+};
