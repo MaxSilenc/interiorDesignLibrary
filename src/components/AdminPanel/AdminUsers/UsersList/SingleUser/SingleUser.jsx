@@ -14,7 +14,7 @@ const SingleUser = props => {
             <td>{props.user.name}</td>
             <td>{props.user.lastName}</td>
             <td>{props.user.status.toString()}</td>
-            <td><button onClick={deleteOnClick}>delete</button></td>
+            <td><button type="button" className="btn btn-danger" onClick={deleteOnClick}>delete</button></td>
         </tr>
     )
 };

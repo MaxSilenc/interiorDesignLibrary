@@ -81,8 +81,8 @@ export const getThemes = () => {
     })
 };
 
-export const getUsers = () =>{
-    return instance.post("http://127.0.0.1:8000/reg/", 'key=' + localStorage.token).then(respons => {
+export const getUsers = (page=1) =>{
+    return instance.post("http://127.0.0.1:8000/reg/?page=" + page, 'key=' + localStorage.token).then(respons => {
         return respons.data
     });
 };

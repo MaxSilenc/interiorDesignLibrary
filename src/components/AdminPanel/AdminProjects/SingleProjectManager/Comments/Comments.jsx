@@ -29,8 +29,13 @@ const Comments = props =>{
                     </tbody>
                 </table>
                 <div className={Styles.pagination}>
-                    <Paginator totalItemsCount={props.count} pageSize={20} currentPage={props.nowPage}
-                               onPageChange={props.getCommentsForCurrProject} portionSize={5} projectId={props.projectId}/>
+                    <Paginator totalItemsCount={props.count}
+                               pageSize={20}
+                               currentPage={props.nowPage}
+                               onPageChange={props.getCommentsForCurrProject}
+                               portionSize={5}
+                               url={'/singleProjectPage/' + props.projectId + '/'}
+                               projectId={props.projectId}/>
                 </div>
             </div>
         </div>

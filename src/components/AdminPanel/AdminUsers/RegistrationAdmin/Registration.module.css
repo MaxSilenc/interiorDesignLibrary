@@ -1,0 +1,16 @@
+.input__label{
+    font-size: 14px;
+    color: lightslategray;
+}
+
+.submit__form{
+    padding-top: 10px;
+    margin: 0 auto;
+    width: 90px;
+}
+
+.form {
+    padding-top: 20px;
+    width: 60%;
+    margin: 0 auto;
+}

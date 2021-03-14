@@ -1,0 +1,11 @@
+.main {
+    padding-top: 20px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.pagination{
+    display: block;
+    margin: 0 auto 0 auto;
+    text-align: center;
+}

@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 const Links = props =>{
     return (
         <div>
-            <NavLink to={'/adminUsersPage'}>users</NavLink>
+            <NavLink to={'/adminUsersPage/1'}>users</NavLink>
             <br/>
             <NavLink to={'/projectsManager/1'}>projects manager</NavLink>
             <br/>

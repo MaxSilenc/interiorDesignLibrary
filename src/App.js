@@ -42,7 +42,7 @@ class App extends React.Component{
                     <Route path="/admin/:username?/:id?" render={() => <AdminMainContainer/>}/>
                     <Route path="/projectsManager/:page?" render={() => <AdminProjectsContainer/>}/>
                     <Route path="/singleProjectPage/:id?/:page?" render={() => <SingleProjectManagerComponent/>}/>
-                    <Route path="/adminUsersPage" render={() => <AdminUsersComponent/>}/>
+                    <Route path="/adminUsersPage/:page?" render={() => <AdminUsersComponent/>}/>
                     <Route path="/statisticsAdmin" render={() => <StatisticsContainer/>}/>
 
                 </div>

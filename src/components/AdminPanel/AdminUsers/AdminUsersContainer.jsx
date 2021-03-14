@@ -10,7 +10,8 @@ import {getUsersThunk, registrationThunk, deleteUserThunk} from './../../../stat
 class AdminUsersComponent extends React.Component{
 
     componentDidMount() {
-        this.props.getUsers()
+        let page = this.props.match.params.page;
+        this.props.getUsers(page)
     }
 
     regOnsubmit = (data) =>{
@@ -21,7 +22,7 @@ class AdminUsersComponent extends React.Component{
         if (!this.props.user.isAuth) return <Redirect to={'/'}/>;
         if (!this.props.user.status) return <Redirect to={'/'}/>;
         return (
-            <AdminUser {...this.props} regSubmit={this.regOnsubmit}/>
+            <AdminUser {...this.props} regSubmit={this.regOnsubmit} nowPage={this.props.match.params.page}/>
         )
     }
 }
@@ -30,7 +31,8 @@ class AdminUsersComponent extends React.Component{
 let mapStateToProps = (state) => {
     return {
         user: getAuthDude(state),
-        usersList: state.usersPage.users
+        usersList: state.usersPage.users,
+        count: state.usersPage.count
     }
 };
 

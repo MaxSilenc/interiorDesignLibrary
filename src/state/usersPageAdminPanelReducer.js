@@ -8,17 +8,18 @@ const SET_SINGLE_USER = "SET_SINGLE_USER";
 
 
 let initialState = {
-    users: []
+    users: [],
+    count: null
 };
 
-export const setUsersActionCreator = (Arr) => {return {type: "SET_USERS", Arr}};
+export const setUsersActionCreator = (Arr, count) => {return {type: "SET_USERS", Arr, count}};
 export const deleteUsersActionCreator = (id) => {return {type: "DELETE_USER", id}};
 export const setSingleUserActionCreator = (data) => {return {type: "SET_SINGLE_USER",data}};
 
 export const usersPageAdminReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USERS:{
-            return {...state, users: [...action.Arr]}
+            return {...state, users: [...action.Arr], count: action.count}
         }
         case DELETE_USER: {
             let users = [...state.users];
@@ -81,11 +82,11 @@ export const registrationThunk = (data) =>{
         }
     }
 };
-export const getUsersThunk = () => {
+export const getUsersThunk = (id, page) => {
     return async (dispatch) => {
-        let data = await getUsers();
+        let data = await getUsers(page);
         if (data.keyError === 0){
-            dispatch(setUsersActionCreator(data.users));
+            dispatch(setUsersActionCreator(data.users, data.count));
         }
     }
 };

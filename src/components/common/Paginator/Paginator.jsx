@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {NavLink} from "react-router-dom";
 
-const Paginator = ({totalItemsCount, pageSize, currentPage, onPageChange, portionSize, projectId=''}) =>{
+const Paginator = ({totalItemsCount, pageSize, currentPage, onPageChange, portionSize, url, projectId=1}) =>{
 
     let pageCount = Math.ceil(totalItemsCount / pageSize);
 
@@ -24,7 +24,7 @@ const Paginator = ({totalItemsCount, pageSize, currentPage, onPageChange, portio
                 pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber).map((p) => {
                     if (p.toString() === currentPage)
                         return (
-                            <NavLink to={'/singleProjectPage/' + projectId + '/' + p} key={p}>
+                            <NavLink to={url + p} key={p}>
                                 <button onClick={() => {onPageChange(projectId, p);}}
                                         className={"btn btn-outline-info"}>
                                     {p}
@@ -33,7 +33,7 @@ const Paginator = ({totalItemsCount, pageSize, currentPage, onPageChange, portio
                         );
                     else
                         return (
-                            <NavLink to={'/singleProjectPage/' + projectId + '/' + p} key={p}>
+                            <NavLink to={url + p} key={p}>
                                 <button onClick={() => {onPageChange(projectId, p);}}
                                         className={"btn btn-outline-dark"}>
                                     {p}

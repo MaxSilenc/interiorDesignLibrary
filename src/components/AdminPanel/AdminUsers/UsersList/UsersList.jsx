@@ -1,12 +1,14 @@
 import React from 'react'
 import SingleUser from './SingleUser/SingleUser'
+import Styles from './usersList.module.css'
+import Paginator from './../../../common/Paginator/Paginator'
 
 const UsersList = props =>{
 
     let users = props.usersList.map(el => <SingleUser user={el} key={el.userId } deleteUser={props.deleteUser}/>);
 
     return (
-        <div>
+        <div className={Styles.main}>
             <table className="table">
                 <thead>
                 <tr>
@@ -22,6 +24,14 @@ const UsersList = props =>{
                 {users}
                 </tbody>
             </table>
+            <div className={Styles.pagination}>
+                <Paginator totalItemsCount={props.count}
+                           pageSize={20}
+                           currentPage={props.nowPage}
+                           onPageChange={props.getUsers}
+                           portionSize={5}
+                           url={'/adminUsersPage/'}/>
+            </div>
         </div>
     )
 };
