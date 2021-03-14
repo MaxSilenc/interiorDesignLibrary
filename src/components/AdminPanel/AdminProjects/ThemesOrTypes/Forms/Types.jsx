@@ -1,7 +1,7 @@
 import {Field, reduxForm} from "redux-form";
 import {Input} from '../../../../Login/LoginForms'
 import {Required} from "../../../../../forms/validation";
-
+import Styles from './themesAndType.module.css'
 import React from 'react';
 
 
@@ -9,10 +9,11 @@ const addTypesForm = (props) =>{
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field type="text" placeholder={'type'} component={Input} name={'name'} validate={[Required]}/>
+                <h6 className={Styles.input__label}>type:</h6>
+                <Field type="text" placeholder={'type'} component={Input} name={'name'} validate={[Required]} className="form-control"/>
             </div>
-            <div>
-                <button>add</button>
+            <div className={Styles.submit__form}>
+                <button className="btn btn-outline-success">add</button>
             </div>
         </form>
     )
@@ -29,8 +30,7 @@ const Types = (props) =>{
     };
 
     return (
-        <div>
-            <h1>add types</h1>
+        <div className={Styles.form}>
             <TypesForm {...props} onSubmit={onSubmitform}/>
         </div>
     )

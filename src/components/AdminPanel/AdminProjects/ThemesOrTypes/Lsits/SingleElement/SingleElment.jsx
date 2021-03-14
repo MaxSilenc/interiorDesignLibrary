@@ -30,7 +30,7 @@ const SingleElement = props =>{
             {editMode &&
                 <td><input autoFocus={true} onBlur={deactivateEditMode} value={name} onChange={setNameInLS}/></td>
             }
-            <td><button onClick={onClickDelete}>delete</button></td>
+            <td><button onClick={onClickDelete} className={"btn btn-danger"}>delete</button></td>
         </tr>
     )
 };

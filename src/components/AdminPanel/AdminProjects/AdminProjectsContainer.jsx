@@ -17,7 +17,7 @@ class AdminPojectsComponent extends React.Component{
         this.props.getProjects(page, 'all', 'all', search)
     }
 
-    onClickSetPage = (el) =>{
+    onClickSetPage = (id, el) =>{
         this.props.getProjects(el, 'all', 'all')
     };
 
@@ -28,7 +28,7 @@ class AdminPojectsComponent extends React.Component{
     render() {
         if (!this.props.user.isAuth) return <Redirect to={'/'}/>;
         return (
-            <AdminProjects {...this.props} onClickSetPage={this.onClickSetPage} onClickSetSearch={this.onClickSetSearch}/>
+            <AdminProjects {...this.props} onClickSetPage={this.onClickSetPage} onClickSetSearch={this.onClickSetSearch} nowPage={this.props.match.params.page}/>
         )
     }
 }

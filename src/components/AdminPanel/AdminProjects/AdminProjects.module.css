@@ -1,0 +1,25 @@
+.form{
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 20px;
+    display: grid;
+    grid-template-areas: "block-1 block-2";
+
+    grid-template-rows: 50% 50%;
+    grid-template-columns: 50% 50%;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+
+.block1 {
+    grid-area: block-1;
+}
+.block2 {
+    grid-area: block-2;
+}
+.main{
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1920px;
+    padding-top: 100px;
+}

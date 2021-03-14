@@ -1,7 +1,7 @@
 import {Field, reduxForm} from "redux-form";
 import {Input} from '../../../../Login/LoginForms'
 import {Required} from "../../../../../forms/validation";
-
+import Styles from './themesAndType.module.css'
 import React from 'react';
 
 
@@ -9,10 +9,11 @@ const addThemesForm = (props) =>{
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field type="text" placeholder={'theme'} component={Input} name={'name'} validate={[Required]}/>
+                <h6 className={Styles.input__label}>theme:</h6>
+                <Field type="text" placeholder={'theme'} component={Input} name={'name'} validate={[Required]} className="form-control"/>
             </div>
-            <div>
-                <button>add</button>
+            <div className={Styles.submit__form}>
+                <button className="btn btn-outline-success">add</button>
             </div>
         </form>
     )
@@ -29,8 +30,7 @@ const Themes = (props) =>{
     };
 
     return (
-        <div>
-            <h1>add themes</h1>
+        <div className={Styles.form}>
             <ThemesForm {...props} onSubmit={onSubmitform}/>
         </div>
     )

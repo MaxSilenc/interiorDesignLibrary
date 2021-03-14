@@ -31,10 +31,6 @@ const Search = props => {
                     </NavLink>
                 </div>
             </div>
-            {/*<input type="text" placeholder={'Search'} value={searchField} onChange={setSearchOnChange}/>*/}
-            {/*<NavLink to={path}>*/}
-            {/*    <button onClick={onClickSearch}>submit</button>*/}
-            {/*</NavLink>*/}
         </div>
     )
 };

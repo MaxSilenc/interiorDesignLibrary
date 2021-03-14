@@ -22,10 +22,15 @@ const SearchAdmin = props => {
     }
     return (
         <div>
-            <input type="text" placeholder={'Search'} value={search} onChange={setSearchOnChange}/>
-            <NavLink to={path}>
-                <button onClick={onClickSearch}>submit</button>
-            </NavLink>
+            <div className="input-group mb-3">
+                <input type="text" className="form-control" placeholder="Search"
+                       aria-label="Recipient's username" aria-describedby="basic-addon2" value={search} onChange={setSearchOnChange}/>
+                <div className="input-group-append">
+                    <NavLink to={path}>
+                        <button type="button" className="btn btn-success" onClick={onClickSearch}>Search</button>
+                    </NavLink>
+                </div>
+            </div>
         </div>
     )
 };
