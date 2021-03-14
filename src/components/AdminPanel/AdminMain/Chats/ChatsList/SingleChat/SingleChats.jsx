@@ -9,7 +9,9 @@ const SingleChat = props =>{
 
     return (
         <div>
-            <NavLink to={'/admin/' + props.username + '/' + props.id} onClick={() => openChatOnClick()}>{props.username}</NavLink>
+            <NavLink to={'/admin/' + props.username + '/' + props.id} onClick={() => openChatOnClick()}>
+                <button className="btn btn-outline-dark">{props.username}</button>
+            </NavLink>
         </div>
     )
 };

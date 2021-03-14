@@ -7,9 +7,10 @@ const SingleChat = props =>{
     };
 
     return (
-        <div>
-            {props.user} <button onClick={() => onClickUser()}>take</button>
-        </div>
+        <tr>
+            <td>{props.user}</td>
+            <td><button onClick={() => onClickUser()} className={"btn btn-info"}>take</button></td>
+        </tr>
     )
 };
 

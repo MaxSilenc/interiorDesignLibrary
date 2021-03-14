@@ -1,0 +1,36 @@
+.h2{
+    text-align: center;
+    margin: 0 auto;
+}
+
+.h2__line{
+    width: 80%;
+    margin: 0 auto;
+    border-bottom: 1px solid black;
+}
+
+.form{
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 20px;
+    display: grid;
+    grid-template-areas: "block-1 block-2"
+                         "block-1 block-3"
+                         "block-1 block-3";
+
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: 20% 80%;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+
+.block1 {
+    grid-area: block-1;
+    text-align: right;
+}
+.block2 {
+    grid-area: block-2;
+}
+.block3 {
+    grid-area: block-3;
+}

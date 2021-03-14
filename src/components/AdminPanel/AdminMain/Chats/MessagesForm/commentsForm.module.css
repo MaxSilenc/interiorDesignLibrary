@@ -1,0 +1,7 @@
+.error textarea{
+    border-bottom: 2px solid indianred;
+}
+
+.errorMess{
+    color: indianred;
+}

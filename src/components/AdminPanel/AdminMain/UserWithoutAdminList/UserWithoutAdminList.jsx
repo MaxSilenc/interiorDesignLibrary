@@ -1,14 +1,29 @@
 import React from 'react'
 import SingleChat from './SingleChat/SingleChat'
+import Styles from './usersWithoutAdminList.module.css'
 
 const UserWithoutAdminList = props =>{
     let chats = props.emptyChats.map(el => <SingleChat key={el.id} id={el.id} user={el.user}
                                                        takeChat={props.takeChat} adminname={props.adminname}/>);
 
     return (
-        <div>
-            <h1>Users without admin</h1>
-            {chats}
+        <div className={Styles.main}>
+            <div className={Styles.h2__line}>
+                <h2 className={Styles.h2}>Users without admin</h2>
+            </div>
+            <div className={Styles.table}>
+                <table className="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">name</th>
+                        <th scope="col"> </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {chats}
+                    </tbody>
+                </table>
+            </div>
         </div>
     )
 };

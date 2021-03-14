@@ -1,0 +1,19 @@
+.list {
+    border: 1px solid black;
+}
+
+.list__scroll {
+    overflow: scroll;
+    overflow-wrap: break-word;  /* не поддерживает IE, Firefox; является копией word-wrap */
+    word-wrap: break-word;
+    word-break: normal;  /* не поддерживает Opera12.14, значение keep-all не поддерживается IE, Chrome */
+    line-break: auto;  /* нет поддержки для русского языка */
+    hyphens: manual;
+    width: 60%;
+    height: 600px;
+    padding: 5px;
+    border: solid 1px black;
+}
+.no__comments{
+    text-align: center ;
+}
