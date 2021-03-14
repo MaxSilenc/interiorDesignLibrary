@@ -14,9 +14,6 @@ class HeaderContainer extends React.Component{
         this.props.getProjects(1, "all", "all")
     };
 
-    componentDidMount() {
-        this.props.getCurrUser();
-    }
     render() {
         return <Header {...this.props} getProjectsOnClick={this.getProjectsOnClick}/>
     }

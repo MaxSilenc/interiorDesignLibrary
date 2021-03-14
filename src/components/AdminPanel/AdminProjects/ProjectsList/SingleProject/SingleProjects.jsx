@@ -18,7 +18,7 @@ const SingleProject = props =>{
             <td>{props.state.text.slice(0, 50) + '...'}</td>
             <td>{props.state.work.toString()}</td>
             <td><button onClick={onClickDelete}>delete</button></td>
-            <td><NavLink to={'/singleProjectPage/' + props.state.id}><button>more</button></NavLink></td>
+            <td><NavLink to={'/singleProjectPage/' + props.state.id + '/' + 1}><button>more</button></NavLink></td>
         </tr>
     )
 };

@@ -10,11 +10,13 @@ import {getCurrProjectThunk, updateProjectThunk, updateCommentThunk, getComments
 class SingleProjectManagerComponent extends React.Component{
     componentDidMount() {
         let id = this.props.match.params.id;
-        this.props.getProjects(id)
+        let page = this.props.match.params.page;
+        this.props.getProjects(id, page)
     }
 
     render() {
         if (!this.props.user.isAuth) return <Redirect to={'/'}/>;
+        if (!this.props.user.status) return <Redirect to={'/'}/>;
         return (
             <SingleProjectManager {...this.props}/>
         )
@@ -27,7 +29,7 @@ let mapStateToProps = (state) => {
         user: getAuthDude(state),
         comments: state.singleProjectManager.comments,
         currProject: state.singleProjectManager.thisProject,
-        count: state.singleProjectManager.count
+        count: state.singleProjectManager.count,
     }
 };
 

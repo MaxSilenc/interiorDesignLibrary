@@ -15,6 +15,7 @@ class AdminUsersComponent extends React.Component{
 
     render() {
         if (!this.props.user.isAuth) return <Redirect to={'/'}/>;
+        if (!this.props.user.status) return <Redirect to={'/'}/>;
         return (
             <Statistics {...this.props}/>
         )

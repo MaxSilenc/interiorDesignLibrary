@@ -2,6 +2,7 @@ import React from 'react';
 import {Field, reduxForm} from "redux-form";
 import {MaxLengthCreator, Required, ValidPass} from "../../../../forms/validation";
 import {Input} from "../../../Login/LoginForms";
+import Styles from './Registration.module.css'
 
 let MaxLength = MaxLengthCreator(20);
 const RegistrationForm = (props) =>{
@@ -39,7 +40,6 @@ const RegistrationReduxForm = reduxForm({
 const Registration = (props) =>{
     return (
         <div>
-            <h1>admin reg</h1>
             <RegistrationReduxForm onSubmit={props.onSubmit}/>
         </div>
     )

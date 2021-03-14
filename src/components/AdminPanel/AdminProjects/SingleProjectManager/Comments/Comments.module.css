@@ -1,9 +1,24 @@
 .main {
+    padding-top: 50px;
+}
+
+.comments {
     width: 60%;
     margin: 0 auto;
 }
 .pagination{
     display: block;
     margin: 0 auto 0 auto;
+    text-align: center;
+}
+.h2{
+    width: 220px;
+    margin: 0 auto;
+}
+
+.h2__line{
+    width: 80%;
+    margin: 0 auto;
+    border-bottom: 1px solid black;
     text-align: center;
 }

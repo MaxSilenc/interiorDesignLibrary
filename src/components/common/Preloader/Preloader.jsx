@@ -1,9 +1,14 @@
 import React from 'react'
 import preloader from './../../../img/preloader.gif'
+import Styles from './preloader.module.css'
 
 const Preloader = () => {
     return (
-        <img src={preloader} alt=""/>
+        <div className={Styles.bg}>
+            <div className={Styles.main}>
+                <img src={preloader} alt=""/>
+            </div>
+        </div>
     )
 };
 

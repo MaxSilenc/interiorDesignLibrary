@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react'
 import MainPageContainer from './components/MainPage/MainPageContainer'
 import ProjectContainer from './components/Projects/ProjectContainer'
 import ProjectPageContainer from './components/ProjectPage/ProjectPageContainer'
@@ -12,27 +13,54 @@ import AdminProjectsContainer from './components/AdminPanel/AdminProjects/AdminP
 import SingleProjectManagerComponent from './components/AdminPanel/AdminProjects/SingleProjectManager/SingleProjectManagerContainer'
 import AdminUsersComponent from './components/AdminPanel/AdminUsers/AdminUsersContainer'
 import StatisticsContainer from './components/AdminPanel/Statistics/StatisticsContainer'
+import {connect} from "react-redux";
+import {initialisedThunk} from "./state/appReducer";
+import {withRouter} from 'react-router-dom'
+import {compose} from "redux";
+import Preloader from './components/common/Preloader/Preloader'
 
-const App = (props) => {
-  return (
-    <BrowserRouter>
-        <div>
-            <HeaderContainer/>
-            <Route exact path="/" render={() => <MainPageContainer/>}/>
-            <Route exact path="/projects/:theme?/:type?/:page?" render={() => <ProjectContainer/>}/>
-            <Route path="/projectPage/:projectId?" render={() => <ProjectPageContainer/>}/>
-            <Route path="/login" render={() => <LoginContainer/>}/>
-            <Route path="/registration" render={() => <RegistrationContainer/>}/>
-            <Route path="/personalArea" render={() => <PersonalAreaContainer/>}/>
-            <Route path="/admin/:username?/:id?" render={() => <AdminMainContainer/>}/>
-            <Route path="/projectsManager/:page?" render={() => <AdminProjectsContainer/>}/>
-            <Route path="/singleProjectPage/:id?" render={() => <SingleProjectManagerComponent/>}/>
-            <Route path="/adminUsersPage" render={() => <AdminUsersComponent/>}/>
-            <Route path="/statisticsAdmin" render={() => <StatisticsContainer/>}/>
+class App extends React.Component{
 
-        </div>
-    </BrowserRouter>
-  );
+    componentDidMount() {
+        this.props.initialise()
+    }
+
+    render() {
+        if (!this.props.init)
+            return <Preloader />;
+
+        return (
+            <BrowserRouter>
+                <div>
+                    <HeaderContainer/>
+                    <Route exact path="/" render={() => <MainPageContainer/>}/>
+                    <Route exact path="/projects/:theme?/:type?/:page?" render={() => <ProjectContainer/>}/>
+                    <Route path="/projectPage/:projectId?" render={() => <ProjectPageContainer/>}/>
+                    <Route path="/login" render={() => <LoginContainer/>}/>
+                    <Route path="/registration" render={() => <RegistrationContainer/>}/>
+                    <Route path="/personalArea" render={() => <PersonalAreaContainer/>}/>
+                    <Route path="/admin/:username?/:id?" render={() => <AdminMainContainer/>}/>
+                    <Route path="/projectsManager/:page?" render={() => <AdminProjectsContainer/>}/>
+                    <Route path="/singleProjectPage/:id?/:page?" render={() => <SingleProjectManagerComponent/>}/>
+                    <Route path="/adminUsersPage" render={() => <AdminUsersComponent/>}/>
+                    <Route path="/statisticsAdmin" render={() => <StatisticsContainer/>}/>
+
+                </div>
+            </BrowserRouter>
+        );
+    }
+}
+
+let mapStateToProps = (state) => {
+    return {
+        init: state.appInit.initialised
+    }
 };
 
-export default App;
+export default compose(
+    connect(mapStateToProps,{
+        initialise: initialisedThunk,
+    }),
+    withRouter
+)(App);
+

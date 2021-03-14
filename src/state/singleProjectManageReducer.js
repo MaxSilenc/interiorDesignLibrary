@@ -1,15 +1,17 @@
 import {updateProject, getCurrProject, getCurrProjectComment, updateComment} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const SET_THIS_PROJECT = "SET_THIS_PROJECT";
 const SET_THIS_COMMENTS = "SET_THIS_COMMENTS";
 const UPDATE_COMMENTS = "UPDATE_COMMENTS";
+const SUCCESS_MESS = "SUCCESS_MESS";
 
 
 let initialState = {
     comments: [],
     thisProject: {},
     count: null,
-    page: 1
+    page: 1,
 };
 
 export const setThisProjectCommentActionCreator = (project) => {return {type: "SET_THIS_PROJECT", project: project}};
@@ -19,6 +21,9 @@ export const updateCommentAC = (id, text) => {return {type: "UPDATE_COMMENTS", i
 
 export const singleProjectManagerReducer = (state = initialState, action) => {
     switch (action.type){
+        case SUCCESS_MESS:{
+            return {...state, SuccessMess: action.message}
+        }
         case SET_THIS_PROJECT: {
             return {...state, thisProject: action.project}
         }
@@ -49,17 +54,39 @@ export const getCommentsThunk = (projectId, page) => {
 };
 
 
-export const getCurrProjectThunk = (projectId) => {
+export const getCurrProjectThunk = (projectId, page) => {
     return async (dispatch) => {
-        let data = await getCurrProject(projectId);
+        let data = await getCurrProject(projectId, page);
         dispatch(setThisProjectCommentActionCreator(data));
-        dispatch(getCommentsThunk(projectId));
+        dispatch(getCommentsThunk(projectId, page));
     }
 };
 
 export const updateProjectThunk = (projectData) =>{
     return async (dispatch) =>{
         let data = await updateProject(projectData);
+        if (data.keyError === 0){
+        }
+        if (data.keyError === 1){
+            let action = stopSubmit('updateProjects', {headline_name: data.message});
+            dispatch(action)
+        }
+        if (data.keyError === 2){
+            let action = stopSubmit('updateProjects', {theme: data.message});
+            dispatch(action)
+        }
+        if (data.keyError === 3){
+            let action = stopSubmit('updateProjects', {type: data.message});
+            dispatch(action)
+        }
+        if (data.keyError === 4){
+            let action = stopSubmit('updateProjects', {name: data.message});
+            dispatch(action)
+        }
+        if (data.keyError === 5){
+            let action = stopSubmit('updateProjects', {username: data.message});
+            dispatch(action)
+        }
     }
 };
 

@@ -90,12 +90,12 @@ export const getProjectsThunk = (nowPage, theme, type, search='', inWork='0') =>
     return async (dispatch) => {
         dispatch(setIsFetchingActionCreator(true));
         let data = await getProjects(nowPage, theme, type, search, inWork);
-        dispatch(setIsFetchingActionCreator(false));
         dispatch(setProjectsCountActionCreator(data.count));
         dispatch(setProjectsActionCreator(data.items));
         dispatch(setPage(nowPage));
         dispatch(searchAC(search));
         let themesData = await getThemes();
-        dispatch(setThemesAC(themesData.themes, theme, themesData.types, type))
+        dispatch(setThemesAC(themesData.themes, theme, themesData.types, type));
+        dispatch(setIsFetchingActionCreator(false));
     }
 };

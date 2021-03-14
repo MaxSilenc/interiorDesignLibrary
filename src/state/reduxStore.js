@@ -9,6 +9,7 @@ import {projectsManagerReducer} from "./projectsManagerReducer";
 import {singleProjectManagerReducer} from "./singleProjectManageReducer";
 import {usersPageAdminReducer} from './usersPageAdminPanelReducer'
 import {statisticsReducer} from  './statisticsReducer'
+import {appReducer} from "./appReducer";
 import thunkMiddleware from 'redux-thunk'
 import {reducer as formReducer} from "redux-form"
 
@@ -23,7 +24,8 @@ let redusers = combineReducers({
     projectsManager: projectsManagerReducer,
     singleProjectManager: singleProjectManagerReducer,
     usersPage: usersPageAdminReducer,
-    statistics: statisticsReducer
+    statistics: statisticsReducer,
+    appInit: appReducer
 });
 
 

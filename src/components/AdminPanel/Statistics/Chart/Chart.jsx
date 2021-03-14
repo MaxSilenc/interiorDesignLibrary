@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Bar, Line, Pie} from "react-chartjs-2";
 import Styles from './chart.module.css'
 
@@ -6,6 +6,11 @@ const Chart = props =>{
     let [ofWhat, setOfWhat] = useState(props.data.likes);
     let [names, setName] = useState(props.data.name);
     let [label, setLabel] = useState('# of likes');
+
+    useEffect( () => {
+        setOfWhat(props.data.likes);
+        setName(props.data.name)
+    }, [props.data.likes, props.data.name]);
 
     const ofLikes = () =>{
         setOfWhat(props.data.likes);

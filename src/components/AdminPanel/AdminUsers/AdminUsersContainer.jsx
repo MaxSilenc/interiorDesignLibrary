@@ -18,8 +18,8 @@ class AdminUsersComponent extends React.Component{
     };
 
     render() {
-        console.log(this.props);
         if (!this.props.user.isAuth) return <Redirect to={'/'}/>;
+        if (!this.props.user.status) return <Redirect to={'/'}/>;
         return (
             <AdminUser {...this.props} regSubmit={this.regOnsubmit}/>
         )
