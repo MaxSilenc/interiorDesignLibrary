@@ -1,0 +1,32 @@
+.input__label{
+    font-size: 14px;
+    color: lightslategray;
+}
+.button{
+    padding-top: 15px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.main{
+    width: 100%;
+    margin: 0 auto;
+}
+
+.form{
+    padding-top: 20px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.h2{
+    width: 220px;
+    margin: 0 auto;
+}
+
+.h2__line{
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    border-bottom: 1px solid black;
+}

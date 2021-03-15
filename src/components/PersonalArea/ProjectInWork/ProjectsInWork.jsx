@@ -1,6 +1,6 @@
 import React from 'react';
 import SingleProject from './SingleProject/SingleProject'
-
+import Styles from './ProjectsInWork.module.css'
 
 const ProjectsInWork = (props) =>{
 
@@ -9,9 +9,13 @@ const ProjectsInWork = (props) =>{
                                                         id={el.id}/>);
 
     return (
-        <div>
-            <h1>ProjectsInWork</h1>
-            {projects}
+        <div className={Styles.main}>
+            <div className={Styles.h2__line}>
+                <h2 className={Styles.h2}>My Projects</h2>
+            </div>
+            <div className={Styles.projects}>
+                {projects}
+            </div>
         </div>
     )
 };

@@ -3,7 +3,7 @@ import {getChat, updateMessage, addMessage, getProjectsInWork} from "../api/api"
 
 const SET_CHAT = 'SET_CHAT';
 const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
-const ADD_MESSAGE = 'ADD_MESSAGE';
+const ADD_MESSAGE_USER = 'ADD_MESSAGE_USER';
 const SET_PROJECTS_IN_WORK = 'SET_PROJECTS_IN_WORK';
 
 let initialState = {
@@ -14,7 +14,7 @@ let initialState = {
 
 export const setChat = (data) => {return {type: "SET_CHAT", data: data}};
 export const updateMessageAC = (id, text) => {return {type: "UPDATE_MESSAGE", id: id, text: text}};
-export const addUserMessageAC = (data) => {return {type: "ADD_MESSAGE", data: data}};
+export const addUserMessageAC = (data) => {return {type: "ADD_MESSAGE_USER", data: data}};
 export const setProjectsAC = (data) => {return {type: "SET_PROJECTS_IN_WORK", data: data}};
 
 export const PersonalAreaReducer = (state = initialState, action) => {
@@ -33,10 +33,14 @@ export const PersonalAreaReducer = (state = initialState, action) => {
             }
             return state
         }
-        case ADD_MESSAGE: {
+        case ADD_MESSAGE_USER: {
             let messages = [...state.messages];
-            let newComment = {...action.data};
-            messages.push(newComment);
+            messages.push({
+                id: messages[messages.length - 1].id + 1,
+                author: action.data.author,
+                chat_id: action.data.chat_id,
+                text: action.data.text,
+            });
             return {...state, messages: [...messages]};
         }
         case SET_PROJECTS_IN_WORK: {
@@ -65,7 +69,6 @@ export const updateMessageThunk = (id, text, chatId) => {
 };
 
 export const addUserMessageThunk = (text, projectId, author) => {
-    debugger
     return async (dispatch) => {
         let data = await addMessage(text, projectId, author);
         dispatch(addUserMessageAC({

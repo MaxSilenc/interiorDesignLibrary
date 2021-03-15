@@ -1,0 +1,22 @@
+.h2{
+    width: 220px;
+    margin: 0 auto;
+}
+
+.h2__line{
+    width: 80%;
+    margin: 0 auto;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+
+.main {
+    padding-top: 50px;
+    width: 100%;
+    margin: 0 auto;
+}
+.chat{
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 30px;
+}

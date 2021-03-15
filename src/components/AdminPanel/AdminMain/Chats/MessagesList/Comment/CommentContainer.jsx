@@ -38,8 +38,8 @@ const CommentContainer = (props =>{
     return (
         <div>
             {(props.user === comment.author) ?
-                <div className={Styles.test}>
-                    <div className={Styles.message}>
+                <div className={Styles.block}>
+                    <div className={Styles.message} >
                         <div className={"alert alert-success"}  style={{ borderRadius: '15px'}}>
                             <div className={Styles.author}>
                                 <div>
