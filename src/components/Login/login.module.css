@@ -5,3 +5,53 @@
 .errorMess{
     color: indianred;
 }
+
+.input__label{
+    font-size: 14px;
+    color: lightslategray;
+}
+.button{
+    padding-top: 15px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.h2{
+    width: 220px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.h2__line{
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+.main {
+    max-width: 1920px;
+    padding-top: 100px;
+    width: 100%;
+    margin: 0 auto;
+}
+.block{
+    padding-top: 20px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.reg{
+    height: 60px;
+    float: left;
+}
+
+.google__block{
+    float: right;
+}
+
+.sameLogin{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    display: inline-block;
+}

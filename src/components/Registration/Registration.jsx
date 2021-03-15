@@ -2,32 +2,38 @@ import React from 'react';
 import {Field, reduxForm} from "redux-form";
 import {MaxLengthCreator, Required, ValidPass} from "../../forms/validation";
 import {Input} from "../Login/LoginForms";
-import GoogleLoginComponent from './../Login/GoogleLogin/GoogleLogin'
+import Styles from './../Login/login.module.css'
 
 let MaxLength = MaxLengthCreator(20);
 const RegistrationForm = (props) =>{
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field type="text" placeholder={'login'} component={Input} name={'login'} validate={[Required, MaxLength]}/>
+                <h6 className={Styles.input__label}>username</h6>
+                <Field type="text" placeholder={'login'} component={Input} name={'login'} validate={[Required, MaxLength]} className="form-control"/>
             </div>
             <div>
-                <Field type="email" placeholder={'email'} component={Input} name={'email'} validate={[Required]}/>
+                <h6 className={Styles.input__label}>email</h6>
+                <Field type="email" placeholder={'email'} component={Input} name={'email'} validate={[Required]} className="form-control"/>
             </div>
             <div>
-                <Field type="text" placeholder={'name'} component={Input} name={'name'} validate={[Required]}/>
+                <h6 className={Styles.input__label}>name</h6>
+                <Field type="text" placeholder={'name'} component={Input} name={'name'} validate={[Required]} className="form-control"/>
             </div>
             <div>
-                <Field type="text" placeholder={'last name'} component={Input} name={'lastName'} validate={[Required]}/>
+                <h6 className={Styles.input__label}>lastName</h6>
+                <Field type="text" placeholder={'last name'} component={Input} name={'lastName'} validate={[Required]} className="form-control"/>
             </div>
             <div>
-                <Field type="password" placeholder={'password'} component={Input} name={'password'} validate={[Required, ValidPass]}/>
+                <h6 className={Styles.input__label}>password</h6>
+                <Field type="password" placeholder={'password'} component={Input} name={'password'} validate={[Required, ValidPass]} className="form-control"/>
             </div>
             <div>
-                <Field type="password" placeholder={'password'} component={Input} name={'passwordRep'} validate={[Required, ValidPass]}/>
+                <h6 className={Styles.input__label}>repeat password</h6>
+                <Field type="password" placeholder={'password'} component={Input} name={'passwordRep'} validate={[Required, ValidPass]} className="form-control"/>
             </div>
-            <div>
-                <button>submit</button>
+            <div className={Styles.button}>
+                <button className="btn btn-outline-success">Registration</button>
             </div>
         </form>
     )
@@ -39,11 +45,13 @@ const RegistrationReduxForm = reduxForm({
 
 const Registration = (props) =>{
     return (
-        <div>
-            <h1>padding</h1>
-            <h1>padding</h1>
-            <GoogleLoginComponent onSocialRegSubmit={props.onSocialRegSubmit}/>
-            <RegistrationReduxForm onSubmit={props.onSubmit}/>
+        <div className={Styles.main}>
+            <div className={Styles.h2__line}>
+                <h2 className={Styles.h2}>Registration</h2>
+            </div>
+            <div className={Styles.block}>
+                <RegistrationReduxForm onSubmit={props.onSubmit}/>
+            </div>
         </div>
     )
 };
