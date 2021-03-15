@@ -42,19 +42,20 @@ const CommentContainer = (props =>{
                     <div className={Styles.message}>
                         <div className={"alert alert-success"}  style={{ borderRadius: '15px'}}>
                             <div className={Styles.author}>
-                                <div className={Styles.me}>
+                                <div>
                                     {comment.author}
                                 </div>
                             </div>
                             {!editMode &&
-                            <div onDoubleClick={activateEditMode} className={Styles.me}>
+                            <div onDoubleClick={activateEditMode}>
                                 {comment.text}
                             </div>
                             }
                             {editMode &&
-                            <div className={Styles.me}>
-                            <textarea autoFocus={true} onBlur={deactivateEditMode} name="" id="" cols="50" rows="4"
-                                      value={comment.text} onChange={setCommentInLS}/>
+                            <div>
+                            <textarea autoFocus={true} onBlur={deactivateEditMode}
+                                      name="" id="" cols="50" rows="4"
+                                      value={comment.text} onChange={setCommentInLS} className="form-control"/>
                             </div>
                             }
                         </div>

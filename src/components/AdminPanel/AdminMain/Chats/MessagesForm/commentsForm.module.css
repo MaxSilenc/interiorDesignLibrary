@@ -5,3 +5,11 @@
 .errorMess{
     color: indianred;
 }
+
+.main {
+    width: 100%;
+}
+.button{
+    padding-top: 10px;
+    text-align: center;
+}

@@ -28,7 +28,7 @@ export const getMyChats = state =>{
 };
 
 export const getMessages = state =>{
-    return state.adminPage.messages
+    return state.adminPage.adminMessages
 };
 
 export const getProjects = state =>{

@@ -1,5 +1,4 @@
 import {addMessage, getChat, getEmptyChats, setAdminToChat, updateMessage} from "../api/api";
-import {updateCommentFun, addMessageFun} from './common'
 
 import React from "react";
 
@@ -15,14 +14,14 @@ const ADD_MESSAGE = 'ADD_MESSAGE';
 let initialState = {
     emptyChats: [],
     myChats: [],
-    messages: [],
+    adminMessages: [],
 };
 
 export const addMessageAC = (data) => {return {type: "ADD_MESSAGE", data: data}};
 export const setMessages = (data) => {return {type: "SET_MESSAGES", data: data}};
 export const setChats = (data) => {return {type: "SET_CHATS", data: data}};
 export const setMyChats = (data) => {return {type: "SET_MY_CHATS", data: data}};
-export const setAdmin = (id) => {return {type: "SET_ADMIN", id: id}};
+export const setAdmin = (id, name) => {return {type: "SET_ADMIN", id, name}};
 export const updateMessageAC = (id, text) => {return {type: "UPDATE_MESSAGE", id: id, text: text}};
 
 export const adminReducer = (state = initialState, action) => {
@@ -34,24 +33,43 @@ export const adminReducer = (state = initialState, action) => {
             return {...state, myChats: [...action.data]}
         }
         case SET_ADMIN: {
-            let newState = {...state};
             let emptyChats = [...state.emptyChats];
+            let myChats = [...state.myChats];
             for (let i = 0; i < emptyChats.length; i++){
                 if (emptyChats[i].id === action.id){
-                    newState.emptyChats.splice(i, 1);
-                    return newState
+                    let newChat = emptyChats[i];
+                    newChat.adminname = action.name;
+                    myChats.push(newChat);
+                    emptyChats.splice(i, 1);
+                    return {...state, emptyChats: [...emptyChats], myChats: myChats}
+                }
+            }
+
+            return state
+        }
+        case SET_MESSAGES: {
+            return {...state, adminMessages: [...action.data.messages]}
+        }
+        case UPDATE_MESSAGE: {
+            let messages = [...state.adminMessages];
+            for (let i = 0; i < messages.length; i++){
+                if (messages[i].id === action.id){
+                    if (action.text === '') messages.splice(i, 1);
+                    else messages[i].text = action.text;
+                    return {...state, adminMessages: [...messages]}
                 }
             }
             return state
         }
-        case SET_MESSAGES: {
-            return {...state, messages: [...action.data.messages]}
-        }
-        case UPDATE_MESSAGE: {
-            return updateCommentFun(state, action)
-        }
         case ADD_MESSAGE: {
-            return addMessageFun(state, action)
+            let messages = [...state.adminMessages];
+            messages.push({
+                id: messages[messages.length - 1].id + 1,
+                author: action.data.author,
+                chat_id: action.data.chat_id,
+                text: action.data.text,
+            });
+            return {...state, adminMessages: [...messages]};
         }
         default:
             return state
@@ -83,8 +101,7 @@ export const getMyChatsThunk = (adminname) =>{
 export const setAdminToChatThunk = (id, adminname) =>{
     return async (dispatch) =>{
         let data = await setAdminToChat(id, adminname);
-        if (data.errorKey !== 0) dispatch(setAdmin(id));
-        dispatch(getEmptyChatsThunk())
+        if (data.errorKey !== 0) dispatch(setAdmin(id, adminname));
     }
 };
 
@@ -97,13 +114,15 @@ export const updateMessageThunk = (id, text, chatId) => {
 
 export const addMessageThunk = (text, projectId, author) => {
     return async (dispatch) => {
-        let data = await addMessage(text, projectId, author);
-        if (data.keyError !== 2){
-            dispatch(addMessageAC({
-                chat_id: projectId,
-                author: author,
-                text: text
-            }));
+        if (projectId !== undefined) {
+            let data = await addMessage(text, projectId, author);
+            if (data.keyError !== 2){
+                dispatch(addMessageAC({
+                    chat_id: projectId,
+                    author: author,
+                    text: text
+                }));
+            }
         }
     }
 };

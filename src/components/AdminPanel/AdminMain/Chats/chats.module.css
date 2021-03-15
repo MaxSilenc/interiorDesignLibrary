@@ -10,16 +10,16 @@
 }
 
 .form{
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
     padding-top: 20px;
     display: grid;
-    grid-template-areas: "block-1 block-2"
-                         "block-1 block-3"
-                         "block-1 block-3";
+    grid-template-areas: "block-1 block-2 block-4"
+                         "block-1 block-3 block-4"
+                         "block-1 block-3 block-4";
 
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-columns: 20% 80%;
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: 20% 60% 20%;
     grid-column-gap: 10px;
     grid-row-gap: 10px;
 }
@@ -33,4 +33,10 @@
 }
 .block3 {
     grid-area: block-3;
+}
+
+.main{
+    width: 100%;
+    min-width: 800px;
+    padding-top: 20px;
 }

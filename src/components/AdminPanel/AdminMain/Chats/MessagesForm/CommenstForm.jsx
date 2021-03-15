@@ -17,9 +17,11 @@ const ProjectPageForm = (props) =>{
             <form onSubmit={props.handleSubmit}>
                 <div>
                     <Field component={Textarea} name={'comment'} validate={[Required, MaxLength]}
-                           placeholder={'comment'} cols={'100'} rows={'4'} wrap="soft"/>
+                           placeholder={'messages'} rows={'4'} wrap="soft" className="form-control"/>
                 </div>
-                <button className="btn btn-primary">Submit</button>
+                <div className={Styles.button}>
+                    <button className="btn btn-primary">Submit</button>
+                </div>
             </form>
         </div>
     )
@@ -36,7 +38,9 @@ const CommentsForm = (props) =>{
     };
 
     return (
-        <CommentsFormForm onSubmit={onSubmit}/>
+        <div className={Styles.main}>
+            <CommentsFormForm onSubmit={onSubmit}/>
+        </div>
     );
 };
 

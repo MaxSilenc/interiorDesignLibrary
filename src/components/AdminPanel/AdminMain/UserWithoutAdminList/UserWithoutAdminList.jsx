@@ -8,15 +8,12 @@ const UserWithoutAdminList = props =>{
 
     return (
         <div className={Styles.main}>
-            <div className={Styles.h2__line}>
-                <h2 className={Styles.h2}>Users without admin</h2>
-            </div>
             <div className={Styles.table}>
                 <table className="table">
                     <thead>
                     <tr>
-                        <th scope="col">name</th>
-                        <th scope="col"> </th>
+                        <th scope="col"/>
+                        <th scope="col"/>
                     </tr>
                     </thead>
                     <tbody>

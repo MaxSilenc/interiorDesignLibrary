@@ -16,6 +16,12 @@ class AdminMainComponent extends React.Component{
         this.props.getMyMessages(this.props.match.params.username)
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.match.params.username !== prevProps.match.params.username){
+            this.props.getMyMessages(this.props.match.params.username)
+        }
+    }
+
     onClickOpenChat = (username) =>{
         this.props.getMyMessages(username)
     };
@@ -26,8 +32,11 @@ class AdminMainComponent extends React.Component{
 
     render() {
         if (!this.props.user.isAuth) return <Redirect to={'/'}/>;
+        if (!this.props.user.status) return <Redirect to={'/'}/>;
         return (
-            <AdminPanel {...this.props} takeChat={this.takeChat} openChat={this.onClickOpenChat} thisProject={this.props.match.params.id}/>
+            <AdminPanel {...this.props} takeChat={this.takeChat}
+                        openChat={this.onClickOpenChat}
+                        thisProject={this.props.match.params.id} nowChat={this.props.match.params.username}/>
         )
     }
 }
@@ -51,7 +60,7 @@ export default compose(
         myChats: getMyChatsThunk,
         getMyMessages: getMessagesThunk,
         updateMessage: updateMessageThunk,
-        addMessage: addMessageThunk,
+        addAdminMessage: addMessageThunk,
     }),
     withRouter
 )(AdminMainComponent);

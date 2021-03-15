@@ -5,7 +5,7 @@ import {compose} from "redux";
 import { Redirect } from "react-router-dom"
 import {getAuthDude, getPersonalAreaData} from "../../selectors/selectors";
 import {changeCredThunk} from "../../state/authReducer";
-import {getChatThunk, updateMessageThunk, addMessageThunk, getProjectsInWorkThunk} from '../../state/PersonalAreaReducer'
+import {getChatThunk, updateMessageThunk, addUserMessageThunk, getProjectsInWorkThunk} from '../../state/PersonalAreaReducer'
 
 class PersonalAreaContainer extends React.Component{
 
@@ -27,6 +27,7 @@ class PersonalAreaContainer extends React.Component{
     };
 
     render() {
+        if (this.props.user.status) return <Redirect to={'/'}/>;
         if (!this.props.user.isAuth) return <Redirect to={'/'}/>;
         return (
             <>
@@ -50,7 +51,7 @@ export default compose(
         changeCred: changeCredThunk,
         getChat: getChatThunk,
         updateMessage: updateMessageThunk,
-        addMessage: addMessageThunk,
+        addMessage: addUserMessageThunk,
         getProjects: getProjectsInWorkThunk
     }),
 )(PersonalAreaContainer);

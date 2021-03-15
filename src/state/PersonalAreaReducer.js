@@ -1,5 +1,4 @@
 import {getChat, updateMessage, addMessage, getProjectsInWork} from "../api/api";
-import {updateCommentFun, addMessageFun} from './common'
 
 
 const SET_CHAT = 'SET_CHAT';
@@ -15,7 +14,7 @@ let initialState = {
 
 export const setChat = (data) => {return {type: "SET_CHAT", data: data}};
 export const updateMessageAC = (id, text) => {return {type: "UPDATE_MESSAGE", id: id, text: text}};
-export const addMessageAC = (data) => {return {type: "ADD_MESSAGE", data: data}};
+export const addUserMessageAC = (data) => {return {type: "ADD_MESSAGE", data: data}};
 export const setProjectsAC = (data) => {return {type: "SET_PROJECTS_IN_WORK", data: data}};
 
 export const PersonalAreaReducer = (state = initialState, action) => {
@@ -24,10 +23,21 @@ export const PersonalAreaReducer = (state = initialState, action) => {
             return {...state, messages: [...action.data.messages], chat: {...action.data.chat}}
         }
         case UPDATE_MESSAGE: {
-            return updateCommentFun(state, action)
+            let messages = [...state.messages];
+            for (let i = 0; i < messages.length; i++){
+                if (messages[i].id === action.id){
+                    if (action.text === '') messages.splice(i, 1);
+                    else messages[i].text = action.text;
+                    return {...state, messages: [...messages]}
+                }
+            }
+            return state
         }
         case ADD_MESSAGE: {
-            return addMessageFun(state, action)
+            let messages = [...state.messages];
+            let newComment = {...action.data};
+            messages.push(newComment);
+            return {...state, messages: [...messages]};
         }
         case SET_PROJECTS_IN_WORK: {
             return {...state, projects: [...action.data]}
@@ -54,10 +64,11 @@ export const updateMessageThunk = (id, text, chatId) => {
     }
 };
 
-export const addMessageThunk = (text, projectId, author) => {
+export const addUserMessageThunk = (text, projectId, author) => {
+    debugger
     return async (dispatch) => {
         let data = await addMessage(text, projectId, author);
-        dispatch(addMessageAC({
+        dispatch(addUserMessageAC({
             chat_id: projectId,
             author: author,
             text: text

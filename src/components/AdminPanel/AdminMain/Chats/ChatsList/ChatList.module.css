@@ -1,22 +1,5 @@
-.main {
-    width: 100%;
-    margin: 0 auto;
-}
-
-.h2{
-    text-align: center;
-    margin: 0 auto;
-}
-
-.h2__line{
-    width: 80%;
-    margin: 0 auto;
-    border-bottom: 1px solid black;
-}
-
-.table{
-    margin: 0 auto;
-    overflow: scroll;
+.list__scroll {
+    overflow-y: scroll;
     overflow-wrap: break-word;  /* не поддерживает IE, Firefox; является копией word-wrap */
     word-wrap: break-word;
     word-break: normal;  /* не поддерживает Opera12.14, значение keep-all не поддерживается IE, Chrome */
@@ -25,5 +8,5 @@
     width: 100%;
     height: 600px;
     padding: 5px;
-    border: solid 1px black;
+    border: none;
 }
